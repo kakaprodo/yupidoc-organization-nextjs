@@ -1,0 +1,14 @@
+{
+  "HomePage": {
+    "title": "Bienvenue sur Yupidoc",
+    "subtitle": "Formez la prochaine génération d'apprenants"
+  },
+  "Navigation": {
+    "home": "Accueil",
+    "courses": "Cours",
+    "programs": "Programmes",
+    "products": "Produits",
+    "about": "À propos",
+    "login": "Connexion"
+  }
+}
