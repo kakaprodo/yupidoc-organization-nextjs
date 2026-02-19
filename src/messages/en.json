@@ -1,8 +1,4 @@
 {
-  "HomePage": {
-    "title": "Welcome to Yupidoc",
-    "subtitle": "Train the next generation of learners"
-  },
   "Navigation": {
     "home": "Home",
     "courses": "Courses",
@@ -10,5 +6,28 @@
     "products": "Products",
     "about": "About",
     "login": "Sign In"
+  },
+  "HomePage": {
+    "Hero": {
+      "ctaPrimary": "Explore Activities",
+      "ctaSecondary": "Learn More",
+      "slides": {
+        "1": {
+          "title": "Empowering the Next Generation of Learners",
+          "desc": "Join our organization to access world-class education, mentorship programs, and career-defining courses."
+        },
+        "2": {
+          "title": "Modern Learning for a Modern World",
+          "desc": "Master the skills of tomorrow with our industry-leading curriculum and expert community."
+        }
+      }
+    }
+  },
+  "Footer": {
+    "description": "Yupidoc is a leading platform in document organization and online training for the next generation of learners.",
+    "sections": {
+      "links": "Navigation",
+      "org": "Organization"
+    }
   }
 }

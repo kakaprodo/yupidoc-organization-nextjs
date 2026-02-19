@@ -1,8 +1,4 @@
 {
-  "HomePage": {
-    "title": "Bienvenue sur Yupidoc",
-    "subtitle": "Formez la prochaine génération d'apprenants"
-  },
   "Navigation": {
     "home": "Accueil",
     "courses": "Cours",
@@ -10,5 +6,28 @@
     "products": "Produits",
     "about": "À propos",
     "login": "Connexion"
+  },
+  "HomePage": {
+    "Hero": {
+      "ctaPrimary": "Explorer les Activités",
+      "ctaSecondary": "En savoir plus",
+      "slides": {
+        "1": {
+          "title": "Propulser la Prochaine Génération d'Apprenants",
+          "desc": "Rejoignez notre organisation pour accéder à une éducation de classe mondiale et des programmes de mentorat."
+        },
+        "2": {
+          "title": "L'Apprentissage Moderne pour un Monde Moderne",
+          "desc": "Maîtrisez les compétences de demain avec nos experts et notre communauté."
+        }
+      }
+    }
+  },
+  "Footer": {
+    "description": "Yupidoc est une plateforme leader dans l'organisation et la formation en ligne pour la nouvelle génération.",
+    "sections": {
+      "links": "Navigation",
+      "org": "Organisation"
+    }
   }
 }

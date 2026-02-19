@@ -6,7 +6,17 @@ import createNextIntlPlugin from "next-intl/plugin";
 const wuthNextIntl = createNextIntlPlugin();
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  // CONFIGURATION DES IMAGES
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+        port: '',
+        pathname: '/**',
+      },
+    ],
+  },
 };
 
 export default wuthNextIntl(nextConfig);
