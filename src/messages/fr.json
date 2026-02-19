@@ -2,10 +2,12 @@
   "Navigation": {
     "home": "Accueil",
     "courses": "Cours",
+    "modules": "Modules",
     "programs": "Programmes",
-    "products": "Produits",
-    "about": "À propos",
-    "login": "Connexion"
+    "products": "Solutions",
+    "about": "À Propos",
+    "login": "Connexion",
+    "joinNow": "Rejoindre" 
   },
   "HomePage": {
     "Hero": {

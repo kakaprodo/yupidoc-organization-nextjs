@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { useTranslations, useLocale } from 'next-intl';
+import { GraduationCap } from 'lucide-react';
 import LanguageSwitcher from './LangueSwitcher';
 import ThemeSwitcher from './ThemeSwitcher';
 
@@ -10,37 +11,38 @@ export default function Header() {
   const locale = useLocale();
 
   const navLinks = [
-    { name: t('home'), href: `/${locale}` },
     { name: t('courses'), href: `/${locale}/courses` },
+    { name: t('modules'), href: `/${locale}/modules` },
     { name: t('programs'), href: `/${locale}/programs` },
     { name: t('products'), href: `/${locale}/products` },
     { name: t('about'), href: `/${locale}/about` },
   ];
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-base-200 bg-base-100/80 backdrop-blur-md">
-      <div className="container mx-auto px-4">
-        <div className="navbar h-16 p-0">
-          {/* LOGO */}
+    <header className="sticky top-0 z-[60] w-full border-b border-base-200 bg-base-100/90 backdrop-blur-md">
+      <div className="container mx-auto px-4 lg:px-8">
+        <div className="navbar h-20 p-0">
+
+          {/* LOGO (navbar-start) */}
           <div className="navbar-start">
-            <Link href={`/${locale}`} className="flex items-center gap-2 group">
-              <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center text-primary-content font-bold text-xl">
-                Y
+            <Link href={`/${locale}`} className="flex items-center gap-3 group">
+              <div className="w-10 h-10 bg-[#5850ec] rounded-lg flex items-center justify-center shadow-lg shadow-indigo-500/20 transition-transform group-hover:scale-105">
+                <GraduationCap className="text-white w-6 h-6" />
               </div>
-              <span className="font-bold text-xl tracking-tight hidden md:inline-block">
-                Yupi<span className="text-primary">doc</span>
+              <span className="font-bold text-xl tracking-tight text-base-content">
+                Yupi<span className="text-[#5850ec]">doc</span>
               </span>
             </Link>
           </div>
 
           {/* NAV CENTER (Desktop) */}
           <div className="navbar-center hidden lg:flex">
-            <ul className="menu menu-horizontal px-1 gap-1">
+            <ul className="flex items-center gap-8">
               {navLinks.map((link) => (
                 <li key={link.href}>
-                  <Link 
-                    href={link.href} 
-                    className="text-sm font-medium hover:text-primary transition-colors"
+                  <Link
+                    href={link.href}
+                    className="text-sm font-semibold text-base-content/60 hover:text-[#5850ec] transition-colors tracking-wide"
                   >
                     {link.name}
                   </Link>
@@ -49,29 +51,43 @@ export default function Header() {
             </ul>
           </div>
 
-          {/* ACTIONS RIGHT */}
-          <div className="navbar-end gap-2">
-            <ThemeSwitcher />
-            <div className="divider divider-horizontal mx-0 h-6 self-center"></div>
-            <LanguageSwitcher />
-            <Link href={`/${locale}/login`} className="btn btn-primary btn-sm ml-2 rounded-md">
-              {t('login')}
+          {/* ACTIONS RIGHT (navbar-end) */}
+          <div className="navbar-end gap-3">
+            <div className="hidden sm:flex items-center gap-1">
+              <ThemeSwitcher />
+              <div className="w-[1px] h-6 bg-base-200 mx-2"></div>
+              <LanguageSwitcher />
+            </div>
+
+            <Link
+              href={`/${locale}/login`}
+              className="btn bg-[#5850ec] hover:bg-[#4a42d4] border-none text-white px-6 h-11 min-h-[44px] rounded-lg text-sm font-bold normal-case shadow-md shadow-indigo-500/10"
+            >
+              {t('joinNow')}
             </Link>
-            
-            {/* Mobile Menu Toggle */}
+
+            {/* Mobile Menu */}
             <div className="dropdown dropdown-end lg:hidden">
               <label tabIndex={0} className="btn btn-ghost btn-circle">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h7" />
                 </svg>
               </label>
-              <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-1 p-2 shadow bg-base-100 rounded-box w-52 border border-base-200">
+              <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[100] p-3 shadow-xl bg-base-100 rounded-xl w-64 border border-base-200">
                 {navLinks.map((link) => (
-                  <li key={link.href}><Link href={link.href}>{link.name}</Link></li>
+                  <li key={link.href}>
+                    <Link href={link.href} className="py-3 font-medium">{link.name}</Link>
+                  </li>
                 ))}
+                <div className="divider my-1"></div>
+                <div className="flex justify-between items-center px-2 py-2">
+                  <ThemeSwitcher />
+                  <LanguageSwitcher />
+                </div>
               </ul>
             </div>
           </div>
+
         </div>
       </div>
     </header>
