@@ -4,37 +4,75 @@ import HeroCarousel from "@/components/HeroSection";
 import CourseCard from "@/components/CourseCard";
 import { SectionHeader } from "@/components/SectionHeader";
 import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 
-const FEATURED_COURSES = [
-    { id: 1, title: "Advanced Web Development", category: "Web Design", description: "Master modern web technologies including React, Node.js, and cloud deployment.", price: "$49.99", instructorAvatar: "https://i.pravatar.cc/150?u=1", image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=400" },
-    { id: 2, title: "Startup Leadership: 101", category: "Management", description: "Learn the fundamentals of building a team, managing finances, and scaling.", price: "$89.99", instructorAvatar: "https://i.pravatar.cc/150?u=2", image: "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=400" },
-    { id: 3, title: "UI/UX Design Principles", category: "Design", description: "Create beautiful and functional user interfaces with our comprehensive course.", price: "$39.99", instructorAvatar: "https://i.pravatar.cc/150?u=3", image: "https://images.unsplash.com/photo-1558655146-d09347e92766?q=80&w=400" },
+// On ne garde ici que les données techniques (images, prix, ids)
+const COURSES_DATA = [
+    { id: "1", category: "Web Design", price: "$49.99", avatar: "https://i.pravatar.cc/150?u=1", img: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=400" },
+    { id: "2", category: "Management", price: "$89.99", avatar: "https://i.pravatar.cc/150?u=2", img: "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=400" },
+    { id: "3", category: "Design", price: "$39.99", avatar: "https://i.pravatar.cc/150?u=3", img: "https://images.unsplash.com/photo-1558655146-d09347e92766?q=80&w=400" },
 ];
 
-const MODULES = [
-    { id: 1, title: "Physics Mechanics", category: "Science", description: "Deep dive into Newtonian mechanics, forces, and motion dynamics.", price: "Free", metaInfo: "8 Lessons", accentColor: "bg-blue-500", image: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?q=80&w=400" },
-    { id: 2, title: "Intro to SQL", category: "Data", description: "Learn how to query databases effectively using standard SQL syntax.", price: "$19.99", metaInfo: "10 Lessons", accentColor: "bg-pink-500", image: "https://images.unsplash.com/photo-1544383023-53f0c67bb724?q=80&w=400" },
-    { id: 3, title: "Cybersecurity Basics", category: "Security", description: "Protect yourself and your organization from common digital threats.", price: "$29.99", metaInfo: "12 Lessons", accentColor: "bg-green-500", image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=400" },
+const MODULES_DATA = [
+    {
+        id: "1",
+        category: "Science",
+        price: "Free",
+        meta: "8 Lessons",
+        color: "bg-blue-500",
+        img: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?q=80&w=400"
+    },
+    {
+        id: "2",
+        category: "Data",
+        price: "$19.99",
+        meta: "10 Lessons",
+        color: "bg-pink-500",
+        img: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=400" // ID SQL Fixé
+    },
+    {
+        id: "3",
+        category: "Security",
+        price: "$29.99",
+        meta: "12 Lessons",
+        color: "bg-green-500",
+        img: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=400"
+    },
 ];
 
 export default function HomePage() {
+    // Initialisation des traducteurs
+    const tCourses = useTranslations('Courses.featured');
+    const tModules = useTranslations('Modules');
+
     return (
         <div className="flex flex-col gap-24 pb-20">
             <HeroCarousel />
 
             {/* Section Featured Courses */}
             <section className="container mx-auto px-4">
-                <SectionHeader title="Featured Courses" href="/courses" linkText="View more courses" />
+                <SectionHeader
+                    title={tCourses('title')}
+                    href="/courses"
+                    linkText={tCourses('viewMore')}
+                />
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {FEATURED_COURSES.map((course, index) => (
+                    {COURSES_DATA.map((item, index) => (
                         <motion.div
-                            key={course.id}
+                            key={item.id}
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ delay: index * 0.1 }}
                             viewport={{ once: true }}
                         >
-                            <CourseCard {...course} />
+                            <CourseCard
+                                title={tCourses(`items.${item.id}.title`)}
+                                description={tCourses(`items.${item.id}.description`)}
+                                category={item.category}
+                                price={item.price}
+                                instructorAvatar={item.avatar}
+                                image={item.img}
+                            />
                         </motion.div>
                     ))}
                 </div>
@@ -42,35 +80,29 @@ export default function HomePage() {
 
             {/* Section Learning Modules */}
             <section className="container mx-auto px-4">
-                <SectionHeader title="Learning Modules" href="/modules" linkText="View more modules" />
+                <SectionHeader
+                    title={tModules('title')}
+                    href="/modules"
+                    linkText={tModules('viewMore')}
+                />
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {MODULES.map((module, index) => (
+                    {MODULES_DATA.map((item, index) => (
                         <motion.div
-                            key={module.id}
+                            key={item.id}
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ delay: index * 0.1 }}
                             viewport={{ once: true }}
                         >
-                            <CourseCard {...module} />
-                        </motion.div>
-                    ))}
-                </div>
-            </section>
-
-            {/* Section Comprehensive Programs */}
-            <section className="container mx-auto px-4">
-                <SectionHeader title="Comprehensive Programs" href="/programs" linkText="View more programs" />
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {FEATURED_COURSES.map((course, index) => (
-                        <motion.div
-                            key={`prog-${course.id}`}
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ delay: index * 0.1 }}
-                            viewport={{ once: true }}
-                        >
-                            <CourseCard {...course} metaInfo="6 Months + Certificate" instructorAvatar={undefined} />
+                            <CourseCard
+                                title={tModules(`items.${item.id}.title`)}
+                                description={tModules(`items.${item.id}.description`)}
+                                category={item.category}
+                                price={item.price}
+                                metaInfo={item.meta}
+                                accentColor={item.color}
+                                image={item.img}
+                            />
                         </motion.div>
                     ))}
                 </div>

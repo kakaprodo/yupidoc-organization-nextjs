@@ -1,12 +1,11 @@
 'use client';
 
-import Link from 'next/link';
-import { useTranslations, useLocale } from 'next-intl';
+import { Link } from '@/navigation';
+import { useTranslations } from 'next-intl';
 import { Mail, Phone, MessageCircle, MapPin, GraduationCap } from 'lucide-react';
 
 export default function Footer() {
     const t = useTranslations('Footer');
-    const locale = useLocale();
     const currentYear = new Date().getFullYear();
 
     return (
@@ -16,7 +15,7 @@ export default function Footer() {
 
                     {/* Colonne 1: Brand & Logo */}
                     <div className="flex flex-col gap-6">
-                        <Link href={`/${locale}`} className="flex items-center gap-3">
+                        <Link href="/" className="flex items-center gap-3">
                             <div className="w-10 h-10 bg-indigo-600 rounded-lg flex items-center justify-center shadow-lg shadow-indigo-500/20">
                                 <GraduationCap className="text-white w-6 h-6" />
                             </div>
@@ -33,10 +32,10 @@ export default function Footer() {
                     <div>
                         <h4 className="font-bold text-white mb-6 text-base">{t('sections.learn')}</h4>
                         <ul className="space-y-4 text-sm font-medium">
-                            <li><Link href={`/${locale}/courses`} className="hover:text-white transition-colors">{t('links.courses')}</Link></li>
-                            <li><Link href={`/${locale}/modules`} className="hover:text-white transition-colors">{t('links.modules')}</Link></li>
-                            <li><Link href={`/${locale}/programs`} className="hover:text-white transition-colors">{t('links.programs')}</Link></li>
-                            <li><Link href={`/${locale}/certifications`} className="hover:text-white transition-colors">{t('links.certifications')}</Link></li>
+                            <li><Link href="/courses" className="hover:text-white transition-colors">{t('links.courses')}</Link></li>
+                            <li><Link href="/modules" className="hover:text-white transition-colors">{t('links.modules')}</Link></li>
+                            <li><Link href="/programs" className="hover:text-white transition-colors">{t('links.programs')}</Link></li>
+                            <li><Link href="/certifications" className="hover:text-white transition-colors">{t('links.certifications')}</Link></li>
                         </ul>
                     </div>
 
@@ -44,10 +43,10 @@ export default function Footer() {
                     <div>
                         <h4 className="font-bold text-white mb-6 text-base">{t('sections.org')}</h4>
                         <ul className="space-y-4 text-sm font-medium">
-                            <li><Link href={`/${locale}/about`} className="hover:text-white transition-colors">{t('links.about')}</Link></li>
-                            <li><Link href={`/${locale}/careers`} className="hover:text-white transition-colors">{t('links.careers')}</Link></li>
-                            <li><Link href={`/${locale}/products`} className="hover:text-white transition-colors">{t('links.products')}</Link></li>
-                            <li><Link href={`/${locale}/blog`} className="hover:text-white transition-colors">{t('links.blog')}</Link></li>
+                            <li><Link href="/about" className="hover:text-white transition-colors">{t('links.about')}</Link></li>
+                            <li><Link href="/careers" className="hover:text-white transition-colors">{t('links.careers')}</Link></li>
+                            <li><Link href="/products" className="hover:text-white transition-colors">{t('links.products')}</Link></li>
+                            <li><Link href="/blog" className="hover:text-white transition-colors">{t('links.blog')}</Link></li>
                         </ul>
                     </div>
 
@@ -81,8 +80,8 @@ export default function Footer() {
                         © {currentYear} Yupidoc Organization. {t('allRightsReserved')}
                     </p>
                     <div className="flex gap-8">
-                        <Link href={`/${locale}/privacy`} className="text-slate-500 hover:text-white transition-colors">Privacy Policy</Link>
-                        <Link href={`/${locale}/terms`} className="text-slate-500 hover:text-white transition-colors">Terms of Service</Link>
+                        <Link href="/privacy" className="text-slate-500 hover:text-white transition-colors">Privacy Policy</Link>
+                        <Link href="/terms" className="text-slate-500 hover:text-white transition-colors">Terms of Service</Link>
                     </div>
                 </div>
             </div>

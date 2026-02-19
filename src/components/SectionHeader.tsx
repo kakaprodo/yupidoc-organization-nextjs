@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import { Link } from '@/navigation';
 import { ChevronRightIcon } from '@heroicons/react/20/solid';
 
 interface SectionHeaderProps {

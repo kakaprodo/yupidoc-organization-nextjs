@@ -2,6 +2,7 @@
   "Navigation": {
     "home": "Home",
     "courses": "Courses",
+    "modules": "Modules",
     "programs": "Programs",
     "products": "Solutions",
     "about": "About Us",
@@ -41,6 +42,72 @@
       "careers": "Join the Team",
       "products": "For Business",
       "blog": "Insights & News"
+    }
+  },
+  "Courses": {
+    "featured": {
+      "title": "Featured Courses",
+      "viewMore": "View More Courses",
+      "items": {
+        "1": {
+          "title": "Advanced Web Development",
+          "description": "Master modern technologies like React, Node.js, and cloud deployment to build scalable web applications."
+        },
+        "2": {
+          "title": "Startup Leadership: 101",
+          "description": "Learn the fundamentals of team building, financial management, and growth strategies for startups."
+        },
+        "3": {
+          "title": "Data Science with Python",
+          "description": "Dive into data analysis, machine learning, and visualization using Python's powerful libraries."
+        }
+      }
+    }
+  },
+  "Modules": {
+    "title": "Learning Modules",
+    "viewMore": "View More Modules",
+    "items": {
+      "1": {
+        "title": "AI & Machine Learning",
+        "description": "Explore the foundations of artificial intelligence and machine learning, and how to apply them in real-world scenarios."
+      },
+      "2": {
+        "title": "Cybersecurity Essentials",
+        "description": "Understand the principles of cybersecurity, including threat detection, risk management, and best practices for protection."
+      },
+      "3": {
+        "title": "Product Management",
+        "description": "Learn how to define product vision, prioritize features, and lead cross-functional teams to deliver successful products."
+      }
+    }
+  },
+  "Programs": {
+    "title": "Featured Programs",
+    "viewMore": "View More Programs",
+    "items": {
+      "1": {
+        "title": "Full-Stack Developer Program",
+        "description": "A comprehensive program covering front-end and back-end development, databases, and deployment."
+      },
+      "2": {
+        "title": "Data Science Bootcamp",
+        "description": "An intensive program focused on data analysis, machine learning, and real-world projects."
+      },
+      "3": {
+        "title": "Tech Leadership Track",
+        "description": "A program designed to develop the skills needed for leadership roles in technology companies."
+      }
+    }
+  },
+  "CoursesPage": {
+    "Hero": {
+      "title": "Explore Our Courses",
+      "subtitle": "Discover a world of knowledge with our comprehensive selection of courses designed to help you master new skills."
+    },
+    "Filters": {
+      "all": "All Courses",
+      "search": "Search courses..."
     }
   }
 }

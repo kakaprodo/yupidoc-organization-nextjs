@@ -43,5 +43,53 @@
       "products": "Produits",
       "blog": "Blog"
     }
+  },
+  "Courses": {
+    "featured": {
+      "title": "Cours à la une",
+      "viewMore": "Voir plus de cours",
+      "items": {
+        "1": {
+          "title": "Développement Web Avancé",
+          "description": "Maîtrisez les technologies modernes comme React, Node.js et le déploiement cloud."
+        },
+        "2": {
+          "title": "Leadership de Startup : 101",
+          "description": "Apprenez les bases de la création d'équipe, de la gestion financière et de la croissance."
+        },
+        "3": {
+          "title": "Principes du Design UI/UX",
+          "description": "Créez des interfaces utilisateur magnifiques et fonctionnelles avec notre formation complète."
+        }
+      }
+    }
+  },
+  "Modules": {
+    "title": "Modules d'Apprentissage",
+    "viewMore": "Voir plus de modules",
+    "items": {
+      "1": { "title": "Mécanique Physique", "description": "Plongez dans la mécanique newtonienne et la dynamique des forces." },
+      "2": { "title": "Introduction à SQL", "description": "Apprenez à requêter des bases de données efficacement avec SQL." },
+      "3": { "title": "Bases de la Cybersécurité", "description": "Protégez-vous et votre organisation contre les menaces numériques." }
+    }
+  },
+  "programs": {
+    "title": "Programmes de Certification",
+    "viewMore": "Voir plus de programmes",
+    "items": {
+      "1": { "title": "Certificat en Data Science", "description": "Devenez un expert en analyse de données et apprentissage automatique." },
+      "2": { "title": "Diplôme en Gestion de Projet", "description": "Maîtrisez les compétences pour diriger des projets complexes avec succès." },
+      "3": { "title": "Programme de Leadership en Technologie", "description": "Préparez-vous à diriger dans l'industrie technologique avec notre programme intensif." }
+    }
+  },
+  "CoursesPage": {
+    "Hero": {
+      "title": "Explorez nos cours",
+      "subtitle": "Découvrez un monde de connaissances avec notre sélection complète de cours conçus pour vous aider à maîtriser de nouvelles compétences."
+    },
+    "Filters": {
+      "all": "Tous les cours",
+      "search": "Rechercher un cours..."
+    }
   }
 }

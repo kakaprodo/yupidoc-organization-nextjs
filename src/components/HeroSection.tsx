@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
+import { Link } from '@/navigation';
 import { useTranslations, useLocale } from 'next-intl';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/outline';
 
@@ -67,7 +67,7 @@ export default function HeroCarousel() {
                                     {slide.desc}
                                 </p>
                                 <Link 
-                                    href={`/${locale}/activities`} 
+                                    href="/activities" 
                                     className="btn border-none bg-[#5850ec] hover:bg-[#4a42d4] text-white px-8 h-14 rounded-lg text-lg normal-case"
                                 >
                                     {t('ctaPrimary')}

@@ -1,6 +1,6 @@
 'use client';
 
-import Link from 'next/link';
+import { Link } from '@/navigation';
 import { useTranslations, useLocale } from 'next-intl';
 import { GraduationCap } from 'lucide-react';
 import LanguageSwitcher from './LangueSwitcher';
@@ -11,11 +11,11 @@ export default function Header() {
   const locale = useLocale();
 
   const navLinks = [
-    { name: t('courses'), href: `/${locale}/courses` },
-    { name: t('modules'), href: `/${locale}/modules` },
-    { name: t('programs'), href: `/${locale}/programs` },
-    { name: t('products'), href: `/${locale}/products` },
-    { name: t('about'), href: `/${locale}/about` },
+    { name: t('courses'), href: "/courses" },
+    { name: t('modules'), href: "/modules" },
+    { name: t('programs'), href: "/programs" },
+    { name: t('products'), href: "/products" },
+    { name: t('about'), href: "/about" },
   ];
 
   return (
@@ -25,7 +25,7 @@ export default function Header() {
 
           {/* LOGO (navbar-start) */}
           <div className="navbar-start">
-            <Link href={`/${locale}`} className="flex items-center gap-3 group">
+            <Link href="/" className="flex items-center gap-3 group">
               <div className="w-10 h-10 bg-[#5850ec] rounded-lg flex items-center justify-center shadow-lg shadow-indigo-500/20 transition-transform group-hover:scale-105">
                 <GraduationCap className="text-white w-6 h-6" />
               </div>
@@ -60,7 +60,7 @@ export default function Header() {
             </div>
 
             <Link
-              href={`/${locale}/login`}
+              href="/login"
               className="btn bg-[#5850ec] hover:bg-[#4a42d4] border-none text-white px-6 h-11 min-h-[44px] rounded-lg text-sm font-bold normal-case shadow-md shadow-indigo-500/10"
             >
               {t('joinNow')}
