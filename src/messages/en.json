@@ -3,8 +3,8 @@
     "home": "Home",
     "courses": "Courses",
     "programs": "Programs",
-    "products": "Products",
-    "about": "About",
+    "products": "Solutions",
+    "about": "About Us",
     "login": "Sign In"
   },
   "HomePage": {
@@ -14,20 +14,32 @@
       "slides": {
         "1": {
           "title": "Empowering the Next Generation of Learners",
-          "desc": "Join our organization to access world-class education, mentorship programs, and career-defining courses."
+          "desc": "Join our global community to access world-class education, expert-led mentorship, and career-defining certification programs."
         },
         "2": {
-          "title": "Modern Learning for a Modern World",
-          "desc": "Master the skills of tomorrow with our industry-leading curriculum and expert community."
+          "title": "Master the Skills of Tomorrow, Today",
+          "desc": "From deep tech to leadership, our modules are designed to bridge the gap between academic theory and industry practice."
         }
       }
     }
   },
   "Footer": {
-    "description": "Yupidoc is a leading platform in document organization and online training for the next generation of learners.",
+    "description": "Yupidoc is a leading educational organization dedicated to providing accessible, high-quality learning experiences worldwide. We build the tools and curricula for the leaders of the digital age.",
+    "allRightsReserved": "All rights reserved.",
     "sections": {
-      "links": "Navigation",
-      "org": "Organization"
+      "learn": "Learn",
+      "org": "Organization",
+      "contact": "Contact Us"
+    },
+    "links": {
+      "courses": "Expert Courses",
+      "modules": "Learning Modules",
+      "programs": "Degree Programs",
+      "certifications": "Certifications",
+      "about": "Our Mission",
+      "careers": "Join the Team",
+      "products": "For Business",
+      "blog": "Insights & News"
     }
   }
 }

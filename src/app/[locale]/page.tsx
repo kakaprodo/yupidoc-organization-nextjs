@@ -2,7 +2,6 @@
 
 import HeroCarousel from "@/components/HeroSection";
 import CourseCard from "@/components/CourseCard";
-import Footer from "@/components/Footer";
 import { SectionHeader } from "@/components/SectionHeader";
 import { motion } from "framer-motion";
 
@@ -13,7 +12,7 @@ const FEATURED_COURSES = [
 ];
 
 const MODULES = [
-    { id: 1, title: "Physics Mechanics", category: "Science", description: "Deep dive into Newtonian mechanics, forces, and motion dynamics.", price: "Free", metaInfo: "8 Lessons", accentColor: "bg-blue-500", image: "https://images.unsplash.com/photo-1636466484362-ec1030ad7214?q=80&w=400" },
+    { id: 1, title: "Physics Mechanics", category: "Science", description: "Deep dive into Newtonian mechanics, forces, and motion dynamics.", price: "Free", metaInfo: "8 Lessons", accentColor: "bg-blue-500", image: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?q=80&w=400" },
     { id: 2, title: "Intro to SQL", category: "Data", description: "Learn how to query databases effectively using standard SQL syntax.", price: "$19.99", metaInfo: "10 Lessons", accentColor: "bg-pink-500", image: "https://images.unsplash.com/photo-1544383023-53f0c67bb724?q=80&w=400" },
     { id: 3, title: "Cybersecurity Basics", category: "Security", description: "Protect yourself and your organization from common digital threats.", price: "$29.99", metaInfo: "12 Lessons", accentColor: "bg-green-500", image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=400" },
 ];
@@ -76,8 +75,6 @@ export default function HomePage() {
                     ))}
                 </div>
             </section>
-
-            <Footer />
         </div>
     );
 }

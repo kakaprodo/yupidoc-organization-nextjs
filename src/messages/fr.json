@@ -24,10 +24,22 @@
     }
   },
   "Footer": {
-    "description": "Yupidoc est une plateforme leader dans l'organisation et la formation en ligne pour la nouvelle génération.",
+    "description": "Nous nous consacrons à fournir une éducation de haute qualité accessible aux apprenants du monde entier. Rejoignez notre communauté aujourd'hui.",
+    "allRightsReserved": "Tous droits réservés.",
     "sections": {
-      "links": "Navigation",
-      "org": "Organisation"
+      "learn": "Apprendre",
+      "org": "Organisation",
+      "contact": "Contactez-nous"
+    },
+    "links": {
+      "courses": "Cours",
+      "modules": "Modules",
+      "programs": "Programmes",
+      "certifications": "Certifications",
+      "about": "À propos",
+      "careers": "Carrières",
+      "products": "Produits",
+      "blog": "Blog"
     }
   }
 }
