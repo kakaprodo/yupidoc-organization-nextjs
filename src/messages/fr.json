@@ -73,7 +73,7 @@
       "3": { "title": "Bases de la Cybersécurité", "description": "Protégez-vous et votre organisation contre les menaces numériques." }
     }
   },
-  "programs": {
+  "Programs": {
     "title": "Programmes de Certification",
     "viewMore": "Voir plus de programmes",
     "items": {
@@ -90,6 +90,12 @@
     "Filters": {
       "all": "Tous les cours",
       "search": "Rechercher un cours..."
+    }
+  },
+   "ModulesPage": {
+    "Hero": {
+      "title": "Explorez nos Modules",
+      "subtitle": "Découvrez un monde de connaissances avec notre sélection complète de modules spécialisés, conçus pour vous aider à maîtriser de nouvelles compétences techniques."
     }
   }
 }

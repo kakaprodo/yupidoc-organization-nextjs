@@ -109,5 +109,11 @@
       "all": "All Courses",
       "search": "Search courses..."
     }
+  },
+  "ModulesPage": {
+    "Hero": {
+      "title": "Explore Our Modules",
+      "subtitle": "Discover a world of knowledge with our comprehensive selection of specialized modules designed to help you master new technical skills."
+    }
   }
 }
