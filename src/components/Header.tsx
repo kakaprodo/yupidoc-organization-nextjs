@@ -1,20 +1,20 @@
 'use client';
 
 import { Link } from '@/navigation';
-import { useTranslations, useLocale } from 'next-intl';
+import { useTranslations } from 'next-intl';
 import { GraduationCap } from 'lucide-react';
 import LanguageSwitcher from './LangueSwitcher';
 import ThemeSwitcher from './ThemeSwitcher';
 
 export default function Header() {
   const t = useTranslations('Navigation');
-  const locale = useLocale();
+  // const locale = useLocale();
 
   const navLinks = [
     { name: t('courses'), href: "/courses" },
     { name: t('modules'), href: "/modules" },
     { name: t('programs'), href: "/programs" },
-    { name: t('products'), href: "/products" },
+    {name : t('products'), href: "/products"},
     { name: t('about'), href: "/about" },
   ];
 
