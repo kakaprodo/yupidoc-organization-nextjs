@@ -7,6 +7,7 @@ import { useTranslations } from "next-intl";
 import { Search, ChevronLeft, ChevronRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
+
 const MODULES_TECHNICAL_DATA = [
     {
         id: "1",
@@ -72,7 +73,7 @@ export default function ModulesPage() {
     const currentItems = filteredModules.slice(indexOfFirstItem, indexOfLastItem);
 
     return (
-        <main className="min-h-screen bg-white pb-20">
+        <main className="min-h-screen bg-base-100 pb-20">
             <PageHero
                 title={t('Hero.title')}
                 subtitle={t('Hero.subtitle')}
@@ -89,7 +90,7 @@ export default function ModulesPage() {
                             onChange={handleSearchChange}
                             // 2. UTILISATION DU TRADUCTEUR DÉCLARÉ PLUS HAUT
                             placeholder={tFilters('Filters.search')}
-                            className="input w-full pl-12 h-14 rounded-xl border-none focus:outline-none focus:ring-2 focus:ring-indigo-600 bg-white text-slate-900 shadow-lg"
+                            className="input w-full pl-12 h-14 rounded-xl border border-base-300 focus:ring-2 focus:ring-indigo-500 bg-base-100 text-base-content shadow-lg"
                         />
                     </div>
                 </div>
@@ -138,8 +139,8 @@ export default function ModulesPage() {
                                 key={i}
                                 onClick={() => setCurrentPage(i + 1)}
                                 className={`btn btn-square border-none transition-all duration-300 ${currentPage === i + 1
-                                        ? "bg-[#5850ec] text-white shadow-lg shadow-indigo-200 scale-110"
-                                        : "btn-ghost border border-slate-200 text-slate-600"
+                                    ? "bg-[#5850ec] text-white shadow-lg shadow-indigo-200 scale-110"
+                                    : "btn-ghost border border-slate-200 text-slate-600"
                                     }`}
                             >
                                 {i + 1}

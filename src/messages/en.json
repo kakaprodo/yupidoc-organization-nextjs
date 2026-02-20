@@ -131,43 +131,27 @@
   "AboutPage": {
     "Hero": {
       "title": "About Yupidoc",
-      "subtitle": "Learn more about our mission, values, and the team behind Yupidoc, dedicated to transforming education for the digital age."
+      "subtitle": "Building the future of education through technology, community, and accessible learning resources for everyone."
     },
-    "Story":{
-      "p1": "Founded in 2023, Yupidoc was born out of a passion for democratizing education and making high-quality learning accessible to everyone, everywhere. Our founders, a group of educators and technologists, recognized the need for a new kind of educational platform that could bridge the gap between traditional learning and the rapidly evolving demands of the modern workforce.",
-      "p2": "What started as a small collection of online courses has grown into a comprehensive learning ecosystem, serving thousands of students worldwide. We believe that education is not just about transferring knowledge, but about empowering individuals to shape their own futures. Our curriculum is designed by industry experts and educators who are passionate about creating engaging, practical learning experiences.",
-      "p3": "Our approach combines rigorous academic standards with hands-on, project-based learning. Whether you're looking to start a new career, upskill in your current role, or simply explore a new passion, we have the tools and resources to help you succeed. At Yupidoc, we're not just building a platform; we're building a community of learners, educators, and industry leaders who are committed to shaping the future of education together."
+    "story": {
+      "p1": "Founded in 2023, Yupidoc started with a simple mission: to make high-quality education accessible to anyone, anywhere in the world. What began as a small collection of coding tutorials has grown into a comprehensive learning platform serving thousands of students across the globe.",
+      "p2": "We believe that education is not just about transferring knowledge, but about empowering individuals to shape their own futures. Our curriculum is designed by industry experts and constantly updated to reflect the latest trends and technologies.",
+      "p3": "Our approach combines rigorous academic standards with practical, project-based learning. Whether you are looking to start a new career, upgrade your skills, or simply explore a new passion, Yupidoc provides the tools, community, and support you need to succeed."
     },
     "team": {
       "title": "Meet Our Team",
       "members": {
-        "1": {
-          "name": "Sarah Johnson",
-          "role": "Founder & CEO",
-          "bio": "Former EdTech executive with a passion for democratizing education and creating innovative learning experiences."
-        },
-        "2": {
-          "name": "David Chen",
-          "role": "Chief Learning Officer",
-          "bio": "Ph.D. in Computer Science with over 15 years of experience in higher education and curriculum development."
-        },
-        "3": {
-          "name": "Emily Davis",
-          "role": "Head of Product",
-          "bio": "Experienced product leader with a background in building educational technology platforms that scale."
-        },
-        "4": {
-          "name": "Michael Lee",
-          "role": "Lead Curriculum Designer",
-          "bio": "Educator and instructional designer with a focus on creating engaging, project-based learning experiences."
-        }
+        "1": { "name": "Sarah Johnson", "role": "Founder & CEO", "bio": "Former EdTech executive with a passion for democratizing education." },
+        "2": { "name": "David Chen", "role": "Head of Curriculum", "bio": "Ph.D. in Computer Science with over 15 years of experience in higher education." },
+        "3": { "name": "Maria Rodriguez", "role": "Lead Instructor", "bio": "Senior Full Stack Developer who loves teaching complex concepts simply." },
+        "4": { "name": "James Wilson", "role": "Community Manager", "bio": "Dedicated to fostering an inclusive and supportive environment for all." }
       }
-    },
-    "PolicyPage": {
-      "Hero": {
-        "title": "Organization Policy",
-        "subtitle": "Learn about our commitment to ethical practices, data privacy, and our dedication to creating a safe and inclusive learning environment for all."
-      }
+    }
+  },
+  "PolicyPage": {
+    "Hero": {
+      "title": "Organization Policy",
+      "subtitle": "This policy outlines how our organization operates, how we protect our learners, and what we expect from every member of our community."
     }
   }
 }

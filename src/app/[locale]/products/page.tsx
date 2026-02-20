@@ -15,7 +15,7 @@ export default function ProductsPage() {
     const t = useTranslations('ProductsPage');
 
     return (
-        <main className="min-h-screen bg-white pb-20">
+        <main className="min-h-screen bg-base-100 pb-20">
             <PageHero title={t('Hero.title')} subtitle={t('Hero.subtitle')} />
             <div className="container mx-auto px-4 lg:px-8 mt-12">
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">

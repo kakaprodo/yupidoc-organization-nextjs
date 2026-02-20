@@ -15,20 +15,23 @@ export default function AboutPage() {
     const t = useTranslations('AboutPage');
 
     return (
-        <main className="min-h-screen bg-white">
+        <main className="min-h-screen bg-base-100 pb-20">
             <PageHero title={t('Hero.title')} subtitle={t('Hero.subtitle')} />
 
             <section className="container mx-auto px-4 py-20">
-                <div className="max-w-4xl mx-auto space-y-8 text-lg text-slate-600 leading-relaxed text-center font-medium">
+                <div className="max-w-4xl mx-auto space-y-8 text-lg text-base-content/80 leading-relaxed text-center font-medium">
                     <p>{t('story.p1')}</p>
                     <p>{t('story.p2')}</p>
                     <p>{t('story.p3')}</p>
                 </div>
             </section>
-
-            <section className="bg-slate-50 py-24">
+            <section className="bg-base-200 py-24">
                 <div className="container mx-auto px-4">
-                    <h2 className="text-4xl font-black text-center text-slate-900 mb-16">{t('team.title')}</h2>
+                    {/* Changement : text-base-content pour la visibilité en dark mode */}
+                    <h2 className="text-4xl font-black text-center text-base-content mb-16">
+                        {t('team.title')}
+                    </h2>
+
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                         {TEAM.map((member) => (
                             <TeamCard
