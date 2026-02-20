@@ -97,5 +97,17 @@
       "title": "Explorez nos Modules",
       "subtitle": "Découvrez un monde de connaissances avec notre sélection complète de modules spécialisés, conçus pour vous aider à maîtriser de nouvelles compétences techniques."
     }
+  },
+  "ProgramsPage": {
+    "Hero": {
+      "title": "Explorez nos Programmes",
+      "subtitle": "Découvrez un monde de connaissances avec notre sélection complète de programmes conçus pour vous aider à maîtriser de nouvelles compétences."
+    }
+  },
+  "ProductsPage": {
+    "Hero": {
+      "title": "Nos Produits",
+      "subtitle": "De la marchandise exclusive aux rafraîchissements sains, explorez notre collection de produits de haute qualité."
+    }
   }
 }

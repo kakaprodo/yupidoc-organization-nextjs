@@ -115,5 +115,17 @@
       "title": "Explore Our Modules",
       "subtitle": "Discover a world of knowledge with our comprehensive selection of specialized modules designed to help you master new technical skills."
     }
+  },
+  "ProgramsPage": {
+    "Hero": {
+      "title": "Explore Our Programs",
+      "subtitle": "Discover a world of knowledge with our comprehensive selection of certification programs designed to help you master new skills and advance your career."
+    }
+  },
+  "ProductsPage": {
+    "Hero": {
+      "title": "Our Products",
+      "subtitle": "Discover our range of solutions designed to empower businesses and individuals with the tools they need to succeed in the digital age."
+    }
   }
 }
