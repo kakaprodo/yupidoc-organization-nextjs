@@ -167,5 +167,11 @@
     "description": "Description",
     "curriculum": "Course and lessons",
     "videoContent": "Video content"
+  },
+  "NotFound": {
+    "title": "404",
+    "subtitle": "Space under construction",
+    "description": "Oops! It looks like you've discovered an area our engineers are still fine-tuning. This feature will be available very soon.",
+    "cta": "Back to Home"
   }
 }

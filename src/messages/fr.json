@@ -147,5 +147,11 @@
     "description": "Description",
     "curriculum": "Cours et leçons",
     "videoContent": "heures de contenu vidéo"
+  },
+  "NotFound": {
+    "title": "404",
+    "subtitle": "Espace en cours de construction",
+    "description": "Oups ! Il semble que vous ayez découvert une zone que nos ingénieurs sont encore en train de peaufiner. Cette fonctionnalité sera disponible très prochainement.",
+    "cta": "Retourner à l'accueil"
   }
 }
