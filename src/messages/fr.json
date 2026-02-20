@@ -133,5 +133,19 @@
       "title": "Politique de l'Organisation",
       "subtitle": "Cette politique décrit le fonctionnement de notre organisation, la manière dont nous protégeons nos apprenants et ce que nous attendons de chaque membre."
     }
+  },
+  "Details": {
+    "purchase": "Acheter",
+    "oneTimePayment": "Paiement unique",
+    "duration": "Durée",
+    "level": "Niveau",
+    "language": "Langue",
+    "refund": "Période de remboursement",
+    "days": "jours",
+    "included": "Inclus dans ce contenu",
+    "whatYouWillLearn": "Ce que vous allez apprendre",
+    "description": "Description",
+    "curriculum": "Cours et leçons",
+    "videoContent": "heures de contenu vidéo"
   }
 }

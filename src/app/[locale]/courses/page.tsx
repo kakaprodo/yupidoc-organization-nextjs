@@ -92,6 +92,9 @@ export default function CoursesPage() {
                                 transition={{ duration: 0.3, delay: index * 0.05 }}
                             >
                                 <CourseCard
+                                    key={item.uniqueId}
+                                    id={item.id}
+                                    basePath="courses"
                                     title={tItems(`items.${item.id}.title`)}
                                     description={tItems(`items.${item.id}.description`)}
                                     category={item.category}

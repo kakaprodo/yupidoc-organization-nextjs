@@ -153,5 +153,19 @@
       "title": "Organization Policy",
       "subtitle": "This policy outlines how our organization operates, how we protect our learners, and what we expect from every member of our community."
     }
+  },
+  "Details": {
+    "purchase": "Purchase",
+    "oneTimePayment": "One-time payment",
+    "duration": "Duration",
+    "level": "Level",
+    "language": "Language",
+    "refund": "Refund period",
+    "days": "days",
+    "included": "Included in this content",
+    "whatYouWillLearn": "What you'll learn",
+    "description": "Description",
+    "curriculum": "Course and lessons",
+    "videoContent": "Video content"
   }
 }
