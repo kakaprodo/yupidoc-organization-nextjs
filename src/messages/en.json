@@ -173,5 +173,19 @@
     "subtitle": "Space under construction",
     "description": "Oops! It looks like you've discovered an area our engineers are still fine-tuning. This feature will be available very soon.",
     "cta": "Back to Home"
+  },
+  "ModuleDetail": {
+    "purchase": "Purchase",
+    "accessTime": "Access for 6 months",
+    "lessonsCount": "{count} lessons",
+    "includedTitle": "Included in this module",
+    "aboutTitle": "About this module",
+    "curriculumTitle": "Course and lessons in this module",
+    "stats": {
+      "duration": "Duration",
+      "level": "Level",
+      "language": "Language",
+      "refund": "Refund"
+    }
   }
 }

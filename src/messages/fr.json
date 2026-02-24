@@ -153,5 +153,19 @@
     "subtitle": "Espace en cours de construction",
     "description": "Oups ! Il semble que vous ayez découvert une zone que nos ingénieurs sont encore en train de peaufiner. Cette fonctionnalité sera disponible très prochainement.",
     "cta": "Retourner à l'accueil"
+  },
+  "ModuleDetail": {
+    "purchase": "Acheter le module",
+    "accessTime": "Accès pendant 6 mois",
+    "lessonsCount": "{count} leçons",
+    "includedTitle": "Inclus dans ce module",
+    "aboutTitle": "À propos de ce module",
+    "curriculumTitle": "Cours et leçons dans ce module",
+    "stats": {
+      "duration": "Durée",
+      "level": "Niveau",
+      "language": "Langue",
+      "refund": "Remboursement"
+    }
   }
 }
