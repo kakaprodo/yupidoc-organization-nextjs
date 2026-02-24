@@ -167,5 +167,13 @@
       "language": "Langue",
       "refund": "Remboursement"
     }
+  },
+  "ProgramDetail": {
+    "purchase": "Acheter le programme",
+    "coreModules": "Modules principaux",
+    "standaloneCourses": "Cours indépendants",
+    "learningPath": "Parcours d'apprentissage",
+    "whatYouWillLearn": "Ce que vous apprendrez dans ce programme",
+    "aboutTitle": "À propos de ce programme"
   }
 }

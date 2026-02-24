@@ -6,6 +6,7 @@ import ModuleCard from '@/components/ModuleCard';
 import { useTranslations } from "next-intl";
 import { Search } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
+import { Link } from '@/navigation';
 
 const PROGRAMS_DATA = [
     { id: "1", category: "Development", level: "Beginner", learners: "1,234", duration: "6h 30m", price: "$39.99", image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=600" },
@@ -50,11 +51,13 @@ export default function ProgramsPage() {
                                 exit={{ opacity: 0, scale: 0.95 }}
                                 transition={{ duration: 0.3, delay: index * 0.05 }}
                             >
-                                <ModuleCard
-                                    {...item}
-                                    title={tContent(`items.${item.id}.title`)}
-                                    description={tContent(`items.${item.id}.description`)}
-                                />
+                                <Link href={`/programs/${item.id}`}>
+                                    <ModuleCard
+                                        {...item}
+                                        title={tContent(`items.${item.id}.title`)}
+                                        description={tContent(`items.${item.id}.description`)}
+                                    />
+                                </Link>
                             </motion.div>
                         ))}
                     </AnimatePresence>

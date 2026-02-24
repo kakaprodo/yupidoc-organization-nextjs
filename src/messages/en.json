@@ -187,5 +187,13 @@
       "language": "Language",
       "refund": "Refund"
     }
+  },
+  "ProgramDetail": {
+    "purchase": "Purchase",
+    "coreModules": "Core Modules",
+    "standaloneCourses": "Standalone Courses",
+    "learningPath": "Learning Path",
+    "whatYouWillLearn": "What you'll learn in this program",
+    "aboutTitle": "About this program"
   }
 }
