@@ -175,5 +175,21 @@
     "learningPath": "Parcours d'apprentissage",
     "whatYouWillLearn": "Ce que vous apprendrez dans ce programme",
     "aboutTitle": "À propos de ce programme"
+  },
+  "Products": {
+    "items": {
+      "1": { "title": "Jus d'Orange Bio", "description": "Pressé à froid, 100% naturel et riche en Vitamine C." },
+      "2": { "title": "Smoothie Détox Vert", "description": "Un mélange parfait d'épinards, pomme et gingembre." },
+      "3": { "title": "Sweat à Capuche Signature", "description": "Coton premium avec logo brodé, coupe moderne." },
+      "4": { "title": "T-shirt Classique", "description": "Coton 100% biologique, doux et respirant." }
+    }
+  },
+  "ProductDetail": {
+    "addToCart": "Ajouter au panier",
+    "buyNow": "Acheter maintenant",
+    "description": "Description du produit",
+    "specifications": "Spécifications",
+    "inStock": "En stock",
+    "shipping": "Livraison mondiale disponible"
   }
 }

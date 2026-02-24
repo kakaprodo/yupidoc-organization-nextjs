@@ -195,5 +195,21 @@
     "learningPath": "Learning Path",
     "whatYouWillLearn": "What you'll learn in this program",
     "aboutTitle": "About this program"
+  },
+  "Products": {
+    "items": {
+      "1": { "title": "Organic Orange Juice", "description": "Cold-pressed, 100% natural, and rich in Vitamin C." },
+      "2": { "title": "Cloud Storage Solution", "description": "Secure, scalable, and easy-to-use cloud storage for your business." },
+      "3": { "title": "AI-Powered Analytics", "description": "Unlock insights from your data with our AI-driven analytics platform." },
+      "4": { "title": "Custom E-Learning Platform", "description": "Tailored online learning solutions to meet your organization's unique needs." }
+    },
+    "ProductDetail": {
+      "addToCart": "Add to Cart",
+      "buyNow": "Buy Now",
+      "description": "Description of product",
+      "specifications": "Specifications",
+      "inStock": "In stock",
+      "shipping": "Worldwide shipping available"
+    }
   }
 }
