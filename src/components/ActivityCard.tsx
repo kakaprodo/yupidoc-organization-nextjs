@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { useState } from 'react';
-
+import { Link } from '@/navigation';
 
 
 interface ActivityCardProps {
@@ -44,10 +44,10 @@ export default function ActivityCard({ title, description, image, buttonText }: 
                 </p>
 
                 <div className="mt-auto pt-4">
-                    <button className="btn bg-[#5850ec] hover:bg-[#4a42d4] border-none text-white normal-case px-6 rounded-lg group/btn">
+                    <Link href="/activities/1" className="btn btn-primary btn-sm normal-case">
                         {buttonText}
-                        <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover/btn:translate-x-1" />
-                    </button>
+                        <ArrowRight className="w-4 h-4 ml-2" />
+                    </Link>
                 </div>
             </div>
         </motion.div>
