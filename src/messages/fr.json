@@ -200,6 +200,7 @@
     },
     "loading": "Chargement d'autres activités...",
     "explore": "Explorer",
+    "viewDetails": "Voir les détails",
     "items": {
       "1": { "title": "Sommet de l'Innovation Tech 2025", "desc": "Rejoignez les leaders de l'industrie pour un sommet de deux jours explorant les dernières tendances en IA." },
       "2": { "title": "Atelier de Leadership Avancé", "desc": "Un atelier immersif conçu pour doter les managers émergents de compétences en résolution de conflits." },
@@ -211,6 +212,7 @@
   },
   "ActivityDetail": {
     "back": "Retour aux activités",
+    "category": "Catégorie",
     "secureSpot": "Réservez votre place dès aujourd'hui",
     "ctaSub": "Les billets sont disponibles jusqu'au 1er août. Ne manquez pas l'événement de l'année.",
     "registerBtn": "S'inscrire au Sommet",

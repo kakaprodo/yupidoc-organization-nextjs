@@ -12,12 +12,12 @@ export default function Header() {
 
   const navLinks = [
     { name: t('home'), href: "/" },
-    { name: t('activities'), href: "/activities" },
+    // { name: t('activities'), href: "/activities" },
     { name: t('courses'), href: "/courses" },
     { name: t('modules'), href: "/modules" },
     { name: t('programs'), href: "/programs" },
     { name: t('products'), href: "/products" },
-    { name: t('about'), href: "/about" },
+    // { name: t('about'), href: "/about" },
   ];
 
   return (
@@ -58,15 +58,15 @@ export default function Header() {
             <div className="hidden sm:flex items-center gap-1">
               <ThemeSwitcher />
               <div className="w-[1px] h-6 bg-base-200 mx-2"></div>
-              <LanguageSwitcher />
+              {/* <LanguageSwitcher /> */}
             </div>
 
-            <Link
+            {/* <Link
               href="/login"
               className="btn bg-[#5850ec] hover:bg-[#4a42d4] border-none text-white px-6 h-11 min-h-[44px] rounded-lg text-sm font-bold normal-case shadow-md shadow-indigo-500/10"
             >
               {t('joinNow')}
-            </Link>
+            </Link> */}
 
             {/* Mobile Menu */}
             <div className="dropdown dropdown-end lg:hidden">

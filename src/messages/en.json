@@ -220,6 +220,7 @@
     },
     "loading": "Loading others activities...",
     "explore": "Explore",
+    "viewDetails": "View Details",
     "items": {
       "1": { "title": "Tech Innovation Summit 2025", "desc": "Join industry leaders for a two-day summit exploring the latest trends in AI." },
       "2": { "title": "Advanced Leadership Workshop", "desc": "An immersive workshop designed to equip emerging managers with conflict resolution skills." },
@@ -231,6 +232,7 @@
   },
   "ActivityDetail": {
     "back": "Back to Activities",
+    "category": "Category",
     "secureSpot": "Secure your spot today",
     "ctaSub": "Tickets are available until August 1st. Don't miss the event of the year.",
     "registerBtn": "Register for the Summit",

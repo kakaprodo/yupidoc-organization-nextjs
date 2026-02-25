@@ -24,6 +24,7 @@ const MODULES_TECHNICAL = [
 const ACTIVITIES_HOME = [
     { id: "1", image: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=600" },
     { id: "2", image: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=600" },
+    { id: "3", image: "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?q=80&w=600" },
 ];
 
 export default function HomePage() {
@@ -44,7 +45,7 @@ export default function HomePage() {
                     href="/activities"
                     linkText={tActivities('explore')}
                 />
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {ACTIVITIES_HOME.map((item, index) => (
                         <motion.div
                             key={`activity-${item.id}`}
@@ -54,10 +55,13 @@ export default function HomePage() {
                             viewport={{ once: true }}
                         >
                             <ActivityCard
+                                id={item.id}
                                 title={tActivities(`items.${item.id}.title`)}
                                 description={tActivities(`items.${item.id}.desc`)}
+                                category="Event"
+                                date="2025-10-15"
+                                buttonText={tActivities('viewDetails')}
                                 image={item.image}
-                                buttonText={tActivities('explore')}
                             />
                         </motion.div>
                     ))}
