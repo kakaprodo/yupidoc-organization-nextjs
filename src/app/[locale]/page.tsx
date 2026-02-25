@@ -5,6 +5,7 @@ import CourseCard from "@/components/CourseCard";
 import { SectionHeader } from "@/components/SectionHeader";
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
+import ActivityCard from "@/components/ActivityCard";
 
 // Données techniques uniquement (IDs, Images, Prix, Catégories)
 const COURSES_TECHNICAL = [
@@ -19,15 +20,49 @@ const MODULES_TECHNICAL = [
     { id: "3", category: "Security", price: "$29.99", meta: "12 Lessons", color: "bg-green-500", img: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=400" },
 ];
 
+// Données pour les activités sur la home
+const ACTIVITIES_HOME = [
+    { id: "1", image: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=600" },
+    { id: "2", image: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=600" },
+];
+
 export default function HomePage() {
     // Traducteurs
     const tCourses = useTranslations('Courses.featured');
     const tModules = useTranslations('Modules');
     const tPrograms = useTranslations('Programs');
+    const tActivities = useTranslations('ActivitiesPage');
 
     return (
         <div className="flex flex-col gap-24 pb-20 bg-base-100">
             <HeroCarousel />
+
+            {/* Section 0: Recent Activities */}
+            <section className="container mx-auto px-4 lg:px-8">
+                <SectionHeader
+                    title={tActivities('Hero.title')}
+                    href="/activities"
+                    linkText={tActivities('explore')}
+                />
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                    {ACTIVITIES_HOME.map((item, index) => (
+                        <motion.div
+                            key={`activity-${item.id}`}
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ delay: index * 0.1 }}
+                            viewport={{ once: true }}
+                        >
+                            <ActivityCard
+                                title={tActivities(`items.${item.id}.title`)}
+                                description={tActivities(`items.${item.id}.desc`)}
+                                image={item.image}
+                                buttonText={tActivities('explore')}
+                            />
+                        </motion.div>
+                    ))}
+                </div>
+            </section>
 
             {/* Section 1: Featured Courses */}
             <section className="container mx-auto px-4 lg:px-8">
