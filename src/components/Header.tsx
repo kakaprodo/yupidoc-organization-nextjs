@@ -11,10 +11,12 @@ export default function Header() {
   // const locale = useLocale();
 
   const navLinks = [
+    { name: t('home'), href: "/" },
+    { name: t('activities'), href: "/activities" },
     { name: t('courses'), href: "/courses" },
     { name: t('modules'), href: "/modules" },
     { name: t('programs'), href: "/programs" },
-    {name : t('products'), href: "/products"},
+    { name: t('products'), href: "/products" },
     { name: t('about'), href: "/about" },
   ];
 
