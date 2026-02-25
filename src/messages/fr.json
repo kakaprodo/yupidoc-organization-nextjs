@@ -191,5 +191,21 @@
     "specifications": "Spécifications",
     "inStock": "En stock",
     "shipping": "Livraison mondiale disponible"
+  },
+  "ActivitiesPage": {
+    "Hero": {
+      "title": "Explorez les Activités",
+      "subtitle": "Découvrez notre large gamme de programmes de formation, d'ateliers interactifs et d'événements éducatifs organisés dans nos centres."
+    },
+    "loading": "Chargement d'autres activités...",
+    "explore": "Explorer",
+    "items": {
+      "1": { "title": "Sommet de l'Innovation Tech 2025", "desc": "Rejoignez les leaders de l'industrie pour un sommet de deux jours explorant les dernières tendances en IA." },
+      "2": { "title": "Atelier de Leadership Avancé", "desc": "Un atelier immersif conçu pour doter les managers émergents de compétences en résolution de conflits." },
+      "3": { "title": "Hackathon Développeur Full-Stack", "desc": "Un défi de codage intensif de 48 heures où les équipes s'affrontent pour bâtir des solutions communautaires." },
+      "4": { "title": "Masterclass Design Systems", "desc": "Apprenez à créer et maintenir des systèmes de design complets à grande échelle." },
+      "5": { "title": "Séminaire Management de Projet Agile", "desc": "Maîtrisez la planification de sprint et la communication transversale." },
+      "6": { "title": "Symposium Data Science", "desc": "Plongée profonde dans l'analyse prédictive et les frameworks de machine learning." }
+    }
   }
 }

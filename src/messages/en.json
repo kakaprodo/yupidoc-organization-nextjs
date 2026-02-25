@@ -211,5 +211,21 @@
       "inStock": "In stock",
       "shipping": "Worldwide shipping available"
     }
+  },
+  "ActivitiesPage": {
+    "Hero": {
+      "title": "Explore Our Activities",
+      "subtitle": "Discover a world of knowledge with our comprehensive selection of activities designed to help you master new skills and advance your career."
+    },
+    "loading": "Loading others activities...",
+    "explore": "Explore",
+    "items": {
+      "1": { "title": "Tech Innovation Summit 2025", "desc": "Join industry leaders for a two-day summit exploring the latest trends in AI." },
+      "2": { "title": "Advanced Leadership Workshop", "desc": "An immersive workshop designed to equip emerging managers with conflict resolution skills." },
+      "3": { "title": "Full-Stack Developer Hackathon", "desc": "An intensive 48-hour coding challenge where teams compete to build community solutions." },
+      "4": { "title": "Masterclass on Design Systems", "desc": "Learn to create and maintain large-scale complete design systems." },
+      "5": { "title": "Agile Project Management Seminar", "desc": "Master sprint planning and cross-functional communication." },
+      "6": { "title": "Data Science Symposium", "desc": "Deep dive into predictive analytics and machine learning frameworks." }
+    }
   }
 }
