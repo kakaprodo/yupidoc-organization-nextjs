@@ -208,5 +208,17 @@
       "5": { "title": "Séminaire Management de Projet Agile", "desc": "Maîtrisez la planification de sprint et la communication transversale." },
       "6": { "title": "Symposium Data Science", "desc": "Plongée profonde dans l'analyse prédictive et les frameworks de machine learning." }
     }
+  },
+  "ActivityDetail": {
+    "back": "Retour aux activités",
+    "secureSpot": "Réservez votre place dès aujourd'hui",
+    "ctaSub": "Les billets sont disponibles jusqu'au 1er août. Ne manquez pas l'événement de l'année.",
+    "registerBtn": "S'inscrire au Sommet",
+    "share": "Partager cette activité :",
+    "meta": {
+      "date": "Date",
+      "location": "Lieu",
+      "time": "Heure"
+    }
   }
 }

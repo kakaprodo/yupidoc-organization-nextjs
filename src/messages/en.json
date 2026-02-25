@@ -228,5 +228,17 @@
       "5": { "title": "Agile Project Management Seminar", "desc": "Master sprint planning and cross-functional communication." },
       "6": { "title": "Data Science Symposium", "desc": "Deep dive into predictive analytics and machine learning frameworks." }
     }
+  },
+  "ActivityDetail": {
+    "back": "Back to Activities",
+    "secureSpot": "Secure your spot today",
+    "ctaSub": "Tickets are available until August 1st. Don't miss the event of the year.",
+    "registerBtn": "Register for the Summit",
+    "share": "Share this activity:",
+    "meta": {
+      "date": "Date",
+      "location": "Location",
+      "time": "Time"
+    }
   }
 }
