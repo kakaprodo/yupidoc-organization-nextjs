@@ -12,7 +12,11 @@
   --color-accent: var(--a);
 }
 
-/* Vos couleurs personnalisées selon la maquette */
+:root {
+  --font-inter: 'Inter', sans-serif;
+}
+
+/* couleurs personnalisées selon la maquette */
 [data-theme="light"] {
   --p: #1e293b;
   /* Bleu nuit de votre maquette */
@@ -30,4 +34,5 @@
 
 body {
   @apply bg-base-100 text-base-content antialiased;
+  font-family: var(--font-inter)  !important;
 }

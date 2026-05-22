@@ -1,6 +1,7 @@
 {
   "Navigation": {
     "home": "Accueil",
+    "activities": "Activités",
     "courses": "Cours",
     "modules": "Modules",
     "programs": "Programmes",
@@ -73,7 +74,7 @@
       "3": { "title": "Bases de la Cybersécurité", "description": "Protégez-vous et votre organisation contre les menaces numériques." }
     }
   },
-  "programs": {
+  "Programs": {
     "title": "Programmes de Certification",
     "viewMore": "Voir plus de programmes",
     "items": {
@@ -90,6 +91,136 @@
     "Filters": {
       "all": "Tous les cours",
       "search": "Rechercher un cours..."
+    }
+  },
+   "ModulesPage": {
+    "Hero": {
+      "title": "Explorez nos Modules",
+      "subtitle": "Découvrez un monde de connaissances avec notre sélection complète de modules spécialisés, conçus pour vous aider à maîtriser de nouvelles compétences techniques."
+    }
+  },
+  "ProgramsPage": {
+    "Hero": {
+      "title": "Explorez nos Programmes",
+      "subtitle": "Découvrez un monde de connaissances avec notre sélection complète de programmes conçus pour vous aider à maîtriser de nouvelles compétences."
+    }
+  },
+  "ProductsPage": {
+    "Hero": {
+      "title": "Nos Produits",
+      "subtitle": "De la marchandise exclusive aux rafraîchissements sains, explorez notre collection de produits de haute qualité."
+    }
+  },
+  "AboutPage": {
+    "Hero": {
+      "title": "À propos de Yupidoc",
+      "subtitle": "Bâtir l'avenir de l'éducation grâce à la technologie, à la communauté et à des ressources accessibles à tous."
+    },
+    "story": {
+      "p1": "Fondée en 2023, Yupidoc a commencé avec une mission simple : rendre l'éducation de haute qualité accessible à tous, partout dans le monde. Ce qui était au départ une petite collection de tutoriels est devenu une plateforme d'apprentissage complète servant des milliers d'étudiants.",
+      "p2": "Nous pensons que l'éducation ne consiste pas seulement à transférer des connaissances, mais à donner aux individus les moyens de façonner leur propre avenir. Notre programme est conçu par des experts du secteur.",
+      "p3": "Notre approche combine des normes académiques rigoureuses avec un apprentissage pratique par projet. Que vous cherchiez à démarrer une nouvelle carrière ou à explorer une passion, nous avons les outils pour vous."
+    },
+    "team": {
+      "title": "Rencontrez Notre Équipe",
+      "members": {
+        "1": { "name": "Sarah Johnson", "role": "Fondatrice & CEO", "bio": "Ancienne cadre EdTech passionnée par la démocratisation de l'éducation." },
+        "2": { "name": "David Chen", "role": "Responsable Pédagogique", "bio": "Ph.D. en informatique avec plus de 15 ans d'expérience dans l'enseignement supérieur." }
+      }
+    }
+  },
+  "PolicyPage": {
+    "Hero": {
+      "title": "Politique de l'Organisation",
+      "subtitle": "Cette politique décrit le fonctionnement de notre organisation, la manière dont nous protégeons nos apprenants et ce que nous attendons de chaque membre."
+    }
+  },
+  "Details": {
+    "purchase": "Acheter",
+    "oneTimePayment": "Paiement unique",
+    "duration": "Durée",
+    "level": "Niveau",
+    "language": "Langue",
+    "refund": "Période de remboursement",
+    "days": "jours",
+    "included": "Inclus dans ce contenu",
+    "whatYouWillLearn": "Ce que vous allez apprendre",
+    "description": "Description",
+    "curriculum": "Cours et leçons",
+    "videoContent": "heures de contenu vidéo"
+  },
+  "NotFound": {
+    "title": "404",
+    "subtitle": "Espace en cours de construction",
+    "description": "Oups ! Il semble que vous ayez découvert une zone que nos ingénieurs sont encore en train de peaufiner. Cette fonctionnalité sera disponible très prochainement.",
+    "cta": "Retourner à l'accueil"
+  },
+  "ModuleDetail": {
+    "purchase": "Acheter le module",
+    "accessTime": "Accès pendant 6 mois",
+    "lessonsCount": "{count} leçons",
+    "includedTitle": "Inclus dans ce module",
+    "aboutTitle": "À propos de ce module",
+    "curriculumTitle": "Cours et leçons dans ce module",
+    "stats": {
+      "duration": "Durée",
+      "level": "Niveau",
+      "language": "Langue",
+      "refund": "Remboursement"
+    }
+  },
+  "ProgramDetail": {
+    "purchase": "Acheter le programme",
+    "coreModules": "Modules principaux",
+    "standaloneCourses": "Cours indépendants",
+    "learningPath": "Parcours d'apprentissage",
+    "whatYouWillLearn": "Ce que vous apprendrez dans ce programme",
+    "aboutTitle": "À propos de ce programme"
+  },
+  "Products": {
+    "items": {
+      "1": { "title": "Jus d'Orange Bio", "description": "Pressé à froid, 100% naturel et riche en Vitamine C." },
+      "2": { "title": "Smoothie Détox Vert", "description": "Un mélange parfait d'épinards, pomme et gingembre." },
+      "3": { "title": "Sweat à Capuche Signature", "description": "Coton premium avec logo brodé, coupe moderne." },
+      "4": { "title": "T-shirt Classique", "description": "Coton 100% biologique, doux et respirant." }
+    }
+  },
+  "ProductDetail": {
+    "addToCart": "Ajouter au panier",
+    "buyNow": "Acheter maintenant",
+    "description": "Description du produit",
+    "specifications": "Spécifications",
+    "inStock": "En stock",
+    "shipping": "Livraison mondiale disponible"
+  },
+  "ActivitiesPage": {
+    "Hero": {
+      "title": "Explorez les Activités",
+      "subtitle": "Découvrez notre large gamme de programmes de formation, d'ateliers interactifs et d'événements éducatifs organisés dans nos centres."
+    },
+    "loading": "Chargement d'autres activités...",
+    "explore": "Explorer",
+    "viewDetails": "Voir les détails",
+    "items": {
+      "1": { "title": "Sommet de l'Innovation Tech 2025", "desc": "Rejoignez les leaders de l'industrie pour un sommet de deux jours explorant les dernières tendances en IA." },
+      "2": { "title": "Atelier de Leadership Avancé", "desc": "Un atelier immersif conçu pour doter les managers émergents de compétences en résolution de conflits." },
+      "3": { "title": "Hackathon Développeur Full-Stack", "desc": "Un défi de codage intensif de 48 heures où les équipes s'affrontent pour bâtir des solutions communautaires." },
+      "4": { "title": "Masterclass Design Systems", "desc": "Apprenez à créer et maintenir des systèmes de design complets à grande échelle." },
+      "5": { "title": "Séminaire Management de Projet Agile", "desc": "Maîtrisez la planification de sprint et la communication transversale." },
+      "6": { "title": "Symposium Data Science", "desc": "Plongée profonde dans l'analyse prédictive et les frameworks de machine learning." }
+    }
+  },
+  "ActivityDetail": {
+    "back": "Retour aux activités",
+    "category": "Catégorie",
+    "secureSpot": "Réservez votre place dès aujourd'hui",
+    "ctaSub": "Les billets sont disponibles jusqu'au 1er août. Ne manquez pas l'événement de l'année.",
+    "registerBtn": "S'inscrire au Sommet",
+    "share": "Partager cette activité :",
+    "meta": {
+      "date": "Date",
+      "location": "Lieu",
+      "time": "Heure"
     }
   }
 }
