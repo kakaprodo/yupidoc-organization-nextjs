@@ -35,8 +35,7 @@ export default function ActivitiesPage() {
                             title={t(`items.${activity.id}.title`)}
                             description={t(`items.${activity.id}.desc`)}
                             image={activity.image}
-                            buttonText={t('explore')}
-                        />
+                            buttonText={t('explore')} id={""} category={""} />
                     ))}
                 </div>
 
