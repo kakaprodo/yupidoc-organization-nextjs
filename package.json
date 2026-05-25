@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "yupidoc-generate": "node scripts/fetchYupidocContent.js"
+    "yupidoc-generate": "node scripts/fetchYupidocContent.js --prod"
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",
