@@ -1,153 +1,162 @@
-'use client';
+import type { Metadata } from 'next';
+import { getTranslations } from 'next-intl/server';
+import { Link } from '@/navigation';
+import PageHero from '@/components/PageHero';
+import CourseCard from '@/components/CourseCard';
+import { createPageMetadata } from '@/lib/metadata';
+import { getCourses, getPlainTextDescription } from '@/services/content';
+import { getRandomConverImage } from '@/services/content';
 
-import { useState, useMemo } from 'react';
-import PageHero from "@/components/PageHero";
-import CourseCard from "@/components/CourseCard";
-import { useTranslations } from "next-intl";
-import { motion, AnimatePresence } from "framer-motion";
-import { ChevronLeft, ChevronRight, Search } from 'lucide-react';
+type SearchParams = Promise<{
+  q?: string;
+  page?: string;
+}>;
+
+const ITEMS_PER_PAGE = 6;
+
+function buildCoursesHref(query: string, page: number) {
+  const params = new URLSearchParams();
+
+  if (query) {
+    params.set('q', query);
+  }
+  if (page > 1) {
+    params.set('page', String(page));
+  }
+
+  const suffix = params.toString();
+  return suffix ? `/courses?${suffix}` : '/courses';
+}
+
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations('CoursesPage');
+  return createPageMetadata({
+    title: t('Hero.title'),
+    description: t('Hero.subtitle'),
+    path: '/courses'
+  });
+}
+
+export default async function CoursesPage({
+  searchParams
+}: {
+  searchParams: SearchParams;
+}) {
+  const t = await getTranslations('CoursesPage');
+  const resolvedSearchParams = await searchParams;
+  const query = resolvedSearchParams.q?.trim().toLowerCase() ?? '';
+  const requestedPage = Number.parseInt(resolvedSearchParams.page ?? '1', 10);
+  const page = Number.isFinite(requestedPage) && requestedPage > 0 ? requestedPage : 1;
+
+  const filtered = getCourses().filter((course) => {
+    const searchable = [
+      course.name,
+      course.level,
+      course.course_domain_names?.join(' '),
+      getPlainTextDescription(course.public_description?.content)
+    ]
+      .join(' ')
+      .toLowerCase();
+
+    return query.length === 0 || searchable.includes(query);
+  });
+
+  const totalPages = Math.max(1, Math.ceil(filtered.length / ITEMS_PER_PAGE));
+  const currentPage = Math.min(page, totalPages);
+  const visibleCourses = filtered.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE);
+  const heroImage = getRandomConverImage();
+
+  const searchSection = (
+    <div className="mx-auto flex w-full max-w-2xl flex-col gap-4 rounded-2xl border border-white/15 bg-white/10 p-4 backdrop-blur-md md:flex-row md:items-center">
 
 
+      <form method="get" className="flex w-full gap-3">
+        <input
+          type="search"
+          name="q"
+          defaultValue={resolvedSearchParams.q ?? ''}
+          placeholder={t('Filters.search')}
+          className="input w-full rounded-xl border-0 bg-white/90 text-base-content placeholder:text-base-content/50 focus:outline-none"
+        />
+        <input type="hidden" name="page" value="1" />
+        <button type="submit" className="btn btn-primary rounded-xl text-white">
+          Search
+        </button>
+      </form>
+    </div>
+  );
 
-// Simulation d'une base de données plus large (12 cours pour tester la pagination)
-const ALL_COURSES = Array.from({ length: 12 }).map((_, i) => ({
-    id: ((i % 3) + 1).toString(), // Réutilise les IDs 1, 2, 3 pour les trads
-    uniqueId: i,
-    category: i % 2 === 0 ? "Web Design" : "Management",
-    price: i % 3 === 0 ? "Free" : "$49.99",
-    avatar: `https://i.pravatar.cc/150?u=${i}`,
-    img: [
-        "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=400",
-        "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=400",
-        "https://images.unsplash.com/photo-1558655146-d09347e92766?q=80&w=400"
-    ][i % 3]
-}));
+  return (
+    <main className="min-h-screen bg-base-100 pb-20">
+      <PageHero
+        title={t('Hero.title')}
+        subtitle={t('Hero.subtitle')}
+        backgroundImage={heroImage}
+        searchSection={searchSection}
+      />
 
-export default function CoursesPage() {
-    const t = useTranslations('CoursesPage');
-    const tItems = useTranslations('Courses.featured');
-
-    // États pour la recherche et la pagination
-    const [searchQuery, setSearchQuery] = useState('');
-    const [currentPage, setCurrentPage] = useState(1);
-    const itemsPerPage = 6;
-
-    // Logique de recherche (Filtrage)
-    const filteredCourses = useMemo(() => {
-        return ALL_COURSES.filter(course => {
-            const title = tItems(`items.${course.id}.title`).toLowerCase();
-            const desc = tItems(`items.${course.id}.description`).toLowerCase();
-            const query = searchQuery.toLowerCase();
-            return title.includes(query) || desc.includes(query) || course.category.toLowerCase().includes(query);
-        });
-    }, [searchQuery, tItems]);
-
-    // Handler pour la barre de recherche (Met à jour la query et reset la page)
-    const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setSearchQuery(e.target.value);
-        setCurrentPage(1); // On reset la page UNIQUEMENT quand l'utilisateur tape
-    };
-
-    // Logique de Pagination
-    const totalPages = Math.ceil(filteredCourses.length / itemsPerPage);
-    const indexOfLastItem = currentPage * itemsPerPage;
-    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-    const currentItems = filteredCourses.slice(indexOfFirstItem, indexOfLastItem);
-
-    return (
-        <main className="min-h-screen pb-20 bg-base-100">
-            <PageHero title={t('Hero.title')} subtitle={t('Hero.subtitle')} />
-
-            <div className="container mx-auto px-4 lg:px-8 mt-12">
-
-                {/* BARRE DE RECHERCHE FONCTIONNELLE */}
-                <div className="flex flex-col md:flex-row justify-between items-center mb-12 gap-6 bg-base-200/30 p-6 rounded-2xl border border-base-200">
-                    <div className="flex items-center gap-4">
-                        <h2 className="text-xl font-bold text-base-content">{t('Filters.all')}</h2>
-                        <span className="badge badge-ghost font-mono">{filteredCourses.length}</span>
-                    </div>
-
-                    <div className="relative w-full md:w-96 group">
-                        <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-base-content/30 group-focus-within:text-primary transition-colors" />
-                        <input
-                            type="text"
-                            value={searchQuery}
-                            onChange={handleSearchChange}
-                            placeholder={t('Filters.search')}
-                            className="input input-bordered w-full pl-12 rounded-xl bg-base-100 focus:outline-primary border-base-300"
-                        />
-                    </div>
-                </div>
-
-                {/* GRILLE DE COURS AVEC ANIMATION */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 min-h-[600px]">
-                    <AnimatePresence mode="popLayout">
-                        {currentItems.map((item, index) => (
-                            <motion.div
-                                key={item.uniqueId}
-                                layout
-                                initial={{ opacity: 0, scale: 0.9 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                exit={{ opacity: 0, scale: 0.9 }}
-                                transition={{ duration: 0.3, delay: index * 0.05 }}
-                            >
-                                <CourseCard
-                                    key={item.uniqueId}
-                                    id={item.id}
-                                    basePath="courses"
-                                    title={tItems(`items.${item.id}.title`)}
-                                    description={tItems(`items.${item.id}.description`)}
-                                    category={item.category}
-                                    price={item.price}
-                                    instructorAvatar={item.avatar}
-                                    image={item.img}
-                                />
-                            </motion.div>
-                        ))}
-                    </AnimatePresence>
-                </div>
-
-                {/* COMPOSANT DE PAGINATION (Design exact de l'image) */}
-                {totalPages > 1 && (
-                    <div className="flex justify-center items-center gap-2 mt-20">
-                        <button
-                            onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
-                            disabled={currentPage === 1}
-                            className="btn btn-square btn-outline border-base-300 hover:bg-base-200 text-base-content disabled:opacity-30"
-                        >
-                            <ChevronLeft className="w-5 h-5" />
-                        </button>
-
-                        {Array.from({ length: totalPages }).map((_, i) => (
-                            <button
-                                key={i}
-                                onClick={() => setCurrentPage(i + 1)}
-                                className={`btn btn-square border-none transition-all duration-300 ${currentPage === i + 1
-                                    ? "bg-[#5850ec] text-white shadow-lg shadow-indigo-500/30 scale-110"
-                                    : "bg-base-200/50 text-base-content hover:bg-base-200"
-                                    }`}
-                            >
-                                {i + 1}
-                            </button>
-                        ))}
-
-                        <button
-                            onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
-                            disabled={currentPage === totalPages}
-                            className="btn btn-square btn-outline border-base-300 hover:bg-base-200 text-base-content disabled:opacity-30"
-                        >
-                            <ChevronRight className="w-5 h-5" />
-                        </button>
-                    </div>
-                )}
-
-                {/* Cas où aucun résultat n'est trouvé */}
-                {filteredCourses.length === 0 && (
-                    <div className="text-center py-20">
-                        <p className="text-xl text-base-content/50 font-medium">Aucun cours ne correspond à votre recherche.</p>
-                    </div>
-                )}
+      <div className="container mx-auto -mt-8 px-4 lg:px-8  bg-base-100 pt-8 rounded-2xl backdrop-blur-sm">
+        {filtered.length === 0 ? (
+          <div className="py-20 text-center">
+            <p className="text-xl font-medium text-base-content/50">
+              No courses match your search.
+            </p>
+          </div>
+        ) : (
+          <>
+            <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+              {visibleCourses.map((course) => (
+                <CourseCard
+                  key={course.id}
+                  href={`/courses/${course.slug}`}
+                  title={course.name}
+                  domains={course.course_domain_names ?? []}
+                  level={course.level}
+                  durationDays={course.duration}
+                  image={course.image}
+                  entity={course}
+                />
+              ))}
             </div>
-        </main>
-    );
+
+            {totalPages > 1 ? (
+              <div className="mt-20 flex flex-wrap items-center justify-center gap-2">
+                <Link
+                  href={buildCoursesHref(resolvedSearchParams.q ?? '', Math.max(1, currentPage - 1))}
+                  className="btn btn-square btn-outline border-base-300"
+                  aria-disabled={currentPage === 1}
+                >
+                  ‹
+                </Link>
+
+                {Array.from({ length: totalPages }).map((_, index) => {
+                  const nextPage = index + 1;
+                  return (
+                    <Link
+                      key={nextPage}
+                      href={buildCoursesHref(resolvedSearchParams.q ?? '', nextPage)}
+                      className={`btn btn-square border-none ${currentPage === nextPage
+                        ? 'bg-primary text-white shadow-lg shadow-primary/30'
+                        : 'bg-base-200 text-base-content hover:bg-base-300'
+                        }`}
+                    >
+                      {nextPage}
+                    </Link>
+                  );
+                })}
+
+                <Link
+                  href={buildCoursesHref(resolvedSearchParams.q ?? '', Math.min(totalPages, currentPage + 1))}
+                  className="btn btn-square btn-outline border-base-300"
+                  aria-disabled={currentPage === totalPages}
+                >
+                  ›
+                </Link>
+              </div>
+            ) : null}
+          </>
+        )}
+      </div>
+    </main>
+  );
 }

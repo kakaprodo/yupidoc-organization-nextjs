@@ -1,0 +1,293 @@
+
+.ProseMirror {
+    @apply w-full rounded-md border border-base-300 bg-base-100 px-3 py-2 outline-none;
+}
+
+div.editor-preview.editor-preview-active {
+    --tw-border-opacity: 1;
+    /* border: none !important; */
+    box-shadow: none !important;
+    line-height: 1.8em !important;
+    /* @apply bg-gray-100 !important; */
+    @apply flex flex-col space-y-0;
+    @apply dark:text-gray-50! bg-base-100!;
+    height: auto !important;
+    /* Allow it to expand */
+    max-height: unset !important;
+    /* Remove any height restriction */
+    overflow: visible !important;
+    position: relative !important;
+    overflow-x: visible;
+    overflow-x: scroll !important;
+    padding: 0px !important;
+}
+
+div.editor-preview.editor-preview-active li {
+    @apply !leading-7;
+}
+
+div.editor-preview.editor-preview-active blockquote,
+div.editor-preview.editor-preview-active table {
+    @apply !my-2;
+}
+
+/* div.editor-preview.editor-preview-active :is(h1, h2, h3, h4, h5, h6) {
+    @apply pb-2;
+} */
+
+.ql-table-menu {
+    @apply !z-[2100];
+}
+
+.chatbot * .CodeMirror-scroll, 
+.contents-editor-read-only * .CodeMirror-scroll {
+    display: none !important;
+}
+
+.chatbot div.editor-preview {
+    padding-top: 0.75rem !important;
+    padding-bottom: 0.75rem !important;
+}
+
+html[data-theme="dark"]  div.editor-preview.editor-preview-active ul,
+html[data-theme="dark"]  div.editor-preview.editor-preview-active ol,
+html[data-theme="dark"]  div.editor-preview.editor-preview-active p,
+html[data-theme="dark"]  div.editor-preview.editor-preview-active h1,
+html[data-theme="dark"]  div.editor-preview.editor-preview-active h2,
+html[data-theme="dark"]  div.editor-preview.editor-preview-active h3,
+html[data-theme="dark"]  div.editor-preview.editor-preview-active h4,
+html[data-theme="dark"]  div.editor-preview.editor-preview-active h5,
+html[data-theme="dark"]  div.editor-preview.editor-preview-active h6 {
+    @apply text-gray-400;
+}
+
+html[data-theme="dark"] .chatbot div.editor-preview.editor-preview-active {
+    @apply !bg-base-200;
+}
+
+.contents-editor div.editor-preview.editor-preview-active {
+    @apply !bg-transparent;
+}
+
+html[data-theme="dark"] .chatbot .CodeMirror.cm-s-paper.CodeMirror-wrap,
+html[data-theme="dark"] .chatbot-editor-preview .CodeMirror.cm-s-paper.CodeMirror-wrap {
+    @apply !bg-base-200;
+}
+
+.chatbot div.editor-preview.editor-preview-active h1+h2+h3 {
+    @apply !m-1 dark:text-gray-400;
+}
+
+.chatbot .CodeMirror.cm-s-paper.CodeMirror-wrap,
+.chatbot-editor-preview .CodeMirror.cm-s-paper.CodeMirror-wrap {
+    border: 0px solid transparent;
+    @apply bg-base-100;
+
+    /* height: auto !important; */
+    /* overflow-y: hidden !important;
+    @apply !h-auto; */
+}
+
+.contents-editor .CodeMirror.cm-s-paper.CodeMirror-wrap {
+    border: 0px solid transparent;
+    @apply bg-base-100;
+
+    /* height: auto !important; */
+    /* overflow-y: hidden !important;
+    @apply !h-auto; */
+}
+
+.contents-editor.contents-editor-read-only .CodeMirror.cm-s-paper.CodeMirror-wrap {
+   @apply !p-0;
+}
+
+.chatbot .editor-preview {
+    max-height: none !important;
+    /* height: 1000px !important; */
+    /* Remove height restriction from preview */
+    /* overflow: visible !important; */
+    /* Prevent scrollbars */
+}
+
+.editor-preview.editor-preview-active pre {
+    font-family: monospace;
+
+    box-sizing: border-box;
+    counter-reset: list-0;
+    line-height: 1.42;
+    height: auto;
+    outline: 0;
+    /* overflow-y: auto;*/
+    /* overflow-x: auto !important;  */
+    tab-size: 4;
+    -moz-tab-size: 4;
+    text-align: left;
+    white-space: pre !important;
+    font-size: 14px !important;
+    /* margin-top: 5px;
+    margin-bottom: 5px; */
+    background: transparent;
+    padding: 0;
+    /* max-width: 70%; */
+    @apply !my-3;
+}
+
+.editor-preview.editor-preview-active pre code {
+    padding: 12px 15px;
+    @apply rounded-xl;
+
+}
+
+.editor-preview.editor-preview-active ol {
+    list-style-type: decimal;
+    padding-left: 1.25rem !important;
+    margin-top: 0.5rem !important;
+    margin-bottom: 0.5rem !important;
+    font-size: 1rem !important;
+}
+
+.editor-preview.editor-preview-active ul {
+    list-style-type: disc;
+    padding-left: 1.25rem !important;
+    margin-top: 0.5rem !important;
+    margin-bottom: 0.5rem !important;
+    font-size: 1rem !important;
+}
+
+/* .chatbot .editor-preview.editor-preview-active pre {
+    position: relative;
+} */
+
+/* .chatbot .editor-preview.editor-preview-active pre {
+    overflow-x: auto !important;
+    width: 100% !important;
+    white-space: pre !important;
+
+} */
+
+.editor-preview.editor-preview-active code:not([class]) {
+    @apply bg-primary/5 text-black dark:text-white px-1 py-0.5 rounded !text-sm;
+    font-family: monospace;
+}
+
+.editor-preview.editor-preview-active pre:has(code.lang-bash) {
+    background-color: rgb(31 41 55) !important;
+    color: rgb(255 255 255) !important;
+    padding: 0.75rem !important;
+    border-radius: 0.75rem !important;
+    font-family: monospace !important;
+}
+
+.editor-preview.editor-preview-active a {
+    @apply text-black dark:text-white underline underline-offset-4;
+}
+
+.chatbot .chat-bot-textarea {
+    display: none !important;
+}
+
+div.editor-preview.editor-preview-active h1,
+div.editor-preview.editor-preview-active h2,
+div.editor-preview.editor-preview-active h3 {
+    @apply text-lg  font-bold !mt-0;
+}
+
+div.editor-preview.editor-preview-active h4,
+div.editor-preview.editor-preview-active h5,
+div.editor-preview.editor-preview-active h6 {
+    @apply text-base font-bold !mt-0;
+}
+
+div.editor-preview img {
+    @apply rounded-2xl !bg-primary/5;
+    @apply hover:cursor-zoom-in dark:border-gray-700 !mt-2 !mb-2;
+
+    border-width: 1px !important;
+    border-style: solid !important;
+}
+
+.ql-container p img,
+.ql-container img {
+    @apply w-full object-cover md:w-auto rounded-2xl !bg-primary/5;
+    @apply hover:cursor-zoom-in dark:border-gray-700 !mt-2 !mb-2;
+
+    border-width: 1px !important;
+    border-style: solid !important;
+}
+
+.ql-container strong, div.editor-preview strong {
+    @apply font-semibold;
+}
+
+.CodeMirror-cursor {
+   @apply dark:!border-l-gray-500; 
+}
+
+.chatbot .CodeMirror, 
+.contents-editor .CodeMirror,
+.CodeMirror-scroll {
+    @apply !bg-transparent;
+    min-height: 10px !important;
+}
+
+/* for markdown */
+html[data-theme="dark"]  .CodeMirror ul,
+html[data-theme="dark"]  .CodeMirror ol,
+html[data-theme="dark"]  .CodeMirror p,
+html[data-theme="dark"]  .CodeMirror h1,
+html[data-theme="dark"]  .CodeMirror h2,
+html[data-theme="dark"]  .CodeMirror h3,
+html[data-theme="dark"]  .CodeMirror h4,
+html[data-theme="dark"]  .CodeMirror h5,
+html[data-theme="dark"]  .CodeMirror span:not([class^="hljs-"]):not(.ql-token),
+html[data-theme="dark"]  .CodeMirror h6,
+html[data-theme="dark"]  .CodeMirror li {
+    @apply !text-gray-400 marker:!text-gray-400;
+}
+
+/* for rich text */
+html[data-theme="dark"] .ql-editor ul,
+html[data-theme="dark"] .ql-editor ol,
+html[data-theme="dark"] .ql-editor p,
+html[data-theme="dark"] .ql-editor h1,
+html[data-theme="dark"] .ql-editor h2,
+html[data-theme="dark"] .ql-editor h3,
+html[data-theme="dark"] .ql-editor h4,
+html[data-theme="dark"] .ql-editor h5,
+html[data-theme="dark"] .ql-editor span:not([class^="hljs-"]):not(.ql-token),
+html[data-theme="dark"] .ql-editor h6,
+html[data-theme="dark"] .ql-editor li {
+    @apply !text-gray-400 marker:!text-gray-400;
+}
+
+table * {
+    @apply dark:border-gray-600!;
+}
+
+table * {
+    @apply dark:text-gray-400!;
+}
+
+.hljs-addition {
+    @apply bg-success/15 inline-block w-max min-w-full text-inherit!;
+}
+
+.hljs-deletion {
+    @apply bg-error/15 inline-block w-max min-w-full text-inherit!;
+}
+
+.ql-editor.ql-blank[data-placeholder]::before {
+    @apply dark:!text-gray-600;
+}
+
+div.editor-preview.editor-preview-active p {
+    @apply !pb-2;
+}
+
+div.editor-preview.editor-preview-active hr {
+    @apply dark:!border-gray-600 !my-2 ;
+}
+
+.CodeMirror ul li {
+    margin-left: 12px !important;
+}
