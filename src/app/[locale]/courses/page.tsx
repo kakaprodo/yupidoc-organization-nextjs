@@ -105,8 +105,7 @@ export default async function CoursesPage({
               {visibleCourses.map((course) => (
                 <CourseCard
                   key={course.id}
-                  id={String(course.id)}
-                  basePath="courses"
+                  href={`/courses/${course.slug}`}
                   title={course.name}
                   description={excerpt(getPlainTextDescription(course.public_description?.content), 120)}
                   category={course.course_domain_names?.[0] ?? course.level}
@@ -159,4 +158,3 @@ export default async function CoursesPage({
     </main>
   );
 }
-

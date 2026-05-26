@@ -5,28 +5,39 @@ import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/outline';
 import { Link } from '@/navigation';
+import type { HeroSlide } from '@/types/general-type';
 
-export default function HeroSection() {
+type HeroSectionProps = {
+  slides?: HeroSlide[];
+};
+
+const fallbackSlides: HeroSlide[] = [
+  {
+    title: 'Learning that moves with you',
+    description: 'Discover courses and programs tailored to your organization.',
+    image: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=1920'
+  },
+  {
+    title: 'Built for real training centers',
+    description: 'Flexible content, modern delivery, and a polished learner experience.',
+    image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1920'
+  }
+];
+
+export default function HeroSection({ slides = [] }: HeroSectionProps) {
   const t = useTranslations('HomePage.Hero');
   const [current, setCurrent] = useState(0);
 
-  const slides = [
-    {
-      id: 1,
-      image: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=1920',
-      title: t('slides.1.title'),
-      desc: t('slides.1.desc')
-    },
-    {
-      id: 2,
-      image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1920',
-      title: t('slides.2.title'),
-      desc: t('slides.2.desc')
-    }
-  ];
+  const activeSlides = slides.length > 0
+    ? slides
+    : fallbackSlides.map((slide, index) => ({
+        ...slide,
+        title: index === 0 ? t('slides.1.title') : t('slides.2.title'),
+        description: index === 0 ? t('slides.1.desc') : t('slides.2.desc')
+      }));
 
-  const nextSlide = () => setCurrent((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
-  const prevSlide = () => setCurrent((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
+  const nextSlide = () => setCurrent((prev) => (prev === activeSlides.length - 1 ? 0 : prev + 1));
+  const prevSlide = () => setCurrent((prev) => (prev === 0 ? activeSlides.length - 1 : prev - 1));
 
   useEffect(() => {
     const timer = setInterval(nextSlide, 8000);
@@ -35,9 +46,9 @@ export default function HeroSection() {
 
   return (
     <section className="relative h-[500px] w-full overflow-hidden bg-black lg:h-[600px]">
-      {slides.map((slide, index) => (
+      {activeSlides.map((slide, index) => (
         <div
-          key={slide.id}
+          key={`${slide.title}-${slide.image}-${index}`}
           className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
             index === current ? 'z-10 opacity-100' : 'z-0 opacity-0'
           }`}
@@ -51,7 +62,7 @@ export default function HeroSection() {
                   {slide.title}
                 </h1>
                 <p className="mb-10 max-w-xl text-lg leading-relaxed text-gray-200 md:text-xl">
-                  {slide.desc}
+                  {slide.description}
                 </p>
                 <Link
                   href="/courses"
@@ -86,4 +97,3 @@ export default function HeroSection() {
     </section>
   );
 }
-

@@ -82,8 +82,7 @@ export default async function ProgramsPage({
             {filtered.map((program) => (
               <CourseCard
                 key={program.id}
-                id={String(program.id)}
-                basePath="programs"
+                href={`/programs/${program.slug}`}
                 title={program.title}
                 description={excerpt(getPlainTextDescription(program.public_description?.content), 120)}
                 category={program.course_domain_names?.[0] ?? 'Program'}
@@ -98,4 +97,3 @@ export default async function ProgramsPage({
     </main>
   );
 }
-

@@ -12,3 +12,7 @@ export function avatarLetter(myTitle: any|string) {
 
     return myTitle.charAt(0).toUpperCase();
 }
+
+export function copyToClipboard(text: string) {
+  navigator.clipboard.writeText(text);
+}

@@ -1,3 +1,5 @@
+'use client';
+
 import { User } from "@/types/general-type";
 import { avatarLetter, isValidUrl } from "@/utils/shared-helpers";
 import React from "react";

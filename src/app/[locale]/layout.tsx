@@ -7,10 +7,11 @@ import { routing } from "@/navigation";
 import { notFound } from "next/navigation";
 import { AppProviders } from '@/providers/app-providers';
 import { hasLocale } from 'next-intl';
+import { siteConfig } from '@/constants/site';
 
 export const metadata: Metadata = {
-  title: 'Yupidoc Organization',
-  description: 'A modern training center platform for courses and programs.',
+  title: siteConfig.name,
+  description: siteConfig.description,
   alternates: {
     languages: {
       en: '/en',

@@ -4,6 +4,8 @@ export type ContentStatus = string;
 
 export type ContentEditorType = 'rich_text' | 'markdown' | string;
 
+export type EDITOR_TYPE = ContentEditorType;
+
 export type EntityAboutContactType =
     | 'PHONE'
     | 'EMAIL'
@@ -121,6 +123,12 @@ export interface SectionContentSettings {
   media_url?: string | null;
 }
 
+export enum EditorContentType {
+    CARD_CONTENT = 'card-content',
+    STEP_CONTENT = 'card-content',
+    TRAINIGNG_DASHBOARD = 'training-dashboard', // for public_presentation for example
+}
+
 export interface SectionContentItem {
   id: number;
   aboutable_id: number;
@@ -128,7 +136,7 @@ export interface SectionContentItem {
   organization_id: number;
   key: SectionContentKey;
   content: string;
-  type: EntityAboutContactType;
+  type: EntityAboutContactType | null;
   editor_type: ContentEditorType;
   settings: SectionContentSettings | JsonArray;
   image_url: string | null;
@@ -143,6 +151,12 @@ export interface TrainingCenterContent {
   section_contents: SectionContentsMap;
 }
 
+export interface HeroSlide {
+  title: string;
+  description: string;
+  image: string;
+}
+
 export type User = {
     id: number;
     name: string;
@@ -150,4 +164,3 @@ export type User = {
     theme: string;
     avatar: string;
 }
-

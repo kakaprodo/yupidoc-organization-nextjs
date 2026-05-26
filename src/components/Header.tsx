@@ -1,12 +1,15 @@
 import { getTranslations } from 'next-intl/server';
-import { GraduationCap, Menu } from 'lucide-react';
+import { Menu } from 'lucide-react';
 import { Link } from '@/navigation';
 import { publicNavigation } from '@/constants/site';
 import { ThemeSwitcher } from '@/components/ThemeSwitcher';
 import { LanguageSwitcher } from '@/components/LanguageSwitcher';
+import { getOrganization } from '@/services/content';
+import { OrganizationAvatar } from '@/components/OrganizationAvatar';
 
 export default async function Header() {
   const t = await getTranslations('Navigation');
+  const organization = getOrganization();
 
   const navLinks = publicNavigation.map((item) => ({
     href: item.href,
@@ -19,11 +22,9 @@ export default async function Header() {
         <div className="navbar h-20 p-0">
           <div className="navbar-start">
             <Link href="/" className="flex items-center gap-3 group">
-              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary shadow-lg shadow-primary/20 transition-transform group-hover:scale-105">
-                <GraduationCap className="h-6 w-6 text-white" />
-              </div>
+              <OrganizationAvatar organization={organization} size={7} className="" />
               <span className="text-xl font-bold tracking-tight text-base-content">
-                Yupi<span className="text-primary">doc</span>
+                {organization.name}
               </span>
             </Link>
           </div>
@@ -77,4 +78,3 @@ export default async function Header() {
     </header>
   );
 }
-

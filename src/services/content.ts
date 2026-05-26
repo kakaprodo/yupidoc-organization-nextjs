@@ -4,6 +4,7 @@ import type {
   CourseDomain,
   Course,
   JsonArray,
+  HeroSlide,
   Program,
   PublicDescription,
   SectionContentItem,
@@ -89,8 +90,16 @@ export function getCourseById(id: string): Course | undefined {
   return getCourses().find((course) => String(course.id) === id);
 }
 
+export function getCourseBySlug(slug: string): Course | undefined {
+  return getCourses().find((course) => course.slug === slug);
+}
+
 export function getProgramById(id: string): Program | undefined {
   return getPrograms().find((program) => String(program.id) === id);
+}
+
+export function getProgramBySlug(slug: string): Program | undefined {
+  return getPrograms().find((program) => program.slug === slug);
 }
 
 export function getSectionContents(): SectionContentsMap {
@@ -115,6 +124,35 @@ export function getTermsContent(): SectionContentItem | undefined {
 
 export function getContactContent(): SectionContentItem | undefined {
   return getSectionContent('CONTACTS')[0];
+}
+
+export function getBriefMissionContent(): SectionContentItem | undefined {
+  return getSectionContent('BREAF_MISSION')[0];
+}
+
+export function getImageContentItems(): SectionContentItem[] {
+  return getSectionContent('IMAGES');
+}
+
+export function getContacts(): SectionContentItem[] {
+  return getSectionContent('CONTACTS');
+}
+
+export function getHeroSlides(): HeroSlide[] {
+  const images = getImageContentItems().filter((item) => Boolean(item.image_url));
+
+  if (images.length === 0) {
+    return [];
+  }
+
+  const mission = getBriefMissionContent()?.content ?? '';
+  const organizationName = getOrganization().name;
+
+  return images.map((item) => ({
+    title: organizationName,
+    description: item.content || mission,
+    image: item.image_url as string
+  }));
 }
 
 export function getFeaturedCourses(limit = 3): Course[] {

@@ -1,8 +1,7 @@
 export const siteConfig = {
-  name: 'Yupidoc Organization',
-  shortName: 'Yupidoc',
-  description:
-    'A modern training center platform for courses, programs, and educational content.',
+  name: 'Training Center',
+  shortName: 'Training Center',
+  description: 'A modern training center platform for courses, programs, and educational content.',
   url: process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000',
   localePrefix: 'as-needed' as const,
   contact: {
@@ -17,14 +16,11 @@ export const publicNavigation = [
   { href: '/', labelKey: 'home' },
   { href: '/courses', labelKey: 'courses' },
   { href: '/programs', labelKey: 'programs' },
-  { href: '/about', labelKey: 'about' },
-  { href: '/privacy', labelKey: 'privacy' }
+  { href: '/about', labelKey: 'about' }
 ] as const;
 
 export const footerNavigation = [
-  { href: '/courses', labelKey: 'courses' },
-  { href: '/programs', labelKey: 'programs' },
   { href: '/about', labelKey: 'about' },
-  { href: '/privacy', labelKey: 'privacy' }
+  { href: '/privacy', labelKey: 'privacy' },
+  { href: '/terms', labelKey: 'terms' }
 ] as const;
-

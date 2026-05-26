@@ -4,8 +4,8 @@ import HeroSection from '@/components/HeroSection';
 import CourseCard from '@/components/CourseCard';
 import { SectionHeader } from '@/components/SectionHeader';
 import { createPageMetadata } from '@/lib/metadata';
+import { getOrganization, getHeroSlides, getBriefMissionContent, getAboutContent } from '@/services/content';
 import {
-  getAboutContent,
   getFeaturedCourses,
   getFeaturedPrograms,
   getPlainTextDescription
@@ -15,9 +15,11 @@ import { formatCurrency, formatDuration } from '@/utils/format';
 import { Link } from '@/navigation';
 
 export async function generateMetadata(): Promise<Metadata> {
+  const organization = getOrganization();
+  const mission = getBriefMissionContent();
   return createPageMetadata({
-    title: 'Yupidoc Organization',
-    description: 'Discover courses, programs, and practical learning paths.',
+    title: organization.name,
+    description: mission ? stripHtml(mission.content) : 'Discover courses, programs, and practical learning paths.',
     path: '/'
   });
 }
@@ -32,19 +34,19 @@ export default async function HomePage() {
   const featuredCourses = getFeaturedCourses();
   const featuredPrograms = getFeaturedPrograms();
   const about = getAboutContent();
+  const heroSlides = getHeroSlides();
 
   return (
     <div className="flex flex-col gap-24 bg-base-100 pb-20">
-      <HeroSection />
+      <HeroSection slides={heroSlides} />
 
-      <section className="container mx-auto px-4 lg:px-8">
+      {featuredCourses.length > 0 && <section className="container mx-auto px-4 lg:px-8">
         <SectionHeader title={tCourses('title')} href="/courses" linkText={tCourses('viewMore')} />
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-3">
           {featuredCourses.map((course) => (
             <CourseCard
               key={course.id}
-              id={String(course.id)}
-              basePath="courses"
+              href={`/courses/${course.slug}`}
               title={course.name}
               description={excerpt(getPlainTextDescription(course.public_description?.content), 120)}
               category={course.course_domain_names?.[0] ?? course.level}
@@ -54,18 +56,16 @@ export default async function HomePage() {
             />
           ))}
         </div>
-      </section>
+      </section>}
 
-      <section className="container mx-auto px-4 lg:px-8">
+      {featuredPrograms.length > 0 && <section className="container mx-auto px-4 lg:px-8">
         <SectionHeader title={tPrograms('title')} href="/programs" linkText={tPrograms('viewMore')} />
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-3">
           {featuredPrograms.map((program) => (
             <CourseCard
               key={program.id}
-              id={String(program.id)}
-              basePath="programs"
+              href={`/programs/${program.slug}`}
               title={program.title}
-              description={excerpt(getPlainTextDescription(program.public_description?.content), 120)}
               category={program.course_domain_names?.[0] ?? 'Program'}
               price={formatCurrency(program.price, locale)}
               image={program.image}
@@ -73,7 +73,7 @@ export default async function HomePage() {
             />
           ))}
         </div>
-      </section>
+      </section>}
 
       {about ? (
         <section className="container mx-auto px-4 lg:px-8">
@@ -89,14 +89,6 @@ export default async function HomePage() {
               <Link href="/about" className="btn btn-primary rounded-xl text-white">
                 {tHome('ctaSecondary')}
               </Link>
-            </div>
-            <div className="rounded-[1.5rem] border border-base-200 bg-base-100 p-6 shadow-sm">
-              <h3 className="mb-4 text-lg font-bold text-base-content">What you get</h3>
-              <ul className="space-y-3 text-sm leading-relaxed text-base-content/70">
-                <li>Practical learning paths built from real training content.</li>
-                <li>Localized navigation with modern App Router behavior.</li>
-                <li>Server-rendered pages with smaller hydration boundaries.</li>
-              </ul>
             </div>
           </div>
         </section>

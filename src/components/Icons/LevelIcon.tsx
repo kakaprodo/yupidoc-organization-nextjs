@@ -1,5 +1,10 @@
 import React from "react";
-import { IconProps } from "../../types/common-types";
+
+interface IconProps {
+    color?: string;
+    size?: number | string;
+    className?: string;
+}
 
 const LevelIcon: React.FC<IconProps> = ({
     color = "text-gray-500",

@@ -4,7 +4,6 @@
     "courses": "Cours",
     "programs": "Programmes",
     "about": "À Propos",
-    "privacy": "Confidentialité",
     "login": "Connexion",
     "joinNow": "Rejoindre"
   },
@@ -25,23 +24,21 @@
     }
   },
   "Footer": {
-    "description": "Nous nous consacrons à fournir une éducation de haute qualité accessible aux apprenants du monde entier. Rejoignez notre communauté aujourd'hui.",
+    "description": "Une organisation éducative dédiée à des expériences d'apprentissage de haute qualité et accessibles.",
     "allRightsReserved": "Tous droits réservés.",
     "sections": {
-      "learn": "Apprendre",
-      "org": "Organisation",
+      "organization": "Organisation",
       "contact": "Contactez-nous"
     },
     "links": {
-      "courses": "Cours",
-      "programs": "Programmes",
       "about": "À propos",
-      "privacy": "Politique de confidentialité"
+      "privacy": "Politique de confidentialité",
+      "terms": "Conditions & Services"
     }
   },
   "Courses": {
     "featured": {
-      "title": "Cours à la une",
+      "title": "Nos Cours",
       "viewMore": "Voir plus de cours",
       "items": {
         "1": {
@@ -60,7 +57,7 @@
     }
   },
   "Programs": {
-    "title": "Programmes de Certification",
+    "title": "Nos Programs",
     "viewMore": "Voir plus de programmes",
     "items": {
       "1": { "title": "Certificat en Data Science", "description": "Devenez un expert en analyse de données et apprentissage automatique." },
@@ -86,20 +83,13 @@
   },
   "AboutPage": {
     "Hero": {
-      "title": "À propos de Yupidoc",
+      "title": "À propos de nous",
       "subtitle": "Bâtir l'avenir de l'éducation grâce à la technologie, à la communauté et à des ressources accessibles à tous."
     },
     "story": {
-      "p1": "Fondée en 2023, Yupidoc a commencé avec une mission simple : rendre l'éducation de haute qualité accessible à tous, partout dans le monde. Ce qui était au départ une petite collection de tutoriels est devenu une plateforme d'apprentissage complète servant des milliers d'étudiants.",
+      "p1": "Notre organisation a commencé avec une mission simple : rendre l'éducation de haute qualité accessible à tous, partout dans le monde.",
       "p2": "Nous pensons que l'éducation ne consiste pas seulement à transférer des connaissances, mais à donner aux individus les moyens de façonner leur propre avenir. Notre programme est conçu par des experts du secteur.",
       "p3": "Notre approche combine des normes académiques rigoureuses avec un apprentissage pratique par projet. Que vous cherchiez à démarrer une nouvelle carrière ou à explorer une passion, nous avons les outils pour vous."
-    },
-    "team": {
-      "title": "Rencontrez Notre Équipe",
-      "members": {
-        "1": { "name": "Sarah Johnson", "role": "Fondatrice & CEO", "bio": "Ancienne cadre EdTech passionnée par la démocratisation de l'éducation." },
-        "2": { "name": "David Chen", "role": "Responsable Pédagogique", "bio": "Ph.D. en informatique avec plus de 15 ans d'expérience dans l'enseignement supérieur." }
-      }
     }
   },
   "PolicyPage": {
@@ -135,5 +125,11 @@
     "learningPath": "Parcours d'apprentissage",
     "whatYouWillLearn": "Ce que vous apprendrez dans ce programme",
     "aboutTitle": "À propos de ce programme"
+  },
+  "TermsPage": {
+    "Hero": {
+      "title": "Conditions & Services",
+      "subtitle": "Lisez les conditions et services qui régissent notre plateforme éducative."
+    }
   }
 }
