@@ -1,75 +1,105 @@
-'use client';
-
-import { useState, useMemo } from 'react';
+import type { Metadata } from 'next';
+import { getTranslations } from 'next-intl/server';
 import PageHero from '@/components/PageHero';
-import ModuleCard from '@/components/ModuleCard';
-import { useTranslations } from "next-intl";
-import { Search } from "lucide-react";
-import { AnimatePresence, motion } from "framer-motion";
-import { Link } from '@/navigation';
+import CourseCard from '@/components/CourseCard';
+import { createPageMetadata } from '@/lib/metadata';
+import { getPrograms, getPlainTextDescription } from '@/services/content';
+import { getRandomConverImage } from '@/services/content';
 
-const PROGRAMS_DATA = [
-    { id: "1", category: "Development", level: "Beginner", learners: "1,234", duration: "6h 30m", price: "$39.99", image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=600" },
-    { id: "2", category: "Marketing", level: "Intermediate", learners: "856", duration: "4h 10m", price: "$29.99", image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=600" },
-    { id: "3", category: "Design", level: "All Levels", learners: "2,100", duration: "3h 45m", price: "$34.99", image: "https://images.unsplash.com/photo-1558655146-d09347e92766?q=80&w=600" }
-];
+type SearchParams = Promise<{
+  q?: string;
+}>;
 
-export default function ProgramsPage() {
-    const t = useTranslations('ProgramsPage');
-    const tContent = useTranslations('Programs');
-    const [searchQuery, setSearchQuery] = useState('');
+function buildProgramsHref(query: string) {
+  const params = new URLSearchParams();
 
-    const filtered = useMemo(() => PROGRAMS_DATA.filter(p =>
-        tContent(`items.${p.id}.title`).toLowerCase().includes(searchQuery.toLowerCase())
-    ), [searchQuery, tContent]);
+  if (query) {
+    params.set('q', query);
+  }
 
-    return (
-        <main className="min-h-screen bg-base-100 pb-20">
-            <PageHero title={t('Hero.title')} subtitle={t('Hero.subtitle')} />
+  const suffix = params.toString();
+  return suffix ? `/programs?${suffix}` : '/programs';
+}
 
-            <div className="container mx-auto px-4 lg:px-8 -mt-8 relative z-10">
-                <div className="max-w-xl mx-auto mb-16 shadow-2xl rounded-xl overflow-hidden bg-base-100 border border-base-300">
-                    <div className="relative group">
-                        <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-base-content/40 group-focus-within:text-primary transition-colors w-5 h-5" />
-                        <input
-                            type="text"
-                            onChange={(e) => setSearchQuery(e.target.value)}
-                            placeholder="Search programs..."
-                            className="input w-full pl-12 h-14 border-none focus:outline-none focus:ring-2 focus:ring-primary bg-base-100 text-base-content"
-                        />
-                    </div>
-                </div>
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations('ProgramsPage');
+  return createPageMetadata({
+    title: t('Hero.title'),
+    description: t('Hero.subtitle'),
+    path: '/programs'
+  });
+}
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <AnimatePresence mode="popLayout">
-                        {filtered.map((item, index) => (
-                            <motion.div
-                                key={item.id}
-                                layout
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                exit={{ opacity: 0, scale: 0.95 }}
-                                transition={{ duration: 0.3, delay: index * 0.05 }}
-                            >
-                                <Link href={`/programs/${item.id}`}>
-                                    <ModuleCard
-                                        {...item}
-                                        title={tContent(`items.${item.id}.title`)}
-                                        description={tContent(`items.${item.id}.description`)}
-                                    />
-                                </Link>
-                            </motion.div>
-                        ))}
-                    </AnimatePresence>
-                </div>
+export default async function ProgramsPage({
+  searchParams
+}: {
+  searchParams: SearchParams;
+}) {
+  const t = await getTranslations('ProgramsPage');
+  const resolvedSearchParams = await searchParams;
+  const query = resolvedSearchParams.q?.trim().toLowerCase() ?? '';
+  const heroImage = getRandomConverImage();
 
-                {/* Message si aucun résultat */}
-                {filtered.length === 0 && (
-                    <div className="text-center py-20 text-base-content/50 italic">
-                        No programs found matching your search.
-                    </div>
-                )}
-            </div>
-        </main>
-    );
+  const searchSection = (
+    <div className="mx-auto flex w-full max-w-2xl items-center gap-3 rounded-2xl border border-white/15 bg-white/10 p-4 backdrop-blur-md">
+      <form method="get" className="flex w-full items-center gap-3">
+        <input
+          type="search"
+          name="q"
+          defaultValue={resolvedSearchParams.q ?? ''}
+          placeholder="Search programs..."
+          className="input w-full rounded-xl border-0 bg-white/90 text-base-content placeholder:text-base-content/50 focus:outline-none"
+        />
+        <button type="submit" className="btn btn-primary rounded-xl text-white">
+          Search
+        </button>
+      </form>
+    </div>
+  );
+
+  const filtered = getPrograms().filter((program) => {
+    const searchable = [
+      program.title,
+      program.course_domain_names?.join(' '),
+      getPlainTextDescription(program.public_description?.content)
+    ]
+      .join(' ')
+      .toLowerCase();
+
+    return query.length === 0 || searchable.includes(query);
+  });
+
+  return (
+    <main className="min-h-screen bg-base-100 pb-20">
+      <PageHero
+        title={t('Hero.title')}
+        subtitle={t('Hero.subtitle')}
+        backgroundImage={heroImage}
+        searchSection={searchSection}
+      />
+
+      <div className="container mx-auto -mt-8 px-4 lg:px-8 bg-base-100 pt-8 rounded-2xl backdrop-blur-sm">
+        {filtered.length === 0 ? (
+          <div className="py-20 text-center text-base-content/50">
+            No programs found matching your search.
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+            {filtered.map((program) => (
+              <CourseCard
+                key={program.id}
+                href={`/programs/${program.slug}`}
+                title={program.title}
+                domains={program.course_domain_names ?? []}
+                level="Program"
+                durationDays={program.duration}
+                image={program.image}
+                entity={program}
+              />
+            ))}
+          </div>
+        )}
+      </div>
+    </main>
+  );
 }

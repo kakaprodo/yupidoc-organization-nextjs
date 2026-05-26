@@ -28,18 +28,33 @@ async function main() {
     const isProductionMode = args.includes("--prod");
 
     // Dynamic values
-    const projectId = process.env.YUPIDOC_PROJECT_ID;
+    const organizationId = process.env.YUPIDOC_PROJECT_ID;
     const domainPublicKey = process.env.YUPIDOC_DOMAIN_PUBLIC_KEY;
 
     const url = !isProductionMode
         ? `${process.env.YUPIDOC_IMAGE_BASE_PATH}/44-pk-d60bcff4-ad48-4982-beda-238057a6fe5b.gz`
-        : `${process.env.YUPIDOC_IMAGE_BASE_PATH}/${projectId}-${domainPublicKey}.gz`;
+        : `${process.env.YUPIDOC_IMAGE_BASE_PATH}/${organizationId}-${domainPublicKey}.gz`;
 
     console.log(`Fetching from: ${url}`);
 
     try {
         const text = await extractTextFromGzip(url);
         const allContents = JSON.parse(text);
+
+        // Group section_contents by type
+        allContents.section_contents = (
+            allContents.section_contents || []
+        ).reduce((acc, item) => {
+            const type = item.key;
+
+            if (!acc[type]) {
+                acc[type] = [];
+            }
+
+            acc[type].push(item);
+
+            return acc;
+        }, {});
 
         const outputPath = join(
             process.cwd(),

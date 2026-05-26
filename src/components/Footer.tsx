@@ -1,90 +1,131 @@
-'use client';
-
+import type { ReactNode } from 'react';
+import { getTranslations } from 'next-intl/server';
+import { Globe } from 'lucide-react';
 import { Link } from '@/navigation';
-import { useTranslations } from 'next-intl';
-import { Mail, Phone, MessageCircle, MapPin, GraduationCap } from 'lucide-react';
+import { footerNavigation } from '@/constants/site';
+import { getBriefMissionContent, getContacts, getOrganization } from '@/services/content';
+import { OrganizationAvatar } from '@/components/OrganizationAvatar';
+import CallIcon from '@/components/Icons/CallIcon';
+import FacebookIcon from '@/components/Icons/FacebookIcon';
+import InstagramIcon from '@/components/Icons/InstagramIcon';
+import LinkedInIcon from '@/components/Icons/LinkedInIcon';
+import MailIcon from '@/components/Icons/MailIcon';
+import MessageBubbleIcon from '@/components/Icons/MessageBubbleIcon';
+import TweeterIcon from '@/components/Icons/TweeterIcon';
+import type { EntityAboutContactType } from '@/types/general-type';
+import { stripHtml } from '@/utils/content';
+import Image from 'next/image';
 
-export default function Footer() {
-    const t = useTranslations('Footer');
-    const currentYear = new Date().getFullYear();
+const iconProps = { size: 5, color: 'text-gray-500' };
 
-    return (
-        <footer className="bg-[#0a0f1c] text-slate-400 pt-16 pb-8 border-t border-white/5">
-            <div className="container mx-auto px-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+function getContactIcon(type: EntityAboutContactType): ReactNode {
+  const contactIconMap: Record<EntityAboutContactType, ReactNode> = {
+    PHONE: <CallIcon {...iconProps} />,
+    EMAIL: <MailIcon {...iconProps} />,
+    WHATSAPP: <MessageBubbleIcon {...iconProps} />,
+    INSTAGRAM: <InstagramIcon {...iconProps} />,
+    LINKEDIN: <LinkedInIcon {...iconProps} />,
+    FACEBOOK: <FacebookIcon {...iconProps} />,
+    X: <TweeterIcon {...iconProps} />
+  };
 
-                    {/* Colonne 1: Brand & Logo */}
-                    <div className="flex flex-col gap-6">
-                        <Link href="/" className="flex items-center gap-3">
-                            <div className="w-10 h-10 bg-indigo-600 rounded-lg flex items-center justify-center shadow-lg shadow-indigo-500/20">
-                                <GraduationCap className="text-white w-6 h-6" />
-                            </div>
-                            <span className="text-2xl font-bold text-white tracking-tight">
-                                Yupi<span className="text-indigo-500">doc</span>
-                            </span>
-                        </Link>
-                        <p className="text-sm leading-relaxed max-w-xs">
-                            {t('description')}
-                        </p>
-                    </div>
+  return contactIconMap[type] ?? <Globe className="h-5 w-5 text-gray-500" />;
+}
 
-                    {/* Colonne 2: Learn (Navigation) */}
-                    <div>
-                        <h4 className="font-bold text-white mb-6 text-base">{t('sections.learn')}</h4>
-                        <ul className="space-y-4 text-sm font-medium">
-                            <li><Link href="/courses" className="hover:text-white transition-colors">{t('links.courses')}</Link></li>
-                            <li><Link href="/modules" className="hover:text-white transition-colors">{t('links.modules')}</Link></li>
-                            <li><Link href="/programs" className="hover:text-white transition-colors">{t('links.programs')}</Link></li>
-                            <li><Link href="/certifications" className="hover:text-white transition-colors">{t('links.certifications')}</Link></li>
-                        </ul>
-                    </div>
+export default async function Footer() {
+  const t = await getTranslations('Footer');
+  const organization = getOrganization();
+  const mission = getBriefMissionContent();
+  const contacts = getContacts();
+  const currentYear = new Date().getFullYear();
+  const orgLinks = footerNavigation.map((item) => ({
+    href: item.href,
+    label: t(`links.${item.labelKey}`)
+  }));
 
-                    {/* Colonne 3: Organization */}
-                    <div>
-                        <h4 className="font-bold text-white mb-6 text-base">{t('sections.org')}</h4>
-                        <ul className="space-y-4 text-sm font-medium">
-                            <li><Link href="/about" className="hover:text-white transition-colors">{t('links.about')}</Link></li>
-                            <li><Link href="/careers" className="hover:text-white transition-colors">{t('links.careers')}</Link></li>
-                            <li><Link href="/products" className="hover:text-white transition-colors">{t('links.products')}</Link></li>
-                            <li><Link href="/blog" className="hover:text-white transition-colors">{t('links.blog')}</Link></li>
-                        </ul>
-                    </div>
+  return (
+    <footer className="border-t border-base-200 bg-slate-950 py-16 text-slate-300">
+      <div className="container mx-auto px-6">
+        <div className="mb-16 grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-3">
+          <div className="flex flex-col gap-6">
+            <Link href="/" className="flex items-center gap-3">
+              <OrganizationAvatar organization={organization} size={7} />
+              <span className="text-2xl font-bold tracking-tight text-white">
+                {organization.name}
+              </span>
+            </Link>
+            <p className="max-w-xs text-sm leading-relaxed text-slate-400">
+              {mission ? stripHtml(mission.content) : t('description')}
+            </p>
+          </div>
 
-                    {/* Colonne 4: Contact Us (Avec Icônes) */}
-                    <div>
-                        <h4 className="font-bold text-white mb-6 text-base">{t('sections.contact')}</h4>
-                        <ul className="space-y-4 text-sm">
-                            <li className="flex items-start gap-3">
-                                <Mail className="w-5 h-5 text-indigo-500 shrink-0" />
-                                <a href="mailto:contact@yupidoc.com" className="hover:text-white transition-colors">contact@yupidoc.com</a>
-                            </li>
-                            <li className="flex items-start gap-3">
-                                <Phone className="w-5 h-5 text-indigo-500 shrink-0" />
-                                <a href="tel:+243812345678" className="hover:text-white transition-colors">+243 812 345 678</a>
-                            </li>
-                            <li className="flex items-start gap-3">
-                                <MessageCircle className="w-5 h-5 text-indigo-500 shrink-0" />
-                                <span className="hover:text-white transition-colors">+243 812 345 678 (WhatsApp)</span>
-                            </li>
-                            <li className="flex items-start gap-3">
-                                <MapPin className="w-5 h-5 text-indigo-500 shrink-0" />
-                                <span>123 Innovation Drive, Tech Valley, Kinshasa</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+          <div>
+            <h4 className="mb-6 text-base font-bold text-white">{t('sections.organization')}</h4>
+            <ul className="space-y-4 text-sm font-medium">
+              {orgLinks.map((item) => (
+                <li key={item.href}>
+                  <Link href={item.href} className="transition-colors hover:text-white">
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-                {/* Barre de copyright et liens légaux */}
-                <div className="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-medium uppercase tracking-wider">
-                    <p className="text-slate-500">
-                        © {currentYear} Yupidoc Organization. {t('allRightsReserved')}
-                    </p>
-                    <div className="flex gap-8">
-                        <Link href="/privacy" className="text-slate-500 hover:text-white transition-colors">Privacy Policy</Link>
-                        <Link href="/terms" className="text-slate-500 hover:text-white transition-colors">Terms of Service</Link>
-                    </div>
-                </div>
-            </div>
-        </footer>
-    );
+          <div>
+            <h4 className="mb-6 text-base font-bold text-white">{t('sections.contact')}</h4>
+            <ul className="space-y-4 text-sm">
+              {contacts.map((contact, index) => {
+                const type = (contact.type ?? 'EMAIL') as EntityAboutContactType;
+                let label = contact.content;
+
+                const hrefMap: Partial<Record<EntityAboutContactType, string>> = {
+                  EMAIL: `mailto:${label}`,
+                  PHONE: `tel:${label.replace(/\s+/g, '')}`,
+                  WHATSAPP: `tel:${label.replace(/\s+/g, '')}`,
+                };
+
+
+                const href =
+                  hrefMap[type] ??
+                  (label.startsWith('http') ? label : undefined);
+
+                label = href && label.startsWith('http') ? type : label;
+
+                const value = href ? (
+                  <a target='_blank' href={href} className="transition-colors hover:text-white">
+                    {label}
+                  </a>
+                ) : (
+                  <span>{label}</span>
+                );
+
+                return (
+                  <li key={`${contact.id}-${index}`} className="flex items-start gap-3">
+                    <span className="shrink-0">{getContactIcon(type)}</span>
+                    {value}
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        </div>
+
+        <div className="flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 text-xs font-medium uppercase tracking-wider text-slate-500 md:flex-row">
+          <p className='flex justify-between  w-full'>
+            <span> © {currentYear} {organization.name}. {t('allRightsReserved')}{' '}</span>
+            <a
+              href="https://yupidoc.com"
+              target="_blank"
+              rel="noreferrer"
+              className=" flex flex-col md:flex-row  items-center gap-3 transition-colors hover:text-white"
+            >
+              <span className='hidden md:flex'>Powered by</span>
+              <Image width={70} height={15} src="/yupi_logo_with_name_dark.webp" alt='yupidoc-power' />
+            </a>
+          </p>
+        </div>
+      </div>
+    </footer>
+  );
 }

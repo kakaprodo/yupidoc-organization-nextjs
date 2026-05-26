@@ -1,117 +1,81 @@
-'use client';
-
-import { useState } from 'react';
 import Image from 'next/image';
-import { motion } from 'framer-motion';
+import { ImageIcon } from 'lucide-react';
 import { Link } from '@/navigation';
-
-
+import { formatNumber } from '@/utils/format';
+import { Course, Program } from '@/types/general-type';
 
 interface CourseCardProps {
-    id: string;
-    basePath: 'courses' | 'modules' | 'programs';
-    title: string;
-    description?: string;
-    category: string;
-    price: string;
-    image: string;
-    instructorAvatar?: string;
-    metaInfo?: string;
-    accentColor?: string;
+  href: string;
+  title: string;
+  domains?: string[];
+  level?: string;
+  durationDays: string | number;
+  image: string;
+  entity: Course | Program
 }
 
 export default function CourseCard({
-    id,
-    basePath,
-    title,
-    description,
-    category,
-    price,
-    image,
-    instructorAvatar,
-    metaInfo,
-    accentColor = "bg-primary"
+  href,
+  title,
+  domains = [],
+  level,
+  durationDays,
+  image,
+  entity
 }: CourseCardProps) {
-    const [isLoaded, setIsLoaded] = useState(false);
+  return (
+    <Link
+      href={href}
+      className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-base-300 bg-base-100  transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_45px_rgba(15,23,42,0.12)]"
+    >
+      <div className="relative aspect-16/10 overflow-hidden rounded-t-xl border border-base-200 bg-base-200">
+        {image ? (
+          <Image
+            src={image}
+            alt={title}
+            fill
+            priority
+            className="h-auto w-auto object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+          />
+        ) : (
+          <div className="flex h-full w-full items-center justify-center bg-linear-to-br from-base-200 to-base-300">
+            <div className="flex flex-col items-center gap-2 text-base-content/45">
+              <ImageIcon size={24} className="text-base-content/40" />
+              <span className="text-xs font-medium uppercase tracking-[0.2em]">No cover</span>
+            </div>
+          </div>
+        )}
+        <div className="absolute inset-0 bg-linear-to-t from-base-content/40 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+      </div>
 
-    return (
-        // On enveloppe tout dans le Link. Plus besoin de mettre ${locale}
-        // car notre Link personnalisé le gère automatiquement.
-        <Link href={`/${basePath}/${id}`}>
-            <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.6, ease: "easeOut" }}
-                whileHover={{
-                    y: -8,
-                    rotateX: 2,
-                    rotateY: -2,
-                    perspective: 1000
-                }}
-                className="group relative bg-base-100 border border-base-200 overflow-hidden transition-all duration-300 hover:shadow-[0_20px_50px_rgba(0,0,0,0.1)] dark:hover:shadow-[0_20px_50px_rgba(0,0,0,0.3)] h-full"
-            >
-                {/* Conteneur Image */}
-                <div className="relative aspect-[16/9] w-full overflow-hidden bg-base-200">
-                    {!isLoaded && <div className="absolute inset-0 skeleton rounded-none" />}
-                    <Image
-                        src={image}
-                        alt={title}
-                        fill
-                        onLoad={() => setIsLoaded(true)}
-                        className={`object-cover transition-transform duration-700 ease-out group-hover:scale-110 ${isLoaded ? "opacity-100" : "opacity-0"}`}
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                </div>
+      <div className=" flex flex-1 flex-col gap-4 p-4  ">
 
-                <div className="p-6 flex flex-col gap-4">
-                    <div className="flex flex-col gap-2">
-                        <span className="text-[10px] uppercase tracking-[0.2em] font-black text-primary/80">
-                            {category}
-                        </span>
-                        <motion.div
-                            initial={{ width: 0 }}
-                            whileInView={{ width: 40 }}
-                            className={`h-[3px] ${accentColor} rounded-full`}
-                        />
-                    </div>
+        <div className="flex flex-col gap-2">
+          <h3 className="line-clamp-2 text-lg leading-tight text-base-content transition-colors duration-300 group-hover:text-primary">
+            {title}
+          </h3>
+          {domains.length > 0 ? (
+            <div className="flex flex-wrap gap-2 border-t border-base-200 ">
+              {domains.slice(0, 2).map((domainName) => (
+                <span
+                  key={domainName}
+                  title={domainName}
+                  className="badge pl-2 badge-ghost rounded-md border border-base-300 text-xs max-w-37.5 truncate"
+                >
+                  {domainName}
+                </span>
+              ))}
+            </div>
+          ) : null}
+        </div>
+        <div className="flex items-center justify-between border-t border-base-200">
+          <span className="badge badge-sm badge-outline rounded-md border-base-300">
+            {formatNumber(durationDays)} days
+          </span>
+          <div><span className='text-lg font-semibold'><span className='text-sm'>{entity.currency}</span> {formatNumber(entity.price)} </span></div>
+        </div>
 
-                    <div className="min-h-[100px]">
-                        <h3 className="font-extrabold text-xl leading-tight text-base-content group-hover:text-primary transition-colors duration-300">
-                            {title}
-                        </h3>
-                        {description && (
-                            <p className="text-sm text-base-content/60 mt-3 line-clamp-2 leading-relaxed font-medium">
-                                {description}
-                            </p>
-                        )}
-                    </div>
-
-                    <div className="flex justify-between items-center mt-2 pt-5 border-t border-base-200">
-                        <div className="flex items-center gap-3">
-                            {instructorAvatar ? (
-                                <div className="avatar ring-2 ring-primary/10 rounded-full">
-                                    <div className="w-8 rounded-full relative h-8 w-8">
-                                        <Image src={instructorAvatar} alt="instructor" fill className="rounded-full" />
-                                    </div>
-                                </div>
-                            ) : (
-                                <div className="flex items-center gap-2 text-primary">
-                                    <span className="text-xs font-bold bg-primary/5 px-2 py-1 rounded">
-                                        {metaInfo}
-                                    </span>
-                                </div>
-                            )}
-                        </div>
-                        <div className="text-right">
-                            <span className="text-xl font-black text-base-content tracking-tight">
-                                {price}
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <div className="absolute inset-0 border-2 border-primary/0 group-hover:border-primary/10 transition-colors duration-300 pointer-events-none" />
-            </motion.div>
-        </Link>
-    );
+      </div>
+    </Link>
+  );
 }
