@@ -3,6 +3,10 @@ import { getLocale } from 'next-intl/server';
 import './globals.css';
 import { siteConfig } from '@/constants/site';
 
+const lightThemeColor = process.env.LIGHT_THEME_COLOR ?? '#be185d';
+const darkThemeColor = process.env.DARK_THEME_COLOR ?? '#a991f7';
+
+
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
@@ -29,7 +33,16 @@ export default async function RootLayout({
   const locale = await getLocale();
 
   return (
-    <html lang={locale} suppressHydrationWarning>
+    <html
+      lang={locale}
+      suppressHydrationWarning
+      style={
+        {
+          '--light-theme-primary-color': lightThemeColor,
+          '--dark-theme-primary-color': darkThemeColor
+        } as React.CSSProperties
+      }
+    >
       <body className="min-h-screen bg-base-100 text-base-content antialiased">
         {children}
       </body>
