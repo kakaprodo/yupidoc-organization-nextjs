@@ -22,7 +22,7 @@ export function LanguageSwitcher() {
     <button
       type="button"
       onClick={toggleLanguage}
-      className="btn btn-ghost btn-sm uppercase font-bold"
+      className="btn font-normal btn-ghost btn-circle btn-sm uppercase"
       disabled={isPending}
     >
       {locale === 'fr' ? 'EN' : 'FR'}

@@ -30,7 +30,7 @@ export default async function AboutPage() {
           {about && <AppEditor content={about.content} editorType={about.editor_type} />}
 
           {mission ? (
-            <div className="rounded-3xl border border-base-200 bg-base-200/40 p-8 text-center">
+            <div className="rounded-3xl border border-base-200 bg-base-200 shadow-sm p-8 text-center">
               <p className="mb-3 text-xs font-black uppercase tracking-[0.25em] text-primary">Mission</p>
               <p className="text-lg leading-relaxed text-base-content/75">
                 {stripHtml(mission.content)}

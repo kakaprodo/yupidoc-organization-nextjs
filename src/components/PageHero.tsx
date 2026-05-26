@@ -1,15 +1,18 @@
 import Image from 'next/image';
+import type { ReactNode } from 'react';
 
 interface PageHeroProps {
   title: string;
   subtitle?: string;
   backgroundImage?: string | null;
+  searchSection?: ReactNode;
 }
 
 export default function PageHero({
   title,
   subtitle,
-  backgroundImage
+  backgroundImage,
+  searchSection
 }: PageHeroProps) {
   return (
     <section className="relative isolate overflow-hidden border-b border-base-200 py-20 lg:py-24">
@@ -36,6 +39,8 @@ export default function PageHero({
             {subtitle}
           </p>
         ) : null}
+
+        {searchSection ? <div className="mt-10">{searchSection}</div> : null}
       </div>
     </section>
   );

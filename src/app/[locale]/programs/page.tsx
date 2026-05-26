@@ -4,7 +4,6 @@ import PageHero from '@/components/PageHero';
 import CourseCard from '@/components/CourseCard';
 import { createPageMetadata } from '@/lib/metadata';
 import { getPrograms, getPlainTextDescription } from '@/services/content';
-import { excerpt } from '@/utils/content';
 import { getRandomConverImage } from '@/services/content';
 
 type SearchParams = Promise<{
@@ -41,6 +40,23 @@ export default async function ProgramsPage({
   const query = resolvedSearchParams.q?.trim().toLowerCase() ?? '';
   const heroImage = getRandomConverImage();
 
+  const searchSection = (
+    <div className="mx-auto flex w-full max-w-2xl items-center gap-3 rounded-2xl border border-white/15 bg-white/10 p-4 backdrop-blur-md">
+      <form method="get" className="flex w-full items-center gap-3">
+        <input
+          type="search"
+          name="q"
+          defaultValue={resolvedSearchParams.q ?? ''}
+          placeholder="Search programs..."
+          className="input w-full rounded-xl border-0 bg-white/90 text-base-content placeholder:text-base-content/50 focus:outline-none"
+        />
+        <button type="submit" className="btn btn-primary rounded-xl text-white">
+          Search
+        </button>
+      </form>
+    </div>
+  );
+
   const filtered = getPrograms().filter((program) => {
     const searchable = [
       program.title,
@@ -55,24 +71,14 @@ export default async function ProgramsPage({
 
   return (
     <main className="min-h-screen bg-base-100 pb-20">
-      <PageHero title={t('Hero.title')} subtitle={t('Hero.subtitle')} backgroundImage={heroImage} />
+      <PageHero
+        title={t('Hero.title')}
+        subtitle={t('Hero.subtitle')}
+        backgroundImage={heroImage}
+        searchSection={searchSection}
+      />
 
-      <div className="container mx-auto -mt-8 px-4 lg:px-8">
-        <div className="mx-auto mb-16 max-w-xl rounded-2xl border border-base-200 bg-base-100 shadow-2xl">
-          <form method="get" className="relative flex items-center gap-3 p-4">
-            <input
-              type="search"
-              name="q"
-              defaultValue={resolvedSearchParams.q ?? ''}
-              placeholder="Search programs..."
-              className="input w-full border-none bg-base-100 pl-2 text-base-content focus:outline-none"
-            />
-            <button type="submit" className="btn btn-primary rounded-xl text-white">
-              Search
-            </button>
-          </form>
-        </div>
-
+      <div className="container mx-auto -mt-8 px-4 lg:px-8 bg-base-100 pt-8 rounded-2xl backdrop-blur-sm">
         {filtered.length === 0 ? (
           <div className="py-20 text-center text-base-content/50">
             No programs found matching your search.

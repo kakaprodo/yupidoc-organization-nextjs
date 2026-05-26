@@ -45,7 +45,7 @@ export default function HeroSection({ slides = [] }: HeroSectionProps) {
   }, []);
 
   return (
-    <section className="relative h-[500px] w-full overflow-hidden bg-black lg:h-[600px]">
+    <section className="relative h-125 w-full overflow-hidden bg-black lg:h-150">
       {activeSlides.map((slide, index) => (
         <div
           key={`${slide.title}-${slide.image}-${index}`}
@@ -65,7 +65,7 @@ export default function HeroSection({ slides = [] }: HeroSectionProps) {
                 </p>
                 <Link
                   href="/courses"
-                  className="btn h-14 rounded-lg border-none bg-primary px-8 text-lg normal-case text-white hover:bg-primary/90"
+                  className="btn h-14  border-none rounded-3xl! bg-primary! px-8 text-lg normal-case text-white hover:bg-primary/90"
                 >
                   {t('ctaPrimary')}
                 </Link>
@@ -79,7 +79,7 @@ export default function HeroSection({ slides = [] }: HeroSectionProps) {
         <button
           type="button"
           onClick={prevSlide}
-          className="btn btn-circle border-white/20 bg-white/10 text-white backdrop-blur-sm hover:bg-white/20"
+          className="btn btn-circle border-white/20 bg-white/30 text-white backdrop-blur-sm hover:bg-white/20"
           aria-label="Previous slide"
         >
           <ChevronLeftIcon className="h-6 w-6" />

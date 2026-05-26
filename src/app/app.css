@@ -23,20 +23,20 @@
 }
 
 /* couleurs personnalisées selon la maquette */
-[data-theme="light"] {
-    --p: #1e293b;
+/* [data-theme="light"] {
+    --p: #1e293b; */
     /* Bleu nuit de votre maquette */
-    --s: #3b82f6;
+    /* --s: #3b82f6; */
     /* Bleu vif */
-    --p-content: #ffffff;
-}
+    /* --p-content: #ffffff;
+} */
 
-[data-theme="dark"] {
+/* [data-theme="dark"] {
     --p: #3b82f6;
     --s: #1e293b;
     --base-100: #0f172a;
     --base-content: #f8fafc;
-}
+} */
 
 body {
     @apply bg-base-100 text-base-content font-sans antialiased;

@@ -18,7 +18,7 @@ export default async function Header() {
   }));
 
   return (
-    <header className="sticky top-0 z-[60] w-full border-b border-base-200 bg-base-100/90 backdrop-blur-md">
+    <header className="sticky top-0 z-60 w-full border-b border-base-200 bg-base-100/90 backdrop-blur-md">
       <div className="container mx-auto px-4 lg:px-8">
         <div className="navbar h-20 p-0">
           <div className="navbar-start">
@@ -37,18 +37,19 @@ export default async function Header() {
           </div>
 
           <div className="navbar-end gap-3">
-            <div className="hidden items-center gap-1 sm:flex">
+            <div className="hidden items-center gap-1 md:flex">
               <ThemeSwitcher />
-              <div className="mx-2 h-6 w-px bg-base-200" />
+              <div className="mx-0 h-6 w-px bg-base-300" />
+              <LanguageSwitcher />
             </div>
 
-            <div className="dropdown dropdown-end lg:hidden">
+            <div className="dropdown dropdown-end md:hidden">
               <label tabIndex={0} className="btn btn-ghost btn-circle" aria-label="Open menu">
                 <Menu className="h-6 w-6" />
               </label>
               <ul
                 tabIndex={0}
-                className="menu dropdown-content mt-3 z-[100] w-64 rounded-xl border border-base-200 bg-base-100 p-3 shadow-xl"
+                className="menu dropdown-content mt-3 z-100 w-64 rounded-xl border border-base-200 bg-base-100 p-3 shadow-xl"
               >
                 <HeaderNavLinks navLinks={navLinks} mobile />
                 <div className="divider my-1" />

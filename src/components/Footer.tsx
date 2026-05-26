@@ -77,18 +77,23 @@ export default async function Footer() {
             <ul className="space-y-4 text-sm">
               {contacts.map((contact, index) => {
                 const type = (contact.type ?? 'EMAIL') as EntityAboutContactType;
-                const label = contact.content;
+                let label = contact.content;
+
+                const hrefMap: Partial<Record<EntityAboutContactType, string>> = {
+                  EMAIL: `mailto:${label}`,
+                  PHONE: `tel:${label.replace(/\s+/g, '')}`,
+                  WHATSAPP: `tel:${label.replace(/\s+/g, '')}`,
+                };
+
+
                 const href =
-                  type === 'EMAIL'
-                    ? `mailto:${contact.content}`
-                    : type === 'PHONE' || type === 'WHATSAPP'
-                      ? `tel:${contact.content.replace(/\s+/g, '')}`
-                      : contact.content.startsWith('http')
-                        ? contact.content
-                        : undefined;
+                  hrefMap[type] ??
+                  (label.startsWith('http') ? label : undefined);
+
+                label = href && label.startsWith('http') ? type : label;
 
                 const value = href ? (
-                  <a href={href} className="transition-colors hover:text-white">
+                  <a target='_blank' href={href} className="transition-colors hover:text-white">
                     {label}
                   </a>
                 ) : (
@@ -113,9 +118,9 @@ export default async function Footer() {
               href="https://yupidoc.com"
               target="_blank"
               rel="noreferrer"
-              className="text-slate-300 flex  items-center gap-3 transition-colors hover:text-white"
+              className=" flex flex-col md:flex-row  items-center gap-3 transition-colors hover:text-white"
             >
-              <span>Powered by</span>
+              <span className='hidden md:flex'>Powered by</span>
               <Image width={70} height={15} src="/yupi_logo_with_name_dark.webp" alt='yupidoc-power' />
             </a>
           </p>

@@ -5,7 +5,6 @@ import PageHero from '@/components/PageHero';
 import CourseCard from '@/components/CourseCard';
 import { createPageMetadata } from '@/lib/metadata';
 import { getCourses, getPlainTextDescription } from '@/services/content';
-import { excerpt } from '@/utils/content';
 import { getRandomConverImage } from '@/services/content';
 
 type SearchParams = Promise<{
@@ -67,32 +66,36 @@ export default async function CoursesPage({
   const visibleCourses = filtered.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE);
   const heroImage = getRandomConverImage();
 
+  const searchSection = (
+    <div className="mx-auto flex w-full max-w-2xl flex-col gap-4 rounded-2xl border border-white/15 bg-white/10 p-4 backdrop-blur-md md:flex-row md:items-center">
+
+
+      <form method="get" className="flex w-full gap-3">
+        <input
+          type="search"
+          name="q"
+          defaultValue={resolvedSearchParams.q ?? ''}
+          placeholder={t('Filters.search')}
+          className="input w-full rounded-xl border-0 bg-white/90 text-base-content placeholder:text-base-content/50 focus:outline-none"
+        />
+        <input type="hidden" name="page" value="1" />
+        <button type="submit" className="btn btn-primary rounded-xl text-white">
+          Search
+        </button>
+      </form>
+    </div>
+  );
+
   return (
     <main className="min-h-screen bg-base-100 pb-20">
-      <PageHero title={t('Hero.title')} subtitle={t('Hero.subtitle')} backgroundImage={heroImage} />
+      <PageHero
+        title={t('Hero.title')}
+        subtitle={t('Hero.subtitle')}
+        backgroundImage={heroImage}
+        searchSection={searchSection}
+      />
 
-      <div className="container mx-auto mt-12 px-4 lg:px-8">
-        <div className="mb-12 flex flex-col items-center justify-between gap-6 rounded-2xl border border-base-200 bg-base-200/30 p-6 md:flex-row">
-          <div className="flex items-center gap-4">
-            <h2 className="text-xl font-bold text-base-content">{t('Filters.all')}</h2>
-            <span className="badge badge-ghost font-mono">{filtered.length}</span>
-          </div>
-
-          <form method="get" className="flex w-full max-w-xl gap-3">
-            <input
-              type="search"
-              name="q"
-              defaultValue={resolvedSearchParams.q ?? ''}
-              placeholder={t('Filters.search')}
-              className="input input-bordered w-full rounded-xl border-base-300 bg-base-100"
-            />
-            <input type="hidden" name="page" value="1" />
-            <button type="submit" className="btn btn-primary rounded-xl text-white">
-              Search
-            </button>
-          </form>
-        </div>
-
+      <div className="container mx-auto -mt-8 px-4 lg:px-8  bg-base-100 pt-8 rounded-2xl backdrop-blur-sm">
         {filtered.length === 0 ? (
           <div className="py-20 text-center">
             <p className="text-xl font-medium text-base-content/50">
