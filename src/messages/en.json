@@ -1,18 +1,16 @@
 {
   "Navigation": {
     "home": "Home",
-    "activities": "Activities",
     "courses": "Courses",
-    "modules": "Modules",
     "programs": "Programs",
-    "products": "Solutions",
     "about": "About Us",
+    "privacy": "Privacy",
     "login": "Sign In",
     "joinNow": "Join Now"
   },
   "HomePage": {
     "Hero": {
-      "ctaPrimary": "Explore Activities",
+      "ctaPrimary": "Explore Courses",
       "ctaSecondary": "Learn More",
       "slides": {
         "1": {
@@ -21,7 +19,7 @@
         },
         "2": {
           "title": "Master the Skills of Tomorrow, Today",
-          "desc": "From deep tech to leadership, our modules are designed to bridge the gap between academic theory and industry practice."
+          "desc": "From deep tech to leadership, our learning paths are designed to bridge the gap between academic theory and industry practice."
         }
       }
     }
@@ -36,13 +34,9 @@
     },
     "links": {
       "courses": "Expert Courses",
-      "modules": "Learning Modules",
       "programs": "Degree Programs",
-      "certifications": "Certifications",
       "about": "Our Mission",
-      "careers": "Join the Team",
-      "products": "For Business",
-      "blog": "Insights & News"
+      "privacy": "Privacy Policy"
     }
   },
   "Courses": {
@@ -62,24 +56,6 @@
           "title": "Data Science with Python",
           "description": "Dive into data analysis, machine learning, and visualization using Python's powerful libraries."
         }
-      }
-    }
-  },
-  "Modules": {
-    "title": "Learning Modules",
-    "viewMore": "View More Modules",
-    "items": {
-      "1": {
-        "title": "AI & Machine Learning",
-        "description": "Explore the foundations of artificial intelligence and machine learning, and how to apply them in real-world scenarios."
-      },
-      "2": {
-        "title": "Cybersecurity Essentials",
-        "description": "Understand the principles of cybersecurity, including threat detection, risk management, and best practices for protection."
-      },
-      "3": {
-        "title": "Product Management",
-        "description": "Learn how to define product vision, prioritize features, and lead cross-functional teams to deliver successful products."
       }
     }
   },
@@ -111,22 +87,10 @@
       "search": "Search courses..."
     }
   },
-  "ModulesPage": {
-    "Hero": {
-      "title": "Explore Our Modules",
-      "subtitle": "Discover a world of knowledge with our comprehensive selection of specialized modules designed to help you master new technical skills."
-    }
-  },
   "ProgramsPage": {
     "Hero": {
       "title": "Explore Our Programs",
       "subtitle": "Discover a world of knowledge with our comprehensive selection of certification programs designed to help you master new skills and advance your career."
-    }
-  },
-  "ProductsPage": {
-    "Hero": {
-      "title": "Our Products",
-      "subtitle": "Discover our range of solutions designed to empower businesses and individuals with the tools they need to succeed in the digital age."
     }
   },
   "AboutPage": {
@@ -175,20 +139,6 @@
     "description": "Oops! It looks like you've discovered an area our engineers are still fine-tuning. This feature will be available very soon.",
     "cta": "Back to Home"
   },
-  "ModuleDetail": {
-    "purchase": "Purchase",
-    "accessTime": "Access for 6 months",
-    "lessonsCount": "{count} lessons",
-    "includedTitle": "Included in this module",
-    "aboutTitle": "About this module",
-    "curriculumTitle": "Course and lessons in this module",
-    "stats": {
-      "duration": "Duration",
-      "level": "Level",
-      "language": "Language",
-      "refund": "Refund"
-    }
-  },
   "ProgramDetail": {
     "purchase": "Purchase",
     "coreModules": "Core Modules",
@@ -196,51 +146,5 @@
     "learningPath": "Learning Path",
     "whatYouWillLearn": "What you'll learn in this program",
     "aboutTitle": "About this program"
-  },
-  "Products": {
-    "items": {
-      "1": { "title": "Organic Orange Juice", "description": "Cold-pressed, 100% natural, and rich in Vitamin C." },
-      "2": { "title": "Cloud Storage Solution", "description": "Secure, scalable, and easy-to-use cloud storage for your business." },
-      "3": { "title": "AI-Powered Analytics", "description": "Unlock insights from your data with our AI-driven analytics platform." },
-      "4": { "title": "Custom E-Learning Platform", "description": "Tailored online learning solutions to meet your organization's unique needs." }
-    },
-    "ProductDetail": {
-      "addToCart": "Add to Cart",
-      "buyNow": "Buy Now",
-      "description": "Description of product",
-      "specifications": "Specifications",
-      "inStock": "In stock",
-      "shipping": "Worldwide shipping available"
-    }
-  },
-  "ActivitiesPage": {
-    "Hero": {
-      "title": "Explore Our Activities",
-      "subtitle": "Discover a world of knowledge with our comprehensive selection of activities designed to help you master new skills and advance your career."
-    },
-    "loading": "Loading others activities...",
-    "explore": "Explore",
-    "viewDetails": "View Details",
-    "items": {
-      "1": { "title": "Tech Innovation Summit 2025", "desc": "Join industry leaders for a two-day summit exploring the latest trends in AI." },
-      "2": { "title": "Advanced Leadership Workshop", "desc": "An immersive workshop designed to equip emerging managers with conflict resolution skills." },
-      "3": { "title": "Full-Stack Developer Hackathon", "desc": "An intensive 48-hour coding challenge where teams compete to build community solutions." },
-      "4": { "title": "Masterclass on Design Systems", "desc": "Learn to create and maintain large-scale complete design systems." },
-      "5": { "title": "Agile Project Management Seminar", "desc": "Master sprint planning and cross-functional communication." },
-      "6": { "title": "Data Science Symposium", "desc": "Deep dive into predictive analytics and machine learning frameworks." }
-    }
-  },
-  "ActivityDetail": {
-    "back": "Back to Activities",
-    "category": "Category",
-    "secureSpot": "Secure your spot today",
-    "ctaSub": "Tickets are available until August 1st. Don't miss the event of the year.",
-    "registerBtn": "Register for the Summit",
-    "share": "Share this activity:",
-    "meta": {
-      "date": "Date",
-      "location": "Location",
-      "time": "Time"
-    }
   }
 }

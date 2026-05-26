@@ -1,12 +1,9 @@
 import type { NextConfig } from "next";
 import createNextIntlPlugin from "next-intl/plugin";
 
-
-// Par défaut, cela cherche le fichier dans './src/i18n.ts'
-const wuthNextIntl = createNextIntlPlugin();
+const withNextIntl = createNextIntlPlugin();
 
 const nextConfig: NextConfig = {
-  // CONFIGURATION DES IMAGES
   images: {
     remotePatterns: [
       {
@@ -20,9 +17,15 @@ const nextConfig: NextConfig = {
         hostname: 'i.pravatar.cc',
         port: '',
         pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'sfo3.digitaloceanspaces.com',
+        port: '',
+        pathname: '/**',
       }
     ],
   },
 };
 
-export default wuthNextIntl(nextConfig);
+export default withNextIntl(nextConfig);
