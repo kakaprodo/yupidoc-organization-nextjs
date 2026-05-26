@@ -29,7 +29,7 @@ async function main() {
 
     // Dynamic values
     const organizationId = process.env.YUPIDOC_PROJECT_ID;
-    const domainPublicKey = process.env.YUPIDOC_DOMAIN_PUBLIC_KEY;
+    const domainPublicKey = process.env.YUPIDOC_PUBLIC_KEY;
 
     const url = !isProductionMode
         ? `${process.env.YUPIDOC_IMAGE_BASE_PATH}/44-pk-d60bcff4-ad48-4982-beda-238057a6fe5b.gz`
