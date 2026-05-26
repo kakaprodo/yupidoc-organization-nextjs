@@ -5,12 +5,30 @@ import { getOrganization } from '@/services/content';
 import { formatCurrency, formatNumber } from '@/utils/format';
 import VideoWrapper from '@/components/VideoWrapper';
 import PublicDescriptionViewer from '@/components/PublicDescriptionViewer';
-import type { Program } from '@/types/general-type';
+import type { Program, ProgramCourse } from '@/types/general-type';
 import { PurchaseLink } from './PurchaseLink';
 
 interface ProgramDetailProps {
   program: Program;
 }
+
+const renderProjectPreview = (shortCourse: ProgramCourse) => (
+  <div
+    key={shortCourse.id}
+    className="flex items-center gap-3 rounded-md border border-base-300 bg-base-100 p-2"
+  >
+    <div className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-md bg-base-200">
+      {shortCourse.image ? (
+        <img src={shortCourse.image} alt={shortCourse.name} className="h-full w-full object-cover" />
+      ) : (
+        <span className="text-xs font-semibold text-base-content/50">No image</span>
+      )}
+    </div>
+    <div className="">
+      <p className=" text-sm font-medium text-base-content">{shortCourse.name}</p>
+    </div>
+  </div>
+);
 
 export default async function ProgramDetail({ program }: ProgramDetailProps) {
   const locale = await getLocale();
@@ -74,6 +92,15 @@ export default async function ProgramDetail({ program }: ProgramDetailProps) {
               </div>
             </div>
 
+
+            {(program.courses ?? []).length > 0 && <div className="rounded-3xl border border-base-200 bg-base-200 p-8">
+              <h3 className="mb-4 text-lg font-bold text-base-content">{t('coursesInProgram')}</h3>
+              <div className="space-y-3 text-sm text-base-content/70">
+                {program.courses?.map(renderProjectPreview)}
+              </div>
+            </div>}
+
+
             <div className="rounded-3xl border border-base-200 bg-base-200 p-8">
               <h3 className="mb-4 text-lg font-bold text-base-content">{t('categories')}</h3>
               <div className="space-y-3 text-sm text-base-content/70">
@@ -84,6 +111,7 @@ export default async function ProgramDetail({ program }: ProgramDetailProps) {
                 ))}
               </div>
             </div>
+
 
 
             <div className="relative aspect-video overflow-hidden rounded-3xl border border-base-300 shadow-2xl">
@@ -98,3 +126,5 @@ export default async function ProgramDetail({ program }: ProgramDetailProps) {
     </section>
   );
 }
+
+

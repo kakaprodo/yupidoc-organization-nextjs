@@ -135,7 +135,8 @@
     "standaloneCourses": "Standalone Courses",
     "learningPath": "Learning Path",
     "whatYouWillLearn": "What you'll learn in this program",
-    "aboutTitle": "About this program"
+    "aboutTitle": "About this program",
+    "coursesInProgram": "Included Courses"
   },
   "TermsPage": {
     "Hero": {

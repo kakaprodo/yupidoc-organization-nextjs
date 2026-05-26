@@ -98,6 +98,11 @@ export interface Course {
   currency?: string;
 }
 
+export type ProgramCourse = {
+  id: number;
+  name: string;
+  image:string
+}
 export interface Program {
   id: number;
   slug: string;
@@ -118,6 +123,7 @@ export interface Program {
   public_description: PublicDescription;
   course_domains: CourseDomain[];
   currency?: string;
+  courses?: ProgramCourse[]
 }
 
 export interface SectionContentSettings {
