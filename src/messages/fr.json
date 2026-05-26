@@ -109,6 +109,7 @@
     "included": "Inclus dans ce contenu",
     "whatYouWillLearn": "Ce que vous allez apprendre",
     "description": "Description",
+    "categories": "Categories",
     "curriculum": "Cours et leçons",
     "videoContent": "heures de contenu vidéo"
   },
@@ -121,6 +122,7 @@
   "ProgramDetail": {
     "purchase": "Acheter le programme",
     "coreModules": "Modules principaux",
+    "categories": "Categories",
     "standaloneCourses": "Cours indépendants",
     "learningPath": "Parcours d'apprentissage",
     "whatYouWillLearn": "Ce que vous apprendrez dans ce programme",

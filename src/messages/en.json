@@ -114,6 +114,7 @@
     "level": "Level",
     "language": "Language",
     "refund": "Refund period",
+    "categories": "Categories",
     "days": "days",
     "included": "Included in this content",
     "whatYouWillLearn": "What you'll learn",
@@ -130,6 +131,7 @@
   "ProgramDetail": {
     "purchase": "Purchase",
     "coreModules": "Core Modules",
+    "categories": "Categories",
     "standaloneCourses": "Standalone Courses",
     "learningPath": "Learning Path",
     "whatYouWillLearn": "What you'll learn in this program",

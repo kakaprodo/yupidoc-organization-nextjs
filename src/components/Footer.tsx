@@ -14,6 +14,7 @@ import MessageBubbleIcon from '@/components/Icons/MessageBubbleIcon';
 import TweeterIcon from '@/components/Icons/TweeterIcon';
 import type { EntityAboutContactType } from '@/types/general-type';
 import { stripHtml } from '@/utils/content';
+import Image from 'next/image';
 
 const iconProps = { size: 5, color: 'text-gray-500' };
 
@@ -106,15 +107,16 @@ export default async function Footer() {
         </div>
 
         <div className="flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 text-xs font-medium uppercase tracking-wider text-slate-500 md:flex-row">
-          <p>
-            © {currentYear} {organization.name}. {t('allRightsReserved')}{' '}
+          <p className='flex justify-between  w-full'>
+            <span> © {currentYear} {organization.name}. {t('allRightsReserved')}{' '}</span>
             <a
               href="https://yupidoc.com"
               target="_blank"
               rel="noreferrer"
-              className="text-slate-300 transition-colors hover:text-white"
+              className="text-slate-300 flex  items-center gap-3 transition-colors hover:text-white"
             >
-              Powered by Yupidoc
+              <span>Powered by</span>
+              <Image width={70} height={15} src="/yupi_logo_with_name_dark.webp" alt='yupidoc-power' />
             </a>
           </p>
         </div>

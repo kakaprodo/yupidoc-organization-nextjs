@@ -18,19 +18,21 @@ function normalizePublicDescription(description: PublicDescription): PublicDescr
   return description;
 }
 
-function normalizeCourse(course: Course): Course {
+function normalizeCourse(course: Course, defaultCurrency: string): Course {
   return {
     ...course,
     course_domains: (course.course_domains ?? []) as CourseDomain[],
-    public_description: normalizePublicDescription(course.public_description)
+    public_description: normalizePublicDescription(course.public_description),
+    currency: defaultCurrency
   };
 }
 
-function normalizeProgram(program: Program): Program {
+function normalizeProgram(program: Program, defaultCurrency: string): Program {
   return {
     ...program,
     course_domains: (program.course_domains ?? []) as CourseDomain[],
-    public_description: normalizePublicDescription(program.public_description)
+    public_description: normalizePublicDescription(program.public_description),
+    currency: defaultCurrency
   };
 }
 
@@ -66,8 +68,8 @@ function normalizeContent(raw: typeof content): TrainingCenterContent {
 
   return {
     organization: raw.organization,
-    courses: (raw.courses ?? []).map(normalizeCourse),
-    programs: (raw.programs ?? []).map(normalizeProgram),
+    courses: (raw.courses ?? []).map((c) => normalizeCourse(c, raw.organization.settings.default_currency)),
+    programs: (raw.programs ?? []).map( (p) => normalizeProgram(p, raw.organization.settings.default_currency)),
     section_contents: sectionContents
   };
 }
@@ -158,9 +160,13 @@ export function getHeroSlides(): HeroSlide[] {
 export function getRandomConverImage(): string|null {
   const images = getImageContentItems();
 
+  if (images.length === 0) {
+    return null;
+  }
+
   const randomIndex = Math.floor(Math.random() * images.length);
 
-  return images[randomIndex].image_url;
+  return images[randomIndex]?.image_url ?? null;
 }
 
 export function getFeaturedCourses(limit = 3): Course[] {

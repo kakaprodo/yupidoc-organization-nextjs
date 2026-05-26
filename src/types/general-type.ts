@@ -95,6 +95,7 @@ export interface Course {
   public_description: PublicDescription;
   payment_url: string;
   course_domains: CourseDomain[];
+  currency?: string;
 }
 
 export interface Program {
@@ -116,6 +117,7 @@ export interface Program {
   payment_url: string;
   public_description: PublicDescription;
   course_domains: CourseDomain[];
+  currency?: string;
 }
 
 export interface SectionContentSettings {

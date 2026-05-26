@@ -31,10 +31,10 @@ export default function HeroSection({ slides = [] }: HeroSectionProps) {
   const activeSlides = slides.length > 0
     ? slides
     : fallbackSlides.map((slide, index) => ({
-        ...slide,
-        title: index === 0 ? t('slides.1.title') : t('slides.2.title'),
-        description: index === 0 ? t('slides.1.desc') : t('slides.2.desc')
-      }));
+      ...slide,
+      title: index === 0 ? t('slides.1.title') : t('slides.2.title'),
+      description: index === 0 ? t('slides.1.desc') : t('slides.2.desc')
+    }));
 
   const nextSlide = () => setCurrent((prev) => (prev === activeSlides.length - 1 ? 0 : prev + 1));
   const prevSlide = () => setCurrent((prev) => (prev === 0 ? activeSlides.length - 1 : prev - 1));
@@ -49,9 +49,8 @@ export default function HeroSection({ slides = [] }: HeroSectionProps) {
       {activeSlides.map((slide, index) => (
         <div
           key={`${slide.title}-${slide.image}-${index}`}
-          className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
-            index === current ? 'z-10 opacity-100' : 'z-0 opacity-0'
-          }`}
+          className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${index === current ? 'z-10 opacity-100' : 'z-0 opacity-0'
+            }`}
         >
           <Image src={slide.image} alt={slide.title} fill priority={index === 0} className="object-cover" />
           <div className="absolute inset-0 bg-black/50" />

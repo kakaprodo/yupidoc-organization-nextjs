@@ -33,3 +33,8 @@ export function formatDuration(minutes: string | number) {
   return `${hours} h ${remainingMinutes} min`;
 }
 
+export function formatNumber(value: string | number | null | undefined, locale = 'en') {
+  const amount = typeof value === 'number' ? value : Number(value ?? 0);
+
+  return new Intl.NumberFormat(locale).format(Number.isFinite(amount) ? amount : 0);
+}

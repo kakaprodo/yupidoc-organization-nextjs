@@ -1,18 +1,11 @@
 import type { Metadata } from 'next';
-import { getLocale, getTranslations } from 'next-intl/server';
+import { getTranslations } from 'next-intl/server';
 import HeroSection from '@/components/HeroSection';
 import CourseCard from '@/components/CourseCard';
 import { SectionHeader } from '@/components/SectionHeader';
 import { createPageMetadata } from '@/lib/metadata';
-import { getOrganization, getHeroSlides, getBriefMissionContent, getAboutContent } from '@/services/content';
-import {
-  getFeaturedCourses,
-  getFeaturedPrograms,
-  getPlainTextDescription
-} from '@/services/content';
-import { excerpt, stripHtml } from '@/utils/content';
-import { formatCurrency, formatDuration } from '@/utils/format';
-import { Link } from '@/navigation';
+import { getOrganization, getHeroSlides, getBriefMissionContent, getFeaturedCourses, getFeaturedPrograms } from '@/services/content';
+import { stripHtml } from '@/utils/content';
 
 export async function generateMetadata(): Promise<Metadata> {
   const organization = getOrganization();
@@ -25,7 +18,6 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function HomePage() {
-  const locale = await getLocale();
   const tCourses = await getTranslations('Courses.featured');
   const tPrograms = await getTranslations('Programs');
 
@@ -45,11 +37,11 @@ export default async function HomePage() {
               key={course.id}
               href={`/courses/${course.slug}`}
               title={course.name}
-              description={excerpt(getPlainTextDescription(course.public_description?.content), 120)}
-              category={course.course_domain_names?.[0] ?? course.level}
-              price={formatCurrency(course.price, locale)}
+              domains={course.course_domain_names ?? []}
+              level={course.level}
+              durationDays={course.duration}
               image={course.image}
-              metaInfo={formatDuration(course.duration)}
+              entity={course}
             />
           ))}
         </div>
@@ -63,10 +55,11 @@ export default async function HomePage() {
               key={program.id}
               href={`/programs/${program.slug}`}
               title={program.title}
-              category={program.course_domain_names?.[0] ?? 'Program'}
-              price={formatCurrency(program.price, locale)}
+              domains={program.course_domain_names ?? []}
+              level="Program"
+              durationDays={program.duration}
               image={program.image}
-              metaInfo={formatDuration(program.duration)}
+              entity={program}
             />
           ))}
         </div>

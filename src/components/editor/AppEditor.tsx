@@ -1,5 +1,5 @@
 
-
+"use client";
 
 import { EDITOR_TYPE } from "@/types/general-type";
 import { MarkdownPlaceholder } from "./placeholders/MarkdownPlaceholder";

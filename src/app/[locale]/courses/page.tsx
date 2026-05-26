@@ -1,12 +1,12 @@
 import type { Metadata } from 'next';
-import { getLocale, getTranslations } from 'next-intl/server';
+import { getTranslations } from 'next-intl/server';
 import { Link } from '@/navigation';
 import PageHero from '@/components/PageHero';
 import CourseCard from '@/components/CourseCard';
 import { createPageMetadata } from '@/lib/metadata';
 import { getCourses, getPlainTextDescription } from '@/services/content';
 import { excerpt } from '@/utils/content';
-import { formatCurrency, formatDuration } from '@/utils/format';
+import { getRandomConverImage } from '@/services/content';
 
 type SearchParams = Promise<{
   q?: string;
@@ -43,7 +43,6 @@ export default async function CoursesPage({
 }: {
   searchParams: SearchParams;
 }) {
-  const locale = await getLocale();
   const t = await getTranslations('CoursesPage');
   const resolvedSearchParams = await searchParams;
   const query = resolvedSearchParams.q?.trim().toLowerCase() ?? '';
@@ -66,10 +65,11 @@ export default async function CoursesPage({
   const totalPages = Math.max(1, Math.ceil(filtered.length / ITEMS_PER_PAGE));
   const currentPage = Math.min(page, totalPages);
   const visibleCourses = filtered.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE);
+  const heroImage = getRandomConverImage();
 
   return (
     <main className="min-h-screen bg-base-100 pb-20">
-      <PageHero title={t('Hero.title')} subtitle={t('Hero.subtitle')} />
+      <PageHero title={t('Hero.title')} subtitle={t('Hero.subtitle')} backgroundImage={heroImage} />
 
       <div className="container mx-auto mt-12 px-4 lg:px-8">
         <div className="mb-12 flex flex-col items-center justify-between gap-6 rounded-2xl border border-base-200 bg-base-200/30 p-6 md:flex-row">
@@ -101,17 +101,17 @@ export default async function CoursesPage({
           </div>
         ) : (
           <>
-            <div className="grid min-h-[600px] grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+            <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
               {visibleCourses.map((course) => (
                 <CourseCard
                   key={course.id}
                   href={`/courses/${course.slug}`}
                   title={course.name}
-                  description={excerpt(getPlainTextDescription(course.public_description?.content), 120)}
-                  category={course.course_domain_names?.[0] ?? course.level}
-                  price={formatCurrency(course.price, locale)}
+                  domains={course.course_domain_names ?? []}
+                  level={course.level}
+                  durationDays={course.duration}
                   image={course.image}
-                  metaInfo={formatDuration(course.duration)}
+                  entity={course}
                 />
               ))}
             </div>
@@ -132,11 +132,10 @@ export default async function CoursesPage({
                     <Link
                       key={nextPage}
                       href={buildCoursesHref(resolvedSearchParams.q ?? '', nextPage)}
-                      className={`btn btn-square border-none ${
-                        currentPage === nextPage
-                          ? 'bg-primary text-white shadow-lg shadow-primary/30'
-                          : 'bg-base-200 text-base-content hover:bg-base-300'
-                      }`}
+                      className={`btn btn-square border-none ${currentPage === nextPage
+                        ? 'bg-primary text-white shadow-lg shadow-primary/30'
+                        : 'bg-base-200 text-base-content hover:bg-base-300'
+                        }`}
                     >
                       {nextPage}
                     </Link>

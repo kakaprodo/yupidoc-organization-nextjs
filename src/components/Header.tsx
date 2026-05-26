@@ -6,6 +6,7 @@ import { ThemeSwitcher } from '@/components/ThemeSwitcher';
 import { LanguageSwitcher } from '@/components/LanguageSwitcher';
 import { getOrganization } from '@/services/content';
 import { OrganizationAvatar } from '@/components/OrganizationAvatar';
+import HeaderNavLinks from '@/components/HeaderNavLinks';
 
 export default async function Header() {
   const t = await getTranslations('Navigation');
@@ -31,16 +32,7 @@ export default async function Header() {
 
           <div className="navbar-center hidden lg:flex">
             <ul className="flex items-center gap-8">
-              {navLinks.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="text-sm font-semibold tracking-wide text-base-content/60 transition-colors hover:text-primary"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
+              <HeaderNavLinks navLinks={navLinks} />
             </ul>
           </div>
 
@@ -58,13 +50,7 @@ export default async function Header() {
                 tabIndex={0}
                 className="menu dropdown-content mt-3 z-[100] w-64 rounded-xl border border-base-200 bg-base-100 p-3 shadow-xl"
               >
-                {navLinks.map((link) => (
-                  <li key={link.href}>
-                    <Link href={link.href} className="py-3 font-medium">
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
+                <HeaderNavLinks navLinks={navLinks} mobile />
                 <div className="divider my-1" />
                 <div className="flex items-center justify-between px-2 py-2">
                   <ThemeSwitcher />

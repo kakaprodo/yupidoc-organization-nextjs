@@ -1,3 +1,5 @@
+"use client";
+
 import { PublicDescription } from "@/types/general-type";
 import { isEmpty } from "@/utils/shared-helpers";
 import React, { useMemo } from "react";
@@ -24,15 +26,15 @@ const SectionCard = ({
     subtitle,
     children,
 }: {
-    title: string;
+    title?: string;
     subtitle?: string;
     children: React.ReactNode;
 }) => (
     <section className="   ">
-        <div className="mb-4">
+        {title && <div className="mb-4">
             <p className="text-xl font-semibold ">{title}</p>
             {subtitle && <p className="mt-2 text-sm text-base-content/60">{subtitle}</p>}
-        </div>
+        </div>}
         {children}
     </section>
 );
@@ -54,7 +56,6 @@ const PublicDescriptionViewer = ({
                 <div className="space-y-6">
                     {!isEmpty(publicDescription.content) && (
                         <SectionCard
-                            title="Warm-up"
                         >
                             <AppEditor
                                 content={publicDescription.content || ''}

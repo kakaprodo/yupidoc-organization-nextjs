@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
 import PageHero from '@/components/PageHero';
 import { createPageMetadata } from '@/lib/metadata';
-import { getAboutContent, getBriefMissionContent, getOrganization } from '@/services/content';
+import { getAboutContent, getBriefMissionContent, getOrganization, getRandomConverImage } from '@/services/content';
 import { stripHtml } from '@/utils/content';
 import { AppEditor } from '@/components/editor/AppEditor';
 
@@ -19,10 +19,11 @@ export default async function AboutPage() {
   const t = await getTranslations('AboutPage');
   const about = getAboutContent();
   const mission = getBriefMissionContent();
+  const heroImage = getRandomConverImage();
 
   return (
     <main className="min-h-screen bg-base-100 pb-20">
-      <PageHero title={t('Hero.title')} subtitle={t('Hero.subtitle')} />
+      <PageHero title={t('Hero.title')} subtitle={t('Hero.subtitle')} backgroundImage={heroImage} />
 
       <section className="container mx-auto px-4 py-20">
         <div className="flex flex-col gap-8 mx-auto max-w-4xl">

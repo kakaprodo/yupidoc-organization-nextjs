@@ -1,11 +1,11 @@
 import type { Metadata } from 'next';
-import { getLocale, getTranslations } from 'next-intl/server';
+import { getTranslations } from 'next-intl/server';
 import PageHero from '@/components/PageHero';
 import CourseCard from '@/components/CourseCard';
 import { createPageMetadata } from '@/lib/metadata';
 import { getPrograms, getPlainTextDescription } from '@/services/content';
 import { excerpt } from '@/utils/content';
-import { formatCurrency, formatDuration } from '@/utils/format';
+import { getRandomConverImage } from '@/services/content';
 
 type SearchParams = Promise<{
   q?: string;
@@ -36,10 +36,10 @@ export default async function ProgramsPage({
 }: {
   searchParams: SearchParams;
 }) {
-  const locale = await getLocale();
   const t = await getTranslations('ProgramsPage');
   const resolvedSearchParams = await searchParams;
   const query = resolvedSearchParams.q?.trim().toLowerCase() ?? '';
+  const heroImage = getRandomConverImage();
 
   const filtered = getPrograms().filter((program) => {
     const searchable = [
@@ -55,7 +55,7 @@ export default async function ProgramsPage({
 
   return (
     <main className="min-h-screen bg-base-100 pb-20">
-      <PageHero title={t('Hero.title')} subtitle={t('Hero.subtitle')} />
+      <PageHero title={t('Hero.title')} subtitle={t('Hero.subtitle')} backgroundImage={heroImage} />
 
       <div className="container mx-auto -mt-8 px-4 lg:px-8">
         <div className="mx-auto mb-16 max-w-xl rounded-2xl border border-base-200 bg-base-100 shadow-2xl">
@@ -84,11 +84,11 @@ export default async function ProgramsPage({
                 key={program.id}
                 href={`/programs/${program.slug}`}
                 title={program.title}
-                description={excerpt(getPlainTextDescription(program.public_description?.content), 120)}
-                category={program.course_domain_names?.[0] ?? 'Program'}
-                price={formatCurrency(program.price, locale)}
+                domains={program.course_domain_names ?? []}
+                level="Program"
+                durationDays={program.duration}
                 image={program.image}
-                metaInfo={formatDuration(program.duration)}
+                entity={program}
               />
             ))}
           </div>
