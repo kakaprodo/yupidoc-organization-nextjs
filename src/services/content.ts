@@ -155,6 +155,14 @@ export function getHeroSlides(): HeroSlide[] {
   }));
 }
 
+export function getRandomConverImage(): string|null {
+  const images = getImageContentItems();
+
+  const randomIndex = Math.floor(Math.random() * images.length);
+
+  return images[randomIndex].image_url;
+}
+
 export function getFeaturedCourses(limit = 3): Course[] {
   return getCourses().slice(0, limit);
 }

@@ -16,3 +16,12 @@ export function avatarLetter(myTitle: any|string) {
 export function copyToClipboard(text: string) {
   navigator.clipboard.writeText(text);
 }
+
+export function isEmpty(value: any) {
+    if (!value) return true;
+
+    // for the quill editor default value
+    if (!value || value == "<p><br></p>") return true;
+
+    return value?.length === 0;
+}

@@ -3,6 +3,7 @@ import { getTranslations } from 'next-intl/server';
 import PageHero from '@/components/PageHero';
 import { createPageMetadata } from '@/lib/metadata';
 import { getOrganization, getTermsContent } from '@/services/content';
+import { AppEditor } from '@/components/editor/AppEditor';
 
 export async function generateMetadata(): Promise<Metadata> {
   const organization = getOrganization();
@@ -22,12 +23,7 @@ export default async function TermsPage() {
       <PageHero title={t('Hero.title')} subtitle={t('Hero.subtitle')} />
 
       <div className="container mx-auto mt-12 max-w-5xl px-4">
-        <div className="rounded-3xl border border-base-200 bg-base-100 p-8 shadow-sm">
-          <div
-            className="prose prose-slate dark:prose-invert max-w-none"
-            dangerouslySetInnerHTML={{ __html: terms?.content ?? '<p>No terms content available.</p>' }}
-          />
-        </div>
+        {terms && <AppEditor content={terms.content} editorType={terms.editor_type} />}
       </div>
     </main>
   );

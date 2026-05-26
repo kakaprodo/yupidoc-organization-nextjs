@@ -24,7 +24,7 @@ export const OrganizationAvatar: React.FC<MyProps> = ({ organization, size = 10,
                 alt={organization.name}
                 width={dimension}
                 height={dimension}
-                className={`rounded-lg object-contain bg-primary/5 p-1 ${className ?? ""}`}
+                className={`rounded-lg object-contain bg-primary/5 ${className ?? ""}`}
             />
         );
     }

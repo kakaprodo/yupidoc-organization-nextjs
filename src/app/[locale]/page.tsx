@@ -26,14 +26,11 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function HomePage() {
   const locale = await getLocale();
-  const tHome = await getTranslations('HomePage.Hero');
   const tCourses = await getTranslations('Courses.featured');
   const tPrograms = await getTranslations('Programs');
-  const tAbout = await getTranslations('AboutPage');
 
   const featuredCourses = getFeaturedCourses();
   const featuredPrograms = getFeaturedPrograms();
-  const about = getAboutContent();
   const heroSlides = getHeroSlides();
 
   return (
@@ -74,25 +71,6 @@ export default async function HomePage() {
           ))}
         </div>
       </section>}
-
-      {about ? (
-        <section className="container mx-auto px-4 lg:px-8">
-          <div className="grid gap-8 rounded-[2rem] border border-base-200 bg-base-200/40 p-8 lg:grid-cols-[1.5fr_1fr] lg:p-12">
-            <div className="space-y-6">
-              <p className="text-xs font-black uppercase tracking-[0.25em] text-primary">About</p>
-              <h2 className="text-3xl font-black tracking-tight text-base-content md:text-4xl">
-                {tAbout('Hero.title')}
-              </h2>
-              <p className="max-w-3xl text-base leading-relaxed text-base-content/70">
-                {excerpt(stripHtml(about.content), 320)}
-              </p>
-              <Link href="/about" className="btn btn-primary rounded-xl text-white">
-                {tHome('ctaSecondary')}
-              </Link>
-            </div>
-          </div>
-        </section>
-      ) : null}
     </div>
   );
 }

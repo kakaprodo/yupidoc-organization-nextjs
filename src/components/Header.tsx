@@ -21,9 +21,9 @@ export default async function Header() {
       <div className="container mx-auto px-4 lg:px-8">
         <div className="navbar h-20 p-0">
           <div className="navbar-start">
-            <Link href="/" className="flex items-center gap-3 group">
-              <OrganizationAvatar organization={organization} size={7} className="" />
-              <span className="text-xl font-bold tracking-tight text-base-content">
+            <Link href="/" className="flex items-center gap-1 group">
+              <OrganizationAvatar organization={organization} size={6} className="" />
+              <span className="text-xl font-semibold tracking-tight text-base-content">
                 {organization.name}
               </span>
             </Link>
