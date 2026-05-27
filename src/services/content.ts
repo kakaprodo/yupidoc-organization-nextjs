@@ -151,7 +151,7 @@ export function getHeroSlides(): HeroSlide[] {
   const organizationName = getOrganization().name;
 
   return images.map((item) => ({
-    title: organizationName,
+    title: item.title ?? organizationName,
     description: item.content || mission,
     image: item.image_url as string
   }));
