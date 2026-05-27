@@ -13,14 +13,16 @@ type HeroSectionProps = {
 
 const fallbackSlides: HeroSlide[] = [
   {
-    title: 'Learning that moves with you',
-    description: 'Discover courses and programs tailored to your organization.',
-    image: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=1920'
+    title: 'Learn from Great Mentors, Wherever You Are',
+    description:
+      'Students can study from home, ask questions freely, and receive support from experienced mentors until every lesson is fully understood.',
+    image: '/scenes/sample-cover-1.webp'
   },
   {
-    title: 'Built for real training centers',
-    description: 'Flexible content, modern delivery, and a polished learner experience.',
-    image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1920'
+    title: 'Education That Supports Every Student',
+    description:
+      'Yupidoc connects students with caring mentors who help them grow with confidence, improve their skills, and succeed in school and life.',
+    image: '/scenes/sample-cover-2.webp'
   }
 ];
 
@@ -53,14 +55,14 @@ export default function HeroSection({ slides = [] }: HeroSectionProps) {
             }`}
         >
           <Image src={slide.image} alt={slide.title} fill priority={index === 0} className="object-cover" />
-          <div className="absolute inset-0 bg-black/50" />
+          <div className="absolute inset-0 bg-black/60" />
           <div className="absolute inset-0 flex items-center">
             <div className="container mx-auto px-6 md:px-12">
               <div className="max-w-3xl">
                 <h1 className="mb-6 text-4xl font-extrabold leading-[1.1] tracking-tight text-white md:text-6xl">
                   {slide.title}
                 </h1>
-                <p className="mb-10 max-w-xl text-lg leading-relaxed text-gray-200 md:text-xl">
+                <p className="mb-10 max-w-xl text-xl leading-relaxed text-gray-200 md:text-2xl">
                   {slide.description}
                 </p>
                 <Link
