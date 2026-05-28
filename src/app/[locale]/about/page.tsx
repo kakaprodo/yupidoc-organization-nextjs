@@ -25,7 +25,7 @@ export default async function AboutPage() {
     <main className="min-h-screen bg-base-100 pb-20">
       <PageHero title={t('Hero.title')} subtitle={t('Hero.subtitle')} backgroundImage={heroImage} />
 
-      <section className="container mx-auto px-4 py-20">
+      <section className="container mx-auto max-w-3xl px-4 py-20">
         <div className="flex flex-col gap-8 mx-auto max-w-4xl">
           {about && <AppEditor content={about.content} editorType={about.editor_type} />}
 

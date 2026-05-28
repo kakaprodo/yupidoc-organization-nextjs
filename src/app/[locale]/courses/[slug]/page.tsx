@@ -84,7 +84,7 @@ export default async function CourseDetailPage({
               />
             </div>
 
-            <h1 className="text-4xl font-black tracking-tight text-base-content md:text-5xl">
+            <h1 className="text-2xl font-black tracking-tight text-base-content">
               {course.name}
             </h1>
 
