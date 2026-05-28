@@ -10,7 +10,7 @@ div.editor-preview.editor-preview-active {
     line-height: 1.8em !important;
     /* @apply bg-gray-100 !important; */
     @apply flex flex-col space-y-0;
-    @apply dark:text-gray-50! bg-base-100!;
+    @apply  bg-base-100!;
     height: auto !important;
     /* Allow it to expand */
     max-height: unset !important;

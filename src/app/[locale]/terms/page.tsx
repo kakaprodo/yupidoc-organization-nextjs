@@ -23,7 +23,7 @@ export default async function TermsPage() {
     <main className="min-h-screen bg-base-100 pb-20">
       <PageHero title={t('Hero.title')} subtitle={t('Hero.subtitle')} backgroundImage={heroImage} />
 
-      <div className="container mx-auto mt-12 max-w-5xl px-4">
+      <div className="container mx-auto mt-12 max-w-3xl px-4">
         {terms && <AppEditor content={terms.content} editorType={terms.editor_type} />}
       </div>
     </main>
