@@ -215,3 +215,7 @@
 .ql-editor .ql-code-block code {
     @apply !text-inherit;
 }
+
+.text-editor-content p, .contents-editor p {
+    @apply text-lg;
+}

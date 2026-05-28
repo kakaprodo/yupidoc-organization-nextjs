@@ -23,7 +23,7 @@ export default async function PolicyPage() {
     <main className="min-h-screen bg-base-100 pb-20">
       <PageHero title={t('Hero.title')} subtitle={t('Hero.subtitle')} backgroundImage={heroImage} />
 
-      <div className="container mx-auto mt-12 max-w-5xl space-y-6 px-4">
+      <div className="container mx-auto mt-12 max-w-3xl space-y-6 px-4">
         {privacy && <AppEditor content={privacy.content} editorType={privacy.editor_type} />}
       </div>
     </main>
