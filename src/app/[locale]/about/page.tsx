@@ -11,7 +11,8 @@ export async function generateMetadata(): Promise<Metadata> {
   return createPageMetadata({
     title: `About ${organization.name}`,
     description: `Learn more about ${organization.name}.`,
-    path: '/about'
+    path: '/about',
+    image: getRandomConverImage() as string
   });
 }
 
