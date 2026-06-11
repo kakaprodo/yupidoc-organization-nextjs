@@ -114,9 +114,9 @@
     "videoContent": "heures de contenu vidéo"
   },
   "NotFound": {
-    "title": "404",
-    "subtitle": "Espace en cours de construction",
-    "description": "Oups ! Il semble que vous ayez découvert une zone que nos ingénieurs sont encore en train de peaufiner. Cette fonctionnalité sera disponible très prochainement.",
+    "title": "Page introuvable",
+    "subtitle": "Nous n'avons pas trouvé cette page",
+    "description": "La page que vous recherchez a peut-être été déplacée, supprimée ou l'URL est incorrecte. Vérifiez l'adresse ou retournez à l'accueil.",
     "cta": "Retourner à l'accueil"
   },
   "ProgramDetail": {

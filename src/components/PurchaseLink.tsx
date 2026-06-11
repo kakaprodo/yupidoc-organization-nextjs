@@ -12,7 +12,7 @@ export const PurchaseLink = ({ paymentUrl, label }: MyProps) => {
                 <span className="bg-white p-0.5 px-1 rounded-md"><Image alt="yupidoc" width={10} height={10} src={'/yupi_logo.png'} /></span>
                 <span>{label} ON YUPIDOC</span>
             </a>
-            <span className="text-center text-xs">Yupidoc will let you pay in a secured way.</span>
+            <span className="text-center text-xs">Yupidoc lets you pay securely.</span>
         </div>
     )
 }

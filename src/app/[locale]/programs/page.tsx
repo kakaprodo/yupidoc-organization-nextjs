@@ -3,7 +3,7 @@ import { getTranslations } from 'next-intl/server';
 import PageHero from '@/components/PageHero';
 import CourseCard from '@/components/CourseCard';
 import { createPageMetadata } from '@/lib/metadata';
-import { getPrograms, getPlainTextDescription } from '@/services/content';
+import { getPrograms, getPlainTextDescription, getOrganization } from '@/services/content';
 import { getRandomConverImage } from '@/services/content';
 
 type SearchParams = Promise<{
@@ -23,10 +23,12 @@ function buildProgramsHref(query: string) {
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations('ProgramsPage');
+  const organization = getOrganization()
   return createPageMetadata({
-    title: t('Hero.title'),
+    title: `${organization.name} - ${t('Hero.title')}`,
     description: t('Hero.subtitle'),
-    path: '/programs'
+    path: '/programs',
+    image: getRandomConverImage() as string
   });
 }
 

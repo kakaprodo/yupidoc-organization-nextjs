@@ -141,10 +141,10 @@ export function getContacts(): SectionContentItem[] {
 }
 
 export function getHeroSlides(): HeroSlide[] {
-  const images = getImageContentItems().filter((item) => Boolean(item.image_url));
+  let images = getImageContentItems().filter((item) => Boolean(item.image_url));
 
   if (images.length === 0) {
-    return [];
+    images = fallBackCoverImages() as SectionContentItem[];
   }
 
   const mission = getBriefMissionContent()?.content ?? '';
@@ -157,11 +157,26 @@ export function getHeroSlides(): HeroSlide[] {
   }));
 }
 
+export function fallBackCoverImages(): Partial<SectionContentItem>[] {
+  return [{
+    title: 'Learn from Great Mentors, Wherever You Are',
+    content:
+      'Students can study from home, ask questions freely, and receive support from experienced mentors until every lesson is fully understood.',
+    image_url: '/scenes/sample-cover-1.webp'
+  },
+  {
+    title: 'Education That Supports Every Student',
+    content:
+      'We connects students with caring mentors who help them grow with confidence, improve their skills, and succeed in school and life.',
+    image_url: '/scenes/sample-cover-2.webp'
+  }];
+}
+
 export function getRandomConverImage(): string|null {
-  const images = getImageContentItems();
+  let images = getImageContentItems();
 
   if (images.length === 0) {
-    return null;
+    images = fallBackCoverImages() as SectionContentItem[];
   }
 
   const randomIndex = Math.floor(Math.random() * images.length);

@@ -14,7 +14,7 @@ export function createPageMetadata({
   description,
   path = '/',
   locale,
-  image = '/og-image.png'
+  image = '/scenes/sample-cover-1.webp'
 }: CreateMetadataInput): Metadata {
   const url = new URL(path, siteConfig.url).toString();
 
@@ -23,6 +23,18 @@ export function createPageMetadata({
     description,
     alternates: {
       canonical: url
+    },
+    icons: {
+      icon: [
+        {
+          url: '/favicon/yupidoc.ico',
+          media: '(prefers-color-scheme: light)',
+        },
+        {
+          url: '/favicon/yupidoc.ico',
+          media: '(prefers-color-scheme: dark)',
+        },
+      ],
     },
     openGraph: {
       type: 'website',

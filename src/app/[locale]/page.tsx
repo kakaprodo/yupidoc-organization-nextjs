@@ -4,7 +4,7 @@ import HeroSection from '@/components/HeroSection';
 import CourseCard from '@/components/CourseCard';
 import { SectionHeader } from '@/components/SectionHeader';
 import { createPageMetadata } from '@/lib/metadata';
-import { getOrganization, getHeroSlides, getBriefMissionContent, getFeaturedCourses, getFeaturedPrograms } from '@/services/content';
+import { getOrganization, getHeroSlides, getBriefMissionContent, getFeaturedCourses, getFeaturedPrograms, getRandomConverImage } from '@/services/content';
 import { stripHtml } from '@/utils/content';
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -13,7 +13,8 @@ export async function generateMetadata(): Promise<Metadata> {
   return createPageMetadata({
     title: organization.name,
     description: mission ? stripHtml(mission.content) : 'Discover courses, programs, and practical learning paths.',
-    path: '/'
+    path: '/',
+    image: getRandomConverImage() as string
   });
 }
 

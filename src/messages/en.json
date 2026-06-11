@@ -123,9 +123,9 @@
     "videoContent": "Video content"
   },
   "NotFound": {
-    "title": "404",
-    "subtitle": "Space under construction",
-    "description": "Oops! It looks like you've discovered an area our engineers are still fine-tuning. This feature will be available very soon.",
+    "title": "Page Not Found",
+    "subtitle": "We couldn't find this page",
+    "description": "The page you are looking for may have been moved, deleted, or the URL may be incorrect. Please check the address or return to the homepage.",
     "cta": "Back to Home"
   },
   "ProgramDetail": {
