@@ -4,7 +4,7 @@ import { Link } from '@/navigation';
 import PageHero from '@/components/PageHero';
 import CourseCard from '@/components/CourseCard';
 import { createPageMetadata } from '@/lib/metadata';
-import { getCourses, getPlainTextDescription } from '@/services/content';
+import { getCourses, getOrganization, getPlainTextDescription } from '@/services/content';
 import { getRandomConverImage } from '@/services/content';
 
 type SearchParams = Promise<{
@@ -30,10 +30,12 @@ function buildCoursesHref(query: string, page: number) {
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations('CoursesPage');
+  const organization = getOrganization();
   return createPageMetadata({
-    title: t('Hero.title'),
+    title: `${organization.name} - ${t('Hero.title')}`,
     description: t('Hero.subtitle'),
-    path: '/courses'
+    path: '/courses',
+    image: getRandomConverImage() as string
   });
 }
 

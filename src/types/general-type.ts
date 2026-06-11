@@ -40,7 +40,7 @@ export interface Organization {
   updated_at: string;
   color?: string | null;
   logo_url?: string | null;
-  is_default?: string | number | null;
+  is_default: boolean;
   email?: string | null;
   settings?: OrganizationSettings | null;
   purpose?: string | null;
