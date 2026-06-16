@@ -11,6 +11,10 @@
     "Hero": {
       "ctaPrimary": "Explorer les Cours",
       "ctaSecondary": "En savoir plus",
+      "aria": {
+        "prev": "Diapositive précédente",
+        "next": "Diapositive suivante"
+      },
       "slides": {
         "1": {
           "title": "Propulser la Prochaine Génération d'Apprenants",
@@ -60,9 +64,18 @@
     "title": "Nos Programs",
     "viewMore": "Voir plus de programmes",
     "items": {
-      "1": { "title": "Certificat en Data Science", "description": "Devenez un expert en analyse de données et apprentissage automatique." },
-      "2": { "title": "Diplôme en Gestion de Projet", "description": "Maîtrisez les compétences pour diriger des projets complexes avec succès." },
-      "3": { "title": "Programme de Leadership en Technologie", "description": "Préparez-vous à diriger dans l'industrie technologique avec notre programme intensif." }
+      "1": {
+        "title": "Certificat en Data Science",
+        "description": "Devenez un expert en analyse de données et apprentissage automatique."
+      },
+      "2": {
+        "title": "Diplôme en Gestion de Projet",
+        "description": "Maîtrisez les compétences pour diriger des projets complexes avec succès."
+      },
+      "3": {
+        "title": "Programme de Leadership en Technologie",
+        "description": "Préparez-vous à diriger dans l'industrie technologique avec notre programme intensif."
+      }
     }
   },
   "CoursesPage": {
