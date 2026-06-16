@@ -11,10 +11,6 @@
     "Hero": {
       "ctaPrimary": "Explore Courses",
       "ctaSecondary": "Learn More",
-      "aria": {
-        "prev": "Previous slide",
-        "next": "Next slide"
-      },
       "slides": {
         "1": {
           "title": "Empowering the Next Generation of Learners",
