@@ -11,32 +11,34 @@ type HeroSectionProps = {
   slides?: HeroSlide[];
 };
 
-const fallbackSlides: HeroSlide[] = [
-  {
-    title: 'Learn from Great Mentors, Wherever You Are',
-    description:
-      'Students can study from home, ask questions freely, and receive support from experienced mentors until every lesson is fully understood.',
-    image: '/scenes/sample-cover-1.webp'
-  },
-  {
-    title: 'Education That Supports Every Student',
-    description:
-      'Yupidoc connects students with caring mentors who help them grow with confidence, improve their skills, and succeed in school and life.',
-    image: '/scenes/sample-cover-2.webp'
-  }
-];
-
 export default function HeroSection({ slides = [] }: HeroSectionProps) {
   const t = useTranslations('HomePage.Hero');
   const [current, setCurrent] = useState(0);
 
+  const defaultSlides: HeroSlide[] = [
+    {
+      title: t('slides.1.title'),
+      description: t('slides.1.desc'),
+      image: '/scenes/sample-cover-1.webp'
+    },
+    {
+      title: t('slides.2.title'),
+      description: t('slides.2.desc'),
+      image: '/scenes/sample-cover-2.webp'
+    }
+  ];
+
   const activeSlides = slides.length > 0
-    ? slides
-    : fallbackSlides.map((slide, index) => ({
-      ...slide,
-      title: index === 0 ? t('slides.1.title') : t('slides.2.title'),
-      description: index === 0 ? t('slides.1.desc') : t('slides.2.desc')
-    }));
+    ? slides.map((slide) => {
+      if (slide.image === '/scenes/sample-cover-1.webp') {
+        return { ...slide, title: t('slides.1.title'), description: t('slides.1.desc') };
+      }
+      if (slide.image === '/scenes/sample-cover-2.webp') {
+        return { ...slide, title: t('slides.2.title'), description: t('slides.2.desc') };
+      }
+      return slide;
+    })
+    : defaultSlides;
 
   const nextSlide = () => setCurrent((prev) => (prev === activeSlides.length - 1 ? 0 : prev + 1));
   const prevSlide = () => setCurrent((prev) => (prev === 0 ? activeSlides.length - 1 : prev - 1));
@@ -44,7 +46,7 @@ export default function HeroSection({ slides = [] }: HeroSectionProps) {
   useEffect(() => {
     const timer = setInterval(nextSlide, 8000);
     return () => clearInterval(timer);
-  }, []);
+  }, [activeSlides.length]);
 
   return (
     <section className="relative h-125 w-full overflow-hidden bg-black lg:h-150">
@@ -67,7 +69,7 @@ export default function HeroSection({ slides = [] }: HeroSectionProps) {
                 </p>
                 <Link
                   href="/courses"
-                  className="btn h-14  border-none rounded-3xl! bg-primary! px-8 text-lg normal-case text-white hover:bg-primary/90"
+                  className="btn h-14 border-none rounded-3xl! bg-primary! px-8 text-lg normal-case text-white hover:bg-primary/90"
                 >
                   {t('ctaPrimary')}
                 </Link>
@@ -82,7 +84,7 @@ export default function HeroSection({ slides = [] }: HeroSectionProps) {
           type="button"
           onClick={prevSlide}
           className="btn btn-circle border-white/20 bg-white/30 text-white backdrop-blur-sm hover:bg-white/20"
-          aria-label="Previous slide"
+          aria-label={t('aria.prev')}
         >
           <ChevronLeftIcon className="h-6 w-6" />
         </button>
@@ -90,7 +92,7 @@ export default function HeroSection({ slides = [] }: HeroSectionProps) {
           type="button"
           onClick={nextSlide}
           className="btn btn-circle border-white/20 bg-white/10 text-white backdrop-blur-sm hover:bg-white/20"
-          aria-label="Next slide"
+          aria-label={t('aria.next')}
         >
           <ChevronRightIcon className="h-6 w-6" />
         </button>

@@ -9,7 +9,8 @@
     "lint": "eslint",
     "yupidoc-generate": "node scripts/fetchYupidocContent.js --prod",
     "dev-yupidoc-generate": "node scripts/fetchYupidocContent.js",
-    "local-build": "npm run dev-yupidoc-generate && npm run build"
+    "local-build": "npm run dev-yupidoc-generate && npm run build",
+    "dev-with-data": "npm run dev-yupidoc-generate && npm run dev"
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",
