@@ -67,7 +67,7 @@ function normalizeContent(raw: typeof content): TrainingCenterContent {
   );
 
   return {
-    organization: raw.organization,
+    organization: raw.organization as unknown as TrainingCenterContent['organization'],
     courses: (raw.courses ?? []).map((c) => normalizeCourse(c, raw.organization.settings.default_currency)),
     programs: (raw.programs ?? []).map( (p) => normalizeProgram(p, raw.organization.settings.default_currency)),
     section_contents: sectionContents
