@@ -16,7 +16,8 @@ import type { EntityAboutContactType } from '@/types/general-type';
 import { stripHtml } from '@/utils/content';
 import Image from 'next/image';
 
-const iconProps = { size: 5, color: 'text-gray-500' };
+
+const iconProps = { size: 5, className: 'text-base-content/60' };
 
 function getContactIcon(type: EntityAboutContactType): ReactNode {
   const contactIconMap: Record<EntityAboutContactType, ReactNode> = {
@@ -29,7 +30,7 @@ function getContactIcon(type: EntityAboutContactType): ReactNode {
     X: <TweeterIcon {...iconProps} />
   };
 
-  return contactIconMap[type] ?? <Globe className="h-5 w-5 text-gray-500" />;
+  return contactIconMap[type] ?? <Globe className="h-5 w-5 text-base-content/60" />;
 }
 
 export default async function Footer() {
@@ -44,27 +45,27 @@ export default async function Footer() {
   }));
 
   return (
-    <footer className="border-t border-base-200 bg-slate-950 py-16 text-slate-300">
+    <footer className="border-t border-base-300 bg-base-200 py-16 text-base-content/80 transition-colors duration-200">
       <div className="container mx-auto px-6">
         <div className="mb-16 grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-3">
           <div className="flex flex-col gap-6">
             <Link href="/" className="flex items-center gap-3">
               <OrganizationAvatar organization={organization} size={7} />
-              <span className="text-2xl font-bold tracking-tight text-white">
+              <span className="text-2xl font-bold tracking-tight text-base-content">
                 {organization.name}
               </span>
             </Link>
-            <p className="max-w-xs text-sm leading-relaxed text-slate-400">
+            <p className="max-w-xs text-sm leading-relaxed text-base-content/70">
               {mission ? stripHtml(mission.content) : t('description')}
             </p>
           </div>
 
           <div>
-            <h4 className="mb-6 text-base font-bold text-white">{t('sections.organization')}</h4>
+            <h4 className="mb-6 text-base font-bold text-base-content">{t('sections.organization')}</h4>
             <ul className="space-y-4 text-sm font-medium">
               {orgLinks.map((item) => (
                 <li key={item.href}>
-                  <Link href={item.href} className="transition-colors hover:text-white">
+                  <Link href={item.href} className="transition-colors hover:text-primary">
                     {item.label}
                   </Link>
                 </li>
@@ -73,7 +74,7 @@ export default async function Footer() {
           </div>
 
           <div>
-            <h4 className="mb-6 text-base font-bold text-white">{t('sections.contact')}</h4>
+            <h4 className="mb-6 text-base font-bold text-base-content">{t('sections.contact')}</h4>
             <ul className="space-y-4 text-sm">
               {contacts.map((contact, index) => {
                 const type = (contact.type ?? 'EMAIL') as EntityAboutContactType;
@@ -85,7 +86,6 @@ export default async function Footer() {
                   WHATSAPP: `tel:${label.replace(/\s+/g, '')}`,
                 };
 
-
                 const href =
                   hrefMap[type] ??
                   (label.startsWith('http') ? label : undefined);
@@ -93,7 +93,7 @@ export default async function Footer() {
                 label = href && label.startsWith('http') ? type : label;
 
                 const value = href ? (
-                  <a target='_blank' href={href} className="transition-colors hover:text-white">
+                  <a target='_blank' href={href} className="transition-colors hover:text-primary">
                     {label}
                   </a>
                 ) : (
@@ -111,19 +111,26 @@ export default async function Footer() {
           </div>
         </div>
 
-        <div className="flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 text-xs font-medium uppercase tracking-wider text-slate-500 md:flex-row">
-          <p className='flex justify-between  w-full'>
-            <span> © {currentYear} {organization.name}. {t('allRightsReserved')}{' '}</span>
-            <a
-              href="https://yupidoc.com"
-              target="_blank"
-              rel="noreferrer"
-              className=" flex flex-col md:flex-row  items-center gap-3 transition-colors hover:text-white"
-            >
-              <span className='hidden md:flex'>Powered by</span>
-              <Image width={70} height={15} src="/yupi_logo_with_name_dark.webp" alt='yupidoc-power' />
-            </a>
-          </p>
+        <div className="flex flex-col items-center justify-between gap-4 border-t border-base-300 pt-8 text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 md:flex-row w-full transition-colors">
+          <div className="text-center md:text-left">
+            © {currentYear} {organization.name}. {t('allRightsReserved')}
+          </div>
+
+          <a
+            href="https://yupidoc.com"
+            target="_blank"
+            rel="noreferrer"
+            className="flex items-center gap-2 transition-colors text-slate-500 dark:text-slate-400 hover:text-primary dark:hover:text-primary"
+          >
+            <span>Powered by</span>
+            <Image
+              width={70}
+              height={15}
+              src="/yupi_logo_with_name_dark.webp"
+              alt='yupidoc-power'
+              className="dark:invert transition-all"
+            />
+          </a>
         </div>
       </div>
     </footer>
