@@ -21,7 +21,8 @@ export type SectionContentKey =
   | 'PRIVACY'
   | 'TERMS'
   | 'CONTACTS'
-  | 'IMAGES';
+  | 'IMAGES'
+  | 'WEBSITE_BRAND';
 
 export interface OrganizationSettings {
   domain?: string | null;
