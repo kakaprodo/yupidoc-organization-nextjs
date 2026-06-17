@@ -27,11 +27,11 @@ export function createPageMetadata({
     icons: {
       icon: [
         {
-          url: '/favicon/yupidoc.ico',
+          url: '/favicon/yupidoc.png',
           media: '(prefers-color-scheme: light)',
         },
         {
-          url: '/favicon/yupidoc.ico',
+          url: '/favicon/yupidoc.png',
           media: '(prefers-color-scheme: dark)',
         },
       ],
