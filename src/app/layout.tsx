@@ -13,7 +13,13 @@ export const metadata: Metadata = {
     default: siteConfig.name,
     template: `%s | ${siteConfig.shortName}`
   },
-  description: siteConfig.description
+  description: siteConfig.description,
+  icons: {
+    icon: [
+      { url: "/favicon/yupidoc.png", type: "image/png" },
+      // { url: "/favicon/yupidoc.ico", type: "image/x-icon" },
+    ],
+  },
 };
 
 export const viewport: Viewport = {

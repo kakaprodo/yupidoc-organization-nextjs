@@ -77,7 +77,10 @@ function normalizeContent(raw: typeof content): TrainingCenterContent {
 export const trainingCenterContent = normalizeContent(content);
 
 export function getOrganization(): TrainingCenterContent['organization'] {
-  return trainingCenterContent.organization;
+  return {
+    ...trainingCenterContent.organization,
+    name: getWebsiteBrandContent()?.title || trainingCenterContent.organization.name
+  }
 }
 
 export function getCourses(): Course[] {
@@ -138,6 +141,10 @@ export function getImageContentItems(): SectionContentItem[] {
 
 export function getContacts(): SectionContentItem[] {
   return getSectionContent('CONTACTS');
+}
+
+export function getWebsiteBrandContent(): SectionContentItem | undefined {
+  return getSectionContent('WEBSITE_BRAND')[0];
 }
 
 export function getHeroSlides(): HeroSlide[] {
