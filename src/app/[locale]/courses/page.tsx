@@ -85,17 +85,20 @@ export default async function CoursesPage({
   const heroImage = getRandomConverImage();
 
   const searchSection = (
-    <div className="mx-auto flex w-full max-w-2xl flex-col gap-4 rounded-2xl border border-white/15 bg-white/10 p-4 backdrop-blur-md md:flex-row md:items-center">
+    <div className="mx-auto flex w-full max-w-2xl flex-col gap-4 rounded-2xl border border-white/15 dark:border-white/5 bg-white/10 dark:bg-black/20 p-4 backdrop-blur-md md:flex-row md:items-center transition-all duration-300">
       <form method="get" className="flex w-full gap-3">
         <input
           type="search"
           name="q"
           defaultValue={resolvedSearchParams.q ?? ''}
           placeholder={t('Filters.search')}
-          className="input w-full rounded-xl border-0 bg-white/90 text-base-content placeholder:text-base-content/50 focus:outline-none"
+          className="input w-full rounded-xl border-0 bg-base-100 text-base-content placeholder:text-base-content/50 focus:outline-none transition-colors duration-300 shadow-inner"
         />
         <input type="hidden" name="page" value="1" />
-        <button type="submit" className="btn btn-primary rounded-xl text-white">
+        <button
+          type="submit"
+          className="btn btn-primary rounded-xl text-white transition-all duration-300 shadow-md hover:scale-[1.02]"
+        >
           {t('Filters.submit')}
         </button>
       </form>
