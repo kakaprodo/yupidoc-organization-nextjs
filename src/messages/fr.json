@@ -111,6 +111,17 @@
     "Hero": {
       "title": "Explorez nos Programmes",
       "subtitle": "Découvrez un monde de connaissances avec notre sélection complète de programmes conçus pour vous aider à maîtriser de nouvelles compétences."
+    },
+    "Filters": {
+      "search": "Rechercher un programme...",
+      "submit": "Rechercher",
+      "noResults": "Aucun programme ne correspond à votre recherche."
+    }
+  },
+  "ProgramsData": {
+    "mastering-business-entrepreneurship-44": {
+      "title": "Maîtriser les Affaires & l'Entrepreneuriat",
+      "description": "Les entrepreneurs n'ont pas besoin d'attendre les opportunités, les opportunités viennent après..."
     }
   },
   "AboutPage": {

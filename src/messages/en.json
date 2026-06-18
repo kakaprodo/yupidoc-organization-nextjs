@@ -111,6 +111,17 @@
     "Hero": {
       "title": "Explore Our Programs",
       "subtitle": "Discover a world of knowledge with our comprehensive selection of certification programs designed to help you master new skills and advance your career."
+    },
+    "Filters": {
+      "search": "Search programs...",
+      "submit": "Search",
+      "noResults": "No programs found matching your search."
+    }
+  },
+  "ProgramsData": {
+    "mastering-business-entrepreneurship-44": {
+      "title": "Mastering Business & Entrepreneurship",
+      "description": "Entrepreneur no need to wait for good opportunity, the opportunity comes after..."
     }
   },
   "AboutPage": {
