@@ -7,6 +7,8 @@ import { createPageMetadata } from '@/lib/metadata';
 import { getCourses, getOrganization, getPlainTextDescription } from '@/services/content';
 import { getRandomConverImage } from '@/services/content';
 
+
+
 type SearchParams = Promise<{
   q?: string;
   page?: string;
@@ -45,17 +47,31 @@ export default async function CoursesPage({
   searchParams: SearchParams;
 }) {
   const t = await getTranslations('CoursesPage');
+  const tData = await getTranslations('CoursesData');
+  const tDomains = await getTranslations('Domains');
+
   const resolvedSearchParams = await searchParams;
   const query = resolvedSearchParams.q?.trim().toLowerCase() ?? '';
   const requestedPage = Number.parseInt(resolvedSearchParams.page ?? '1', 10);
   const page = Number.isFinite(requestedPage) && requestedPage > 0 ? requestedPage : 1;
 
+  // Filtrage intelligent : prend en compte les données traduites dans la recherche
   const filtered = getCourses().filter((course) => {
+    const translatedName = tData.has(`${course.slug}.name`)
+      ? tData(`${course.slug}.name`)
+      : course.name;
+
+    const translatedDesc = tData.has(`${course.slug}.description`)
+      ? tData(`${course.slug}.description`)
+      : getPlainTextDescription(course.public_description?.content);
+
     const searchable = [
       course.name,
+      translatedName,
       course.level,
       course.course_domain_names?.join(' '),
-      getPlainTextDescription(course.public_description?.content)
+      getPlainTextDescription(course.public_description?.content),
+      translatedDesc
     ]
       .join(' ')
       .toLowerCase();
@@ -70,8 +86,6 @@ export default async function CoursesPage({
 
   const searchSection = (
     <div className="mx-auto flex w-full max-w-2xl flex-col gap-4 rounded-2xl border border-white/15 bg-white/10 p-4 backdrop-blur-md md:flex-row md:items-center">
-
-
       <form method="get" className="flex w-full gap-3">
         <input
           type="search"
@@ -82,7 +96,7 @@ export default async function CoursesPage({
         />
         <input type="hidden" name="page" value="1" />
         <button type="submit" className="btn btn-primary rounded-xl text-white">
-          Search
+          {t('Filters.submit')}
         </button>
       </form>
     </div>
@@ -97,28 +111,39 @@ export default async function CoursesPage({
         searchSection={searchSection}
       />
 
-      <div className="container mx-auto -mt-8 px-4 lg:px-8  bg-base-100 pt-8 rounded-2xl backdrop-blur-sm">
+      <div className="container mx-auto -mt-8 px-4 lg:px-8 bg-base-100 pt-8 rounded-2xl backdrop-blur-sm">
         {filtered.length === 0 ? (
           <div className="py-20 text-center">
             <p className="text-xl font-medium text-base-content/50">
-              No courses match your search.
+              {t('Filters.noResults')}
             </p>
           </div>
         ) : (
           <>
             <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-              {visibleCourses.map((course) => (
-                <CourseCard
-                  key={course.id}
-                  href={`/courses/${course.slug}`}
-                  title={course.name}
-                  domains={course.course_domain_names ?? []}
-                  level={course.level}
-                  durationDays={course.duration}
-                  image={course.image}
-                  entity={course}
-                />
-              ))}
+              {visibleCourses.map((course) => {
+                const courseName = tData.has(`${course.slug}.name`)
+                  ? tData(`${course.slug}.name`)
+                  : course.name;
+
+                const translatedDomains = (course.course_domains ?? []).map((dom: { name: string }) => ({
+                  ...dom,
+                  name: tDomains.has(dom.name) ? tDomains(dom.name) : dom.name
+                }));
+
+                return (
+                  <CourseCard
+                    key={course.id}
+                    href={`/courses/${course.slug}`}
+                    title={courseName}
+                    domains={translatedDomains.map((d: { name: string }) => d.name)}
+                    level={course.level}
+                    durationDays={course.duration}
+                    image={course.image}
+                    entity={course}
+                  />
+                );
+              })}
             </div>
 
             {totalPages > 1 ? (
@@ -127,6 +152,7 @@ export default async function CoursesPage({
                   href={buildCoursesHref(resolvedSearchParams.q ?? '', Math.max(1, currentPage - 1))}
                   className="btn btn-square btn-outline border-base-300"
                   aria-disabled={currentPage === 1}
+                  aria-label={t('Filters.prevPage')}
                 >
                   ‹
                 </Link>
@@ -151,6 +177,7 @@ export default async function CoursesPage({
                   href={buildCoursesHref(resolvedSearchParams.q ?? '', Math.min(totalPages, currentPage + 1))}
                   className="btn btn-square btn-outline border-base-300"
                   aria-disabled={currentPage === totalPages}
+                  aria-label={t('Filters.nextPage')}
                 >
                   ›
                 </Link>

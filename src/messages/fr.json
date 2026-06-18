@@ -85,7 +85,26 @@
     },
     "Filters": {
       "all": "Tous les cours",
-      "search": "Rechercher un cours..."
+      "search": "Rechercher un cours...",
+      "submit": "Rechercher",
+      "noResults": "Aucun cours ne correspond à votre recherche.",
+      "prevPage": "Page précédente",
+      "nextPage": "Page suivante"
+    }
+  },
+  "Domains": {
+    "Animations": "Animations",
+    "Money management": "Gestion de budget",
+    "Machine Learning": "Machine Learning"
+  },
+  "CoursesData": {
+    "introduction-to-web-develoments": {
+      "name": "Introduction au Développement Web et à l'IA",
+      "description": "Entrez dans le monde du web moderne et des systèmes intelligents..."
+    },
+    "introduction-to-machine-learning": {
+      "name": "Introduction au Machine Learning",
+      "description": "Ce cours offre des bases pratiques en apprentissage automatique..."
     }
   },
   "ProgramsPage": {
@@ -147,5 +166,11 @@
       "title": "Conditions & Services",
       "subtitle": "Lisez les conditions et services qui régissent notre plateforme éducative."
     }
+  },
+  "ErrorPage": {
+    "title": "Une erreur est survenue",
+    "description": "Quelque chose s'est mal passé lors du chargement de cette page. Veuillez réessayer ou retourner à l'accueil.",
+    "retry": "Réessayer",
+    "home": "Accueil"
   }
 }
