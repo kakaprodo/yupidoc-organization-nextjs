@@ -85,13 +85,43 @@
     },
     "Filters": {
       "all": "All Courses",
-      "search": "Search courses..."
+      "search": "Search courses...",
+      "submit": "Search",
+      "noResults": "No courses match your search.",
+      "prevPage": "Previous page",
+      "nextPage": "Next page"
+    }
+  },
+  "Domains": {
+    "Animations": "Animations",
+    "Money management": "Money management",
+    "Machine Learning": "Machine Learning"
+  },
+  "CoursesData": {
+    "introduction-to-web-develoments": {
+      "name": "Introduction to Web Development and AI",
+      "description": "Step into the world where modern websites and intelligent systems are built..."
+    },
+    "introduction-to-machine-learning": {
+      "name": "Introduction to Machine Learning",
+      "description": "This course provides a practical foundation in machine learning..."
     }
   },
   "ProgramsPage": {
     "Hero": {
       "title": "Explore Our Programs",
       "subtitle": "Discover a world of knowledge with our comprehensive selection of certification programs designed to help you master new skills and advance your career."
+    },
+    "Filters": {
+      "search": "Search programs...",
+      "submit": "Search",
+      "noResults": "No programs found matching your search."
+    }
+  },
+  "ProgramsData": {
+    "mastering-business-entrepreneurship-44": {
+      "title": "Mastering Business & Entrepreneurship",
+      "description": "Entrepreneur no need to wait for good opportunity, the opportunity comes after..."
     }
   },
   "AboutPage": {
@@ -147,5 +177,11 @@
       "title": "Terms & Services",
       "subtitle": "Read the terms and services that govern our educational platform."
     }
+  },
+  "ErrorPage": {
+    "title": "Something went wrong",
+    "description": "Something went wrong while loading this page. Please try again or return to the homepage.",
+    "retry": "Try again",
+    "home": "Home"
   }
 }

@@ -6,6 +6,8 @@ import { createPageMetadata } from '@/lib/metadata';
 import { getPrograms, getPlainTextDescription, getOrganization } from '@/services/content';
 import { getRandomConverImage } from '@/services/content';
 
+
+
 type SearchParams = Promise<{
   q?: string;
 }>;
@@ -23,7 +25,7 @@ function buildProgramsHref(query: string) {
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations('ProgramsPage');
-  const organization = getOrganization()
+  const organization = getOrganization();
   return createPageMetadata({
     title: `${organization.name} - ${t('Hero.title')}`,
     description: t('Hero.subtitle'),
@@ -38,32 +40,48 @@ export default async function ProgramsPage({
   searchParams: SearchParams;
 }) {
   const t = await getTranslations('ProgramsPage');
+  const tData = await getTranslations('ProgramsData');
+  const tDomains = await getTranslations('Domains');
+
   const resolvedSearchParams = await searchParams;
   const query = resolvedSearchParams.q?.trim().toLowerCase() ?? '';
   const heroImage = getRandomConverImage();
 
   const searchSection = (
-    <div className="mx-auto flex w-full max-w-2xl items-center gap-3 rounded-2xl border border-white/15 bg-white/10 p-4 backdrop-blur-md">
+    <div className="mx-auto flex w-full max-w-2xl flex-col gap-4 rounded-2xl border border-white/15 dark:border-white/5 bg-white/10 dark:bg-black/20 p-4 backdrop-blur-md md:flex-row md:items-center transition-all duration-300">
       <form method="get" className="flex w-full items-center gap-3">
         <input
           type="search"
           name="q"
           defaultValue={resolvedSearchParams.q ?? ''}
-          placeholder="Search programs..."
-          className="input w-full rounded-xl border-0 bg-white/90 text-base-content placeholder:text-base-content/50 focus:outline-none"
+          placeholder={t('Filters.search')}
+          className="input w-full rounded-xl border-0 bg-base-100 text-base-content placeholder:text-base-content/50 focus:outline-none transition-colors duration-300 shadow-inner"
         />
-        <button type="submit" className="btn btn-primary rounded-xl text-white">
-          Search
+        <button
+          type="submit"
+          className="btn btn-primary rounded-xl text-white transition-all duration-300 hover:scale-[1.02] shadow-md"
+        >
+          {t('Filters.submit')}
         </button>
       </form>
     </div>
   );
 
   const filtered = getPrograms().filter((program) => {
+    const translatedTitle = tData.has(`${program.slug}.title`)
+      ? tData(`${program.slug}.title`)
+      : program.title;
+
+    const translatedDesc = tData.has(`${program.slug}.description`)
+      ? tData(`${program.slug}.description`)
+      : getPlainTextDescription(program.public_description?.content);
+
     const searchable = [
       program.title,
+      translatedTitle,
       program.course_domain_names?.join(' '),
-      getPlainTextDescription(program.public_description?.content)
+      getPlainTextDescription(program.public_description?.content),
+      translatedDesc
     ]
       .join(' ')
       .toLowerCase();
@@ -82,23 +100,35 @@ export default async function ProgramsPage({
 
       <div className="container mx-auto -mt-8 px-4 lg:px-8 bg-base-100 pt-8 rounded-2xl backdrop-blur-sm">
         {filtered.length === 0 ? (
-          <div className="py-20 text-center text-base-content/50">
-            No programs found matching your search.
+          <div className="py-20 text-center text-base-content/50 font-medium">
+            {t('Filters.noResults')}
           </div>
         ) : (
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {filtered.map((program) => (
-              <CourseCard
-                key={program.id}
-                href={`/programs/${program.slug}`}
-                title={program.title}
-                domains={program.course_domain_names ?? []}
-                level="Program"
-                durationDays={program.duration}
-                image={program.image}
-                entity={program}
-              />
-            ))}
+            {filtered.map((program) => {
+              // Surcharge locale du titre du programme
+              const programTitle = tData.has(`${program.slug}.title`)
+                ? tData(`${program.slug}.title`)
+                : program.title;
+
+              // Traduction des domaines d'apprentissage du programme
+              const translatedDomains = (program.course_domains ?? []).map((dom: { name: string }) =>
+                tDomains.has(dom.name) ? tDomains(dom.name) : dom.name
+              );
+
+              return (
+                <CourseCard
+                  key={program.id}
+                  href={`/programs/${program.slug}`}
+                  title={programTitle}
+                  domains={translatedDomains}
+                  level="Program"
+                  durationDays={program.duration}
+                  image={program.image}
+                  entity={program}
+                />
+              );
+            })}
           </div>
         )}
       </div>
