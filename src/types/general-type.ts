@@ -144,7 +144,7 @@ export interface SectionContentItem {
   aboutable_type: string;
   organization_id: number;
   key: SectionContentKey;
-  title?: string;
+  title?: string|null;
   content: string;
   type: EntityAboutContactType | null;
   editor_type: ContentEditorType;
