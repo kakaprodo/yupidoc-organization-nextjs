@@ -3,6 +3,7 @@ import { ImageIcon } from 'lucide-react';
 import { Link } from '@/navigation';
 import { formatNumber } from '@/utils/format';
 import { Course, Program } from '@/types/general-type';
+import { getTranslations } from 'next-intl/server';
 
 interface CourseCardProps {
   href: string;
@@ -14,7 +15,7 @@ interface CourseCardProps {
   entity: Course | Program
 }
 
-export default function CourseCard({
+export default async function CourseCard({
   href,
   title,
   domains = [],
@@ -23,6 +24,8 @@ export default function CourseCard({
   image,
   entity
 }: CourseCardProps) {
+  const tDetails = await getTranslations('Details');
+
   return (
     <Link
       href={href}
@@ -70,9 +73,16 @@ export default function CourseCard({
         </div>
         <div className="flex items-center justify-between border-t border-base-200">
           <span className="badge badge-sm badge-outline rounded-md border-base-300">
-            {formatNumber(durationDays)} days
+            {formatNumber(durationDays)} {tDetails('days')}
           </span>
-          <div><span className='text-lg font-semibold'><span className='text-sm'>{entity.currency}</span> {formatNumber(entity.price)} </span></div>
+          {entity.display_as_free && (
+            <span className="badge badge-sm badge-primary">
+              {tDetails('sponsored')}
+            </span>
+          )}
+          {!entity.display_as_free && <div>
+            <span className='text-lg font-semibold'><span className='text-sm'>{entity.currency}</span> {formatNumber(entity.price)} </span>
+          </div>}
         </div>
 
       </div>

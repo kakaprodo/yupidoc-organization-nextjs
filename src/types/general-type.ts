@@ -97,6 +97,7 @@ export interface Course {
   payment_url: string;
   course_domains: CourseDomain[];
   currency?: string;
+  display_as_free: boolean;
 }
 
 export type ProgramCourse = {
@@ -124,7 +125,8 @@ export interface Program {
   public_description: PublicDescription;
   course_domains: CourseDomain[];
   currency?: string;
-  courses?: ProgramCourse[]
+  courses?: ProgramCourse[];
+  display_as_free: boolean;
 }
 
 export interface SectionContentSettings {
