@@ -143,12 +143,16 @@
   },
   "Details": {
     "purchase": "Acheter",
+    "enrollToCourse": "S'inscrire au cours",
+    "startEnrollment": "Commencer l'inscription",
     "oneTimePayment": "Paiement unique",
     "duration": "Durée",
     "level": "Niveau",
     "language": "Langue",
     "refund": "Période de remboursement",
     "days": "jours",
+    "sponsored": "Sponsorisé",
+    "yupiCompleteEnrollment": "Finalisez votre inscription sur YupiDoc.",
     "included": "Inclus dans ce contenu",
     "whatYouWillLearn": "Ce que vous allez apprendre",
     "description": "Description",
@@ -163,7 +167,7 @@
     "cta": "Retourner à l'accueil"
   },
   "ProgramDetail": {
-    "purchase": "Acheter le programme",
+    "purchase": "S'inscrire au programme",
     "coreModules": "Modules principaux",
     "categories": "Categories",
     "standaloneCourses": "Cours indépendants",
