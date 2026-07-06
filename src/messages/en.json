@@ -143,6 +143,8 @@
   },
   "Details": {
     "purchase": "Purchase",
+    "enrollToCourse": "Enroll in the Course",
+    "startEnrollment": "Start Enrollment",
     "oneTimePayment": "One-time payment",
     "duration": "Duration",
     "level": "Level",
@@ -150,6 +152,8 @@
     "refund": "Refund period",
     "categories": "Categories",
     "days": "days",
+    "sponsored": "Sponsored",
+    "yupiCompleteEnrollment": "Complete your enrollment on YupiDoc.",
     "included": "Included in this content",
     "whatYouWillLearn": "What you'll learn",
     "description": "Description",
@@ -163,7 +167,7 @@
     "cta": "Back to Home"
   },
   "ProgramDetail": {
-    "purchase": "Purchase",
+    "purchase": "Enroll in the Program",
     "coreModules": "Core Modules",
     "categories": "Categories",
     "standaloneCourses": "Standalone Courses",

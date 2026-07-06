@@ -117,12 +117,17 @@ export default async function CourseDetailPage({
             <div className="sticky top-24 space-y-6">
               <div className="rounded-3xl border border-base-200 bg-base-200 p-8">
                 <p className="mb-2 text-xs font-black uppercase tracking-widest text-base-content/40">
-                  {t('purchase')}
+                  {t('enrollToCourse')}
                 </p>
 
                 <div className="space-y-3">
                   <p className="text-4xl font-black text-primary">{priceLabel}</p>
                   <p className="text-sm text-base-content/60">{t('duration')}: {durationLabel}</p>
+                  {course.display_as_free && (
+                    <span className="badge badge-sm badge-primary animate-pulse">
+                      {t('sponsored')}
+                    </span>
+                  )}
                 </div>
 
                 <div className="mt-8 space-y-4 border-t border-base-200 pt-6 text-sm text-base-content/70">

@@ -39,9 +39,9 @@ export function ThemeSwitcher() {
       aria-label="Toggle theme"
     >
       {activeTheme === 'dark' ? (
-        <SunIcon className="h-5 w-5 text-yellow-400" />
+        <SunIcon className="h-5 w-5 " />
       ) : (
-        <MoonIcon className="h-5 w-5 text-slate-700" />
+        <MoonIcon className="h-5 w-5 " />
       )}
     </button>
   );

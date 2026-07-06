@@ -105,10 +105,16 @@ export default async function ProgramDetail({ program }: ProgramDetailProps) {
               </p>
 
               <div className="space-y-3">
+
                 <p className="text-4xl font-black text-primary">{priceLabel}</p>
                 <p className="text-sm text-base-content/60">
                   {tDetails('duration')}: {durationLabel}
                 </p>
+                {program.display_as_free && (
+                  <span className="badge badge-sm badge-primary animate-pulse">
+                    {tDetails('sponsored')}
+                  </span>
+                )}
               </div>
 
               <div className="flex flex-col gap-2">

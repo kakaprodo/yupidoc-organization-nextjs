@@ -17,7 +17,7 @@ import { stripHtml } from '@/utils/content';
 import Image from 'next/image';
 
 
-const iconProps = { size: 5, className: 'text-base-content/60' };
+const iconProps = { size: 5, color: 'text-primary' };
 
 function getContactIcon(type: EntityAboutContactType): ReactNode {
   const contactIconMap: Record<EntityAboutContactType, ReactNode> = {
@@ -123,12 +123,13 @@ export default async function Footer() {
             className="flex items-center gap-2 transition-colors text-slate-500 dark:text-slate-400 hover:text-primary dark:hover:text-primary"
           >
             <span>Powered by</span>
+
             <Image
               width={70}
               height={15}
-              src="/yupi_logo_with_name_dark.webp"
-              alt='yupidoc-power'
-              className="dark:invert transition-all"
+              src="/yupi_logo_with_name.webp"
+              alt="yupidoc-power-light"
+              className="transition-all"
             />
           </a>
         </div>
