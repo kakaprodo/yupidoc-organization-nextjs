@@ -30,13 +30,6 @@ export default async function ProgramDetail({ program }: ProgramDetailProps) {
     ? tData(`${program.slug}.title`)
     : program.title;
 
-  const translatedPublicDescription = {
-    ...program.public_description,
-    content: tData.has(`${program.slug}.description`)
-      ? tData(`${program.slug}.description`)
-      : program.public_description?.content,
-  };
-
   const priceLabel = formatCurrency(program.price, locale, currencyCode);
   const durationLabel = `${formatNumber(program.duration, locale)} ${tDetails('days')}`;
 
@@ -93,7 +86,7 @@ export default async function ProgramDetail({ program }: ProgramDetailProps) {
           </h1>
 
           <PublicDescriptionViewer
-            publicDescription={translatedPublicDescription}
+            publicDescription={program.public_description}
           />
         </div>
 
