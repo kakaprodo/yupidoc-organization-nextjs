@@ -62,19 +62,13 @@ export default async function CourseDetailPage({
 
   if (!course) {
     notFound();
+
   }
 
   // Surcharge de traduction dynamique du cours
   const courseName = tData.has(`${course.slug}.name`)
     ? tData(`${course.slug}.name`)
     : course.name;
-
-  const translatedPublicDescription = {
-    ...course.public_description,
-    content: tData.has(`${course.slug}.description`)
-      ? tData(`${course.slug}.description`)
-      : course.public_description?.content,
-  };
 
   const organization = getOrganization();
   const currency = organization.settings?.default_currency ?? 'CDF';
@@ -109,7 +103,7 @@ export default async function CourseDetailPage({
             </h1>
 
             <PublicDescriptionViewer
-              publicDescription={translatedPublicDescription}
+              publicDescription={course.public_description}
             />
           </div>
 
