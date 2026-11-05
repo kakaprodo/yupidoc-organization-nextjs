@@ -137,6 +137,13 @@ export function getArticleExcerpt(article: Article, maxLength = 180): string {
   return text.length <= maxLength ? text : `${text.slice(0, maxLength).trimEnd()}…`;
 }
 
+export function getArticleReadTime(article: Article, wordsPerMinute = 200): number {
+  const text = stripMarkdown(stripHtml(article.content));
+  const wordCount = text ? text.split(/\s+/).length : 0;
+
+  return Math.max(1, Math.ceil(wordCount / wordsPerMinute));
+}
+
 export function getCourseById(id: string): Course | undefined {
   return getCourses().find((course) => String(course.id) === id);
 }
