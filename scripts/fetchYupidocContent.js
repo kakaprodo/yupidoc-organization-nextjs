@@ -34,7 +34,7 @@ async function main() {
     const domainPublicKey = process.env.YUPIDOC_PUBLIC_KEY;
 
     const url = !isProductionMode
-        ? `${process.env.YUPIDOC_IMAGE_BASE_PATH}/44-pk-d60bcff4-ad48-4982-beda-238057a6fe5b.gz`
+        ? `${process.env.YUPIDOC_IMAGE_BASE_PATH}/169-pk-8a3fd7e9-27e0-45be-9a12-ee5ef2cbadb3.gz`
         : `${process.env.YUPIDOC_IMAGE_BASE_PATH}/${organizationId}-${domainPublicKey}.gz`;
 
     console.log(`Fetching from: ${url}`);

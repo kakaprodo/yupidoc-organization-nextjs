@@ -46,10 +46,10 @@ export default function HeaderNavLinks({
               className={
                 mobile
                   ? `block py-3 font-medium transition-colors ${
-                      active ? "text-primary" : "text-base-content/70 hover:text-primary"
+                      active ? "text-primary" : "text-base-content hover:text-primary"
                     }`
                   : `text-sm font-semibold tracking-wide transition-colors ${
-                      active ? "text-primary" : "text-base-content/60 hover:text-primary"
+                      active ? "text-primary" : "text-base-content hover:text-primary"
                     }`
               }
             >
