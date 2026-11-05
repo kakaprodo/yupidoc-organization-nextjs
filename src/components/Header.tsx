@@ -4,18 +4,21 @@ import { Link } from '@/navigation';
 import { publicNavigation } from '@/constants/site';
 import { ThemeSwitcher } from '@/components/ThemeSwitcher';
 import { LanguageSwitcher } from '@/components/LanguageSwitcher';
-import { getOrganization } from '@/services/content';
+import { getArticles, getOrganization } from '@/services/content';
 import { OrganizationAvatar } from '@/components/OrganizationAvatar';
 import HeaderNavLinks from '@/components/HeaderNavLinks';
 
 export default async function Header() {
   const t = await getTranslations('Navigation');
   const organization = getOrganization();
+  const hasArticles = getArticles().length > 0;
 
-  const navLinks = publicNavigation.map((item) => ({
+  const navLinks = publicNavigation
+    .filter((item) => item.href !== '/activities' || hasArticles)
+    .map((item) => ({
     href: item.href,
     label: t(item.labelKey)
-  }));
+    }));
 
   return (
     <header className="sticky top-0 z-60 w-full border-b border-base-200 bg-base-100/90 backdrop-blur-md">
