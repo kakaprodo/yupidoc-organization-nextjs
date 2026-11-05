@@ -7,6 +7,7 @@ import { createPageMetadata } from "@/lib/metadata";
 import {
     getArticleBySlug,
     getArticles,
+    getArticleReadTime,
     getRandomArticles,
 } from "@/services/content";
 import ArticleCard from "@/components/ArticleCard";
@@ -58,6 +59,7 @@ export default async function ArticleDetailPage({
     }
 
     const lastModifiedAt = article.updated_at ?? article.created_at;
+    const readTime = getArticleReadTime(article);
     const lastModifiedDate = lastModifiedAt
         ? new Date(lastModifiedAt).toLocaleDateString(locale, {
               year: "numeric",
@@ -83,20 +85,17 @@ export default async function ArticleDetailPage({
                 )}
 
                 <header className="mb-10 border-b border-base-300 pb-8">
-                    <p className="mb-3 text-xs font-bold uppercase tracking-[0.2em] text-primary">
-                        {t("label")}
-                    </p>
                     <h1 className="text-2xl font-black tracking-tight text-base-content md:text-4xl">
                         {article.title}
                     </h1>
-                    {lastModifiedDate && (
-                        <time
-                            className="mt-4 block text-sm text-base-content/60"
-                            dateTime={lastModifiedAt ?? undefined}
-                        >
-                            {t("lastModified")}: {lastModifiedDate}
-                        </time>
-                    )}
+                    <div className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-base-content/60">
+                        {lastModifiedDate && (
+                            <time dateTime={lastModifiedAt ?? undefined}>
+                                {t("lastModified")}: {lastModifiedDate}
+                            </time>
+                        )}
+                        <span>{t("readTime", { count: readTime })}</span>
+                    </div>
                 </header>
 
                 <AppEditor content={article.content} />

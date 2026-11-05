@@ -85,6 +85,7 @@
     "viewMore": "View All Activities",
     "label": "Activity",
     "lastModified": "Last modified",
+    "readTime": "{count} min read",
     "moreActivities": "More activities",
     "empty": "No activities are available yet."
   },
