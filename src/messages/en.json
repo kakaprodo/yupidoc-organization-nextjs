@@ -3,6 +3,7 @@
     "home": "Home",
     "courses": "Courses",
     "programs": "Programs",
+    "activities": "Activities",
     "about": "About Us",
     "login": "Sign In",
     "joinNow": "Join Now"
@@ -77,6 +78,15 @@
         "description": "A program designed to develop the skills needed for leadership roles in technology companies."
       }
     }
+  },
+  "Articles": {
+    "title": "Activities",
+    "subtitle": "Explore ideas, insights, and practical knowledge from our community.",
+    "viewMore": "View All Activities",
+    "label": "Activity",
+    "lastModified": "Last modified",
+    "moreActivities": "More activities",
+    "empty": "No activities are available yet."
   },
   "CoursesPage": {
     "Hero": {

@@ -10,17 +10,31 @@ interface VideoWrapperProps {
     showBorder?: boolean;
 }
 
-const youtubeRegexes = [
-    /youtu\.be\/([A-Za-z0-9_-]{6,})/i,
-    /youtube\.com\/watch\?v=([A-Za-z0-9_-]{6,})/i,
-    /youtube\.com\/embed\/([A-Za-z0-9_-]{6,})/i,
-    /youtube\.com\/shorts\/([A-Za-z0-9_-]{6,})/i,
+const providers = [
+    { type: "youtube", regex: /youtu\.be\/([A-Za-z0-9_-]{6,})/i },
+    { type: "youtube", regex: /youtube\.com\/watch\?v=([A-Za-z0-9_-]{6,})/i },
+    { type: "youtube", regex: /youtube\.com\/embed\/([A-Za-z0-9_-]{6,})/i },
+    { type: "youtube", regex: /youtube\.com\/shorts\/([A-Za-z0-9_-]{6,})/i },
+    { type: "bunny", regex: /player\.mediadelivery\.net\/play\/(\d+)\/([0-9a-f-]{36})(?:\?.*)?$/i },
+    { type: "bunny", regex: /player\.mediadelivery\.net\/embed\/(\d+)\/([0-9a-f-]{36})(?:\?.*)?$/i },
 ];
 
-const getYouTubeId = (url: string) => {
-    for (const regex of youtubeRegexes) {
-        const match = url.match(regex);
-        if (match?.[1]) return match[1];
+export const getVideoInfo = (url: string) => {
+    for (const provider of providers) {
+        const match = url.match(provider.regex);
+        if (!match) continue;
+
+        if (provider.type === "youtube") {
+            return {
+                provider: "youtube",
+                videoUrl: `https://www.youtube.com/embed/${match[1]}`,
+            };
+        }
+
+        return {
+            provider: "bunny",
+            videoUrl: url,
+        };
     }
 
     return null;
@@ -110,11 +124,11 @@ const VideoWrapper = ({
     const [currentTime, setCurrentTime] = useState(0);
     const [duration, setDuration] = useState(0);
     const [volume, setVolume] = useState(1);
-    const youtubeId = videoUrl ? getYouTubeId(videoUrl) : null;
+    const videoUrlInfo = useMemo(() => (videoUrl ? getVideoInfo(videoUrl) : null), [videoUrl]);
 
     useEffect(() => {
         const video = videoRef.current;
-        if (!video || youtubeId) return;
+        if (!video || videoUrlInfo) return;
 
         const handleTimeUpdate = () => setCurrentTime(video.currentTime);
         const handleDurationChange = () => setDuration(video.duration || 0);
@@ -140,7 +154,7 @@ const VideoWrapper = ({
             video.removeEventListener("pause", handlePause);
             video.removeEventListener("volumechange", handleVolumeChange);
         };
-    }, [youtubeId, videoUrl]);
+    }, [videoUrlInfo]);
 
     const progress = useMemo(() => {
         if (!duration) return 0;
@@ -149,7 +163,7 @@ const VideoWrapper = ({
 
     const togglePlay = async () => {
         const video = videoRef.current;
-        if (!video || youtubeId) return;
+        if (!video || videoUrlInfo) return;
 
         if (video.paused) {
             await video.play();
@@ -164,7 +178,7 @@ const VideoWrapper = ({
 
     const seek = (value: number) => {
         const video = videoRef.current;
-        if (!video || youtubeId || !duration) return;
+        if (!video || videoUrlInfo || !duration) return;
 
         const nextTime = (value / 100) * duration;
         video.currentTime = nextTime;
@@ -173,7 +187,7 @@ const VideoWrapper = ({
 
     const changeVolume = (value: number) => {
         const video = videoRef.current;
-        if (!video || youtubeId) return;
+        if (!video || videoUrlInfo) return;
 
         const nextVolume = Math.max(0, Math.min(1, value));
         video.volume = nextVolume;
@@ -183,7 +197,7 @@ const VideoWrapper = ({
 
     const toggleMute = () => {
         const video = videoRef.current;
-        if (!video || youtubeId) return;
+        if (!video || videoUrlInfo) return;
 
         video.muted = !video.muted;
         setVolume(video.muted ? 0 : video.volume || 1);
@@ -191,7 +205,7 @@ const VideoWrapper = ({
 
     const enterFullscreen = async () => {
         const video = videoRef.current;
-        if (!video || youtubeId) return;
+        if (!video || videoUrlInfo) return;
 
         if (video.requestFullscreen) {
             await video.requestFullscreen();
@@ -208,13 +222,13 @@ const VideoWrapper = ({
                 </div>
             )}
 
-            {youtubeId ? (
+            {videoUrlInfo ? (
                 <div className="aspect-video w-full">
                     <iframe
                         className="h-full w-full"
-                        src={`https://www.youtube.com/embed/${youtubeId}`}
+                        src={videoUrlInfo.videoUrl}
                         title={title}
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allow="accelerometer; gyroscope; encrypted-media; picture-in-picture;"
                         allowFullScreen
                     />
                 </div>

@@ -3,6 +3,7 @@
     "home": "Accueil",
     "courses": "Cours",
     "programs": "Programmes",
+    "activities": "Activités",
     "about": "À Propos",
     "login": "Connexion",
     "joinNow": "Rejoindre"
@@ -77,6 +78,15 @@
         "description": "Préparez-vous à diriger dans l'industrie technologique avec notre programme intensif."
       }
     }
+  },
+  "Articles": {
+    "title": "Activités",
+    "subtitle": "Découvrez les idées, réflexions et connaissances pratiques de notre communauté.",
+    "viewMore": "Voir toutes les activités",
+    "label": "Activité",
+    "lastModified": "Dernière modification",
+    "moreActivities": "Plus d'activités",
+    "empty": "Aucune activité n'est disponible pour le moment."
   },
   "CoursesPage": {
     "Hero": {

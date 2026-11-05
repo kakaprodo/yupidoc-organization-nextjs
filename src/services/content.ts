@@ -1,8 +1,9 @@
 import content from '../../scripts/training-center-contents.json';
-import { excerpt, stripHtml } from '@/utils/content';
+import { excerpt, stripHtml, stripMarkdown } from '@/utils/content';
 import type {
   CourseDomain,
   Course,
+  Article,
   JsonArray,
   HeroSlide,
   Program,
@@ -33,6 +34,15 @@ function normalizeProgram(program: Program, defaultCurrency: string): Program {
     course_domains: (program.course_domains ?? []) as CourseDomain[],
     public_description: normalizePublicDescription(program.public_description),
     currency: defaultCurrency
+  };
+}
+
+function normalizeArticle(article: Article): Article {
+  return {
+    ...article,
+    image_url: article.image_url ?? null,
+    created_at: article.created_at ?? null,
+    updated_at: article.updated_at ?? null,
   };
 }
 
@@ -68,8 +78,10 @@ function normalizeContent(raw: typeof content): TrainingCenterContent {
 
   return {
     organization: raw.organization as unknown as TrainingCenterContent['organization'],
+    domain: raw.domain as unknown as TrainingCenterContent['domain'],
     courses: (raw.courses ?? []).map((c) => normalizeCourse(c, raw.organization.settings.default_currency)),
     programs: (raw.programs ?? []).map( (p) => normalizeProgram(p, raw.organization.settings.default_currency)),
+    articles: (raw.articles ?? []).map((article) => normalizeArticle(article as Article)),
     section_contents: sectionContents
   };
 }
@@ -89,6 +101,40 @@ export function getCourses(): Course[] {
 
 export function getPrograms(): Program[] {
   return trainingCenterContent.programs ?? [];
+}
+
+export function getArticles(): Article[] {
+  return trainingCenterContent.articles ?? [];
+}
+
+export function getArticleBySlug(slug: string): Article | undefined {
+  return getArticles().find((article) => article.slug === slug);
+}
+
+export function getFeaturedArticles(limit = 2): Article[] {
+  return getArticles().slice(0, limit);
+}
+
+export function getRandomArticleImage(): string | null {
+  const images = getArticles()
+    .map((article) => article.image_url)
+    .filter((image): image is string => Boolean(image));
+
+  if (images.length === 0) return null;
+
+  return images[Math.floor(Math.random() * images.length)] ?? null;
+}
+
+export function getRandomArticles(excludeSlug?: string, limit = 3): Article[] {
+  return getArticles()
+    .filter((article) => article.slug !== excludeSlug)
+    .sort(() => Math.random() - 0.5)
+    .slice(0, limit);
+}
+
+export function getArticleExcerpt(article: Article, maxLength = 180): string {
+  const text = stripMarkdown(stripHtml(article.content));
+  return text.length <= maxLength ? text : `${text.slice(0, maxLength).trimEnd()}…`;
 }
 
 export function getCourseById(id: string): Course | undefined {

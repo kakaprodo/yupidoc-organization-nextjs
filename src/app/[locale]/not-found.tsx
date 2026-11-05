@@ -6,7 +6,7 @@ export default async function NotFound() {
   const t = await getTranslations('NotFound');
 
   return (
-    <main className="flex min-h-[80vh] items-center justify-center bg-base-100 px-4">
+    <div className="flex min-h-[80vh] items-center justify-center bg-base-100 px-4">
       <div className="w-full max-w-2xl text-center">
         <div className="mb-8 flex justify-center">
           <div className="relative">
@@ -33,7 +33,7 @@ export default async function NotFound() {
           </Link>
         </div>
       </div>
-    </main>
+    </div>
   );
 }
 

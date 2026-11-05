@@ -48,6 +48,14 @@ export interface Organization {
   refund_payment_period?: number | null;
 }
 
+export interface TrainingCenterDomain {
+  id: number;
+  dns?: string | null;
+  ppk?: string | null;
+  yupidoc_base_url?: string | null;
+  public_auth?: Record<string, string> | null;
+}
+
 export interface CourseDomain {
   id: number;
   name: string;
@@ -129,6 +137,16 @@ export interface Program {
   display_as_free: boolean;
 }
 
+export interface Article {
+  id: number;
+  slug: string;
+  title: string;
+  content: string;
+  image_url?: string | null;
+  created_at?: string | null;
+  updated_at?: string | null;
+}
+
 export interface SectionContentSettings {
   media_id?: number | null;
   media_url?: string | null;
@@ -158,8 +176,10 @@ export type SectionContentsMap = Record<SectionContentKey, SectionContentItem[]>
 
 export interface TrainingCenterContent {
   organization: Organization;
+  domain: TrainingCenterDomain;
   courses: Course[];
   programs: Program[];
+  articles: Article[];
   section_contents: SectionContentsMap;
 }
 

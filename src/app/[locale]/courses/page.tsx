@@ -106,7 +106,7 @@ export default async function CoursesPage({
   );
 
   return (
-    <main className="min-h-screen bg-base-100 pb-20">
+    <div className="min-h-screen bg-base-100 pb-20">
       <PageHero
         title={t('Hero.title')}
         subtitle={t('Hero.subtitle')}
@@ -189,6 +189,6 @@ export default async function CoursesPage({
           </>
         )}
       </div>
-    </main>
+    </div>
   );
 }

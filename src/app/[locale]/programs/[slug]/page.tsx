@@ -49,8 +49,8 @@ export default async function ProgramDetailPage({
   }
 
   return (
-    <main className="min-h-screen bg-base-100 pb-20">
+    <div className="min-h-screen bg-base-100 pb-20">
       <ProgramDetail program={program} />
-    </main>
+    </div>
   );
 }

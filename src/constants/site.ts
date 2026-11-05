@@ -16,6 +16,7 @@ export const publicNavigation = [
   { href: '/', labelKey: 'home' },
   { href: '/courses', labelKey: 'courses' },
   { href: '/programs', labelKey: 'programs' },
+  { href: '/activities', labelKey: 'activities' },
   { href: '/about', labelKey: 'about' }
 ] as const;
 
